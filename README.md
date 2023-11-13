@@ -1,4 +1,4 @@
-### Bookmarks 
+# Bookmarks 
 
 ## Functionalitate:
 - aplicatie web pentru salvarea si gestionarea bookmark-urilor;
@@ -18,14 +18,14 @@
 - logo/brand - goes to index.html
 - help - afisarea unei ferestre modale unde se gasesc informatii cu privire la folosirea aplicatiei
 
-# Logged out:
+### Logged out:
 - Sign in - deschide pagina sign-in.php
 - Register - deschide pagina register.php
 - pagina sign-in.php cuprinde un formular in care se vor introduce datele necesare autentificarii + un buton forgot password
 - forgot password deschide pagina resetare-parola.php ce cuprinde un mini formular cu un camp in care se va introduce adresa de e-mail pe care se va primi un link ce deschide o pagina cu un formular cu doua campuri: parola noua, confirmare parola noua;
 - pagina register.php cuprinde un formular in care se introduc date necesare crearii unui cont (username, nume, prenume, email, language, parola, confirmare parola)
 
-# Logged in:
+### Logged in:
 - Logo/Brand, Home, Help --left
 - Account Dropdown menu (Gestionare bookmarks, Edit profile, reset password, log out) -- right
 - home button deschide pagina home.php in cadrul careia avem categoriile si istoric/favorite
