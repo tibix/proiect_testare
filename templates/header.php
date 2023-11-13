@@ -40,13 +40,13 @@
 					<?php
 						if(logged_in()){ ?>
 						<div class="btn-group">
-							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['f_name'] . ' ' .$_SESSION['l_name']); ?>
+							<button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
 								<li>
 									<a class="dropdown-item" href="bookmarks.php">
-										<i class="fa-solid fa-bookmark"></i>
+										<i class="fa-solid fa-bookmark"></i> 
 										Manage Bookmarks
 									</a>
 								</li>

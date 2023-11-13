@@ -6,30 +6,44 @@ require_once 'classes/User.php';
 include 'templates/header.php';
 
 if(isset($_POST['register'])){
-    // validam forma
+
     $errors = array();
 
-    if(!empty($_POST['u_name'])) { $u_name = $_POST['u_name']; } else { $errors[] = "Nume utilizator invalid!</br>"; }
-    if(!empty($_POST['f_name'])) { $f_name = $_POST['f_name']; } else { $errors[] = "Nume invalid!</br>"; }
-    if(!empty($_POST['l_name'])) { $l_name = $_POST['l_name']; } else { $errors[] = "Prenume invalid!</br>"; }
-    if(!empty($_POST['u_email'])) { $email = $_POST['u_email']; } else { $errors[] = "Email invalid!</br>"; }
-    if(!empty($_POST['u_password'])) { $password = $_POST['u_password']; } else { $errors[] = "Parola invalida!</br>"; }
-    if(!empty($_POST['u_password_c'])) { $password2 = $_POST['u_password_c']; } else { $errors[] = "Confirmare parola invalida!</br>"; }
-    if($_POST['u_password'] !== $_POST['u_password_c']) { $errors[] = "Parolele nu coincid!</br>"; }
-
     $db = new Database();
-    $check_email = "SELECT email FROM users WHERE email = '$email'";
-    $check_u_name = "SELECT u_name FROM users WHERE u_name = '$u_name'";
-    $result_email = $db->query($check_email);
-    $result_u_name = $db->query($check_u_name);
+    
+    if(!empty($_POST['u_name'])) { 
+        $u_name = $_POST['u_name'];
+        $check_u_name = "SELECT user_name FROM users WHERE user_name = '$u_name'";
+        $result_u_name = $db->query($check_u_name);
+        
+        if($result_u_name->num_rows > 0){
+            $errors[] = "Username already in use! Please choose another username.</br>";
+        }
 
-    if($result_email->num_rows > 0){
-        $errors[] = "Email-ul este deja folosit!</br>";
+    } else { 
+        $errors[] = "Username is invalid or empty!</br>";
     }
+    
+    if(!empty($_POST['f_name'])) { $f_name = $_POST['f_name']; } else { $errors[] = "First name is invalid or empty!</br>"; }
+    if(!empty($_POST['l_name'])) { $l_name = $_POST['l_name']; } else { $errors[] = "Last name is invlid or empty!</br>"; }
+    if(!empty($_POST['email'])) { 
+        $email = $_POST['email'];
+        $check_email = "SELECT email FROM users WHERE email = '$email'";
+        $result_email = $db->query($check_email);
 
-    if($result_u_name->num_rows > 0){
-        $errors[] = "Numele de utilizator este deja folosit!</br>";
+        if($result_email->num_rows > 0){
+            $errors[] = "E-mail is already in use! Please choose another email or reset your passeword <a class=\"text-dark\" href=\"password-reset.php\">here</a></br>";
+        }
+
+    } else { 
+        $errors[] = "Email is invalid or empty!</br>";
     }
+    
+    if(isset($_POST['language']) && $_POST['language'] != 'no_language') { $language = $_POST['language']; } else { $errors[] = "Language is invalid or empty!</br>"; }
+    if(!empty($_POST['u_password'])) { $password = $_POST['u_password']; } else { $errors[] = "Password is invalid!</br>"; }
+    if(!empty($_POST['u_password_c'])) { $password2 = $_POST['u_password_c']; } else { $errors[] = "Confirm password is invalid!</br>"; }
+    if($_POST['u_password'] !== $_POST['u_password_c']) { $errors[] = "Passwords do not match!</br>"; }
+    
 
     if(empty($errors)){
         // convert password to MD5 encripted string
@@ -38,11 +52,11 @@ if(isset($_POST['register'])){
 
         $user = new User($db);
 
-        if($user->createUser($u_name, $f_name, $l_name, $email, $password, $now)) {
+        if($user->createUser($u_name, $f_name, $l_name, $email, $password, $language, $now)) {
             $db->close();
-            redirect("autentificare.php");
+            redirect("login.php");
         } else {
-            $error[] = "Eroare la crearea contului! Va rugam incercati mai tarziu!";
+            $error[] = "Error ocurred while creating the account! Please try again later!";
         }
     } else {
         ?>
@@ -85,9 +99,9 @@ if(isset($_POST['register'])){
                                         </div>
                                         <div class="col-md-6 mb-4 pb-2">
                                             <div class="form-outline">
-                                                <input type="email" id="u_email" name="u_email" class="form-control form-control-lg"
-                                                value="<?php if(isset($_POST['u_email'])) { echo $_POST['u_email']; } ?>" />
-                                                <label class="form-label" for="u_email">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control form-control-lg"
+                                                value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" />
+                                                <label class="form-label" for="email">Email</label>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +134,7 @@ if(isset($_POST['register'])){
                                     </div>
                                     <div class="mt-4 pt-2">
                                         <div class="d-flex justify-content-center text-center pt-1">
-                                            <input class="btn btn-outline-primary" type="submit" name="inregistrare" value="Inregistrare" />
+                                            <input class="btn btn-outline-primary" type="submit" name="inregistrare" value="Register" />
                                         </div>
                                         <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                             <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>
@@ -170,8 +184,8 @@ if(isset($_POST['register'])){
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
-                                            <input type="email" id="u_email" name="u_email" class="form-control form-control-lg" />
-                                            <label class="form-label" for="u_email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                            <label class="form-label" for="email">Email</label>
                                         </div>
                                     </div>
                                 </div>
@@ -204,7 +218,7 @@ if(isset($_POST['register'])){
                                 </div>
                                 <div class="mt-4 pt-2">
                                     <div class="d-flex justify-content-center text-center pt-1">
-                                        <input class="btn btn-outline-primary" type="submit" name="inregistrare" value="Inregistrare" />
+                                        <input class="btn btn-outline-primary" type="submit" name="register" value="Register" />
                                     </div>
                                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                         <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>

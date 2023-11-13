@@ -7,34 +7,28 @@
 
 class Database
 {    
+    
     /**
-     * conn
-     *
-     * @var mixed
+     * @var object $conn The database connection object.
      */
     private $conn;
     
-    /**
-     * __construct
-     *
-     * @return void
-     */
     public function __construct()
     {
-        $this->conn = new mysqli("localhost", "editorial", "editorial", "editorial");
+        $this->conn = new mysqli("localhost", "root", "", "bookmarks");
 
         if ($this->conn->connect_error) {
-            die("Conexiunea la baza de date a eșuat: " . $this->conn->connect_error);
+            die("DB connection failed: " . $this->conn->connect_error);
         }
 
         $this->conn->set_charset('utf8');
     }
     
     /**
-     * query
+     * Executes a SQL query on the database.
      *
-     * @param  mixed $sql
-     * @return mixed
+     * @param string $sql The SQL query to execute.
+     * @return mixed The result of the query.
      */
     public function query($sql)
     {
@@ -42,18 +36,19 @@ class Database
     }
     
     /**
-     * escapeString
+     * Escapes special characters in a string for use in an SQL statement. Basic SQL injection prevention.
      *
-     * @param  mixed $str
-     * @return string
+     * @param string $str The string to be escaped.
+     * @return string The escaped string.
      */
     public function escapeString($str)
     {
         return $this->conn->real_escape_string($str);
     }
     
+   
     /**
-     * close
+     * Closes the database connection.
      *
      * @return void
      */
