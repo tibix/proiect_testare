@@ -8,22 +8,28 @@
 class Database
 {    
     
-    /**
-     * @var object $conn The database connection object.
-     */
+    private $host = "localhost";
+    private $user = "root";
+    private $pass = "";
+    private $dbname = "bookmarks";
+    private $charset = "utf8";
     private $conn;
     
     public function __construct()
     {
-        $this->conn = new mysqli("localhost", "root", "", "bookmarks");
+        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname.';charset='.$this->charset;
+        try{
+            $this->conn = new PDO($dsn, $this->user, $this->pass);
 
-        if ($this->conn->connect_error) {
-            die("DB connection failed: " . $this->conn->connect_error);
+            if($this->conn){
+                echo "Connected";
+            }
+        }catch(PDOException $e){
+            echo $e->getMessage();
         }
-
-        $this->conn->set_charset('utf8');
     }
     
+
     /**
      * Executes a SQL query on the database.
      *
@@ -43,7 +49,7 @@ class Database
      */
     public function escapeString($str)
     {
-        return $this->conn->real_escape_string($str);
+        return $this->conn->quote($str);
     }
     
    
@@ -54,6 +60,6 @@ class Database
      */
     public function close()
     {
-        $this->conn->close();
+        $this->conn = null;
     }
 }

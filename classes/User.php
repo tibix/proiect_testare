@@ -58,7 +58,7 @@ class User
         $sql = "SELECT * FROM users WHERE user_name = '$login' OR email = '$login'";
         $result = $this->db->query($sql);
 
-        return $result->fetch_assoc();
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -73,7 +73,7 @@ class User
         $sql = "SELECT * FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        return $result->fetch_assoc();
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
@@ -157,7 +157,7 @@ class User
         $sql = "SELECT token FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        $row = $result->fetch_assoc();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
         $token = $row['token'];
         
         return $token;
@@ -175,7 +175,7 @@ class User
         $sql = "SELECT token FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        $row = $result->fetch_assoc();
+        $row = $result->fetch(PDO::FETCH_ASSOC);
         $token = $row['token'];
 
         if ($token) {

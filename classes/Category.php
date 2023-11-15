@@ -49,7 +49,7 @@ class Category{
         $sql = "SELECT * FROM categories WHERE id = $id";
 
         $result = $this->db->query($sql);
-        return $result->fetch_assoc();
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
     
     /**
@@ -62,7 +62,7 @@ class Category{
         $sql = "SELECT * FROM categories";
 
         $result = $this->db->query($sql);
-        return $result->fetch_all();
+        return $result->fetch(PDO::FETCH_ASSOC);
     }
 
     /**
