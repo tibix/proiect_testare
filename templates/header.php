@@ -23,9 +23,9 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-					<a class="navbar-brand text-light" href="index.php">Bookmarks</a>
+					<a class="navbar-brand text-light" href="index.php">Bookmarks&trade;Limited</a>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
-                        <li class="nav-item">
+					<li class="nav-item">
 							<a class="nav-link text-light" href="#">
 								<i class="fa-solid fa-question"></i> Help
 							</a>
@@ -40,19 +40,19 @@
 					<?php
 						if(logged_in()){ ?>
 						<div class="btn-group">
-							<button type="button" class="btn btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['f_name'] . ' ' .$_SESSION['l_name']); ?>
+							<button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
 								<li>
 									<a class="dropdown-item" href="bookmarks.php">
-										<i class="fa-solid fa-bookmark"></i>
-										Manage Bookmarks
+										<i class="fa-solid fa-book-bookmark"></i>
+										My Bookmarks
 									</a>
 								</li>
-                                <li>
+								<li>
 									<a class="dropdown-item" href="favourites.php">
-										<i class="fa-solid fa-star"></i>
+										<i class="fa-regular fa-bookmark"></i>
 										Favourites
 									</a>
 								</li>
@@ -100,7 +100,7 @@
 								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favourites.</p>
 								<h3>How can I contact you?</h3>
 								<p>Fastest way to get in touch with us is to send us an <a class="text-decoration-none text-primary" href="mailto:example@email.com:">email</a></p>
-                                <p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
+								<p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -6,43 +6,41 @@ require_once 'classes/User.php';
 include 'templates/header.php';
 
 if(isset($_POST['register'])){
-    // validam forma
+    prety_dump($_POST);
     $errors = array();
-
-    if(!empty($_POST['u_name'])) { $u_name = $_POST['u_name']; } else { $errors[] = "Nume utilizator invalid!</br>"; }
-    if(!empty($_POST['f_name'])) { $f_name = $_POST['f_name']; } else { $errors[] = "Nume invalid!</br>"; }
-    if(!empty($_POST['l_name'])) { $l_name = $_POST['l_name']; } else { $errors[] = "Prenume invalid!</br>"; }
-    if(!empty($_POST['u_email'])) { $email = $_POST['u_email']; } else { $errors[] = "Email invalid!</br>"; }
-    if(!empty($_POST['u_password'])) { $password = $_POST['u_password']; } else { $errors[] = "Parola invalida!</br>"; }
-    if(!empty($_POST['u_password_c'])) { $password2 = $_POST['u_password_c']; } else { $errors[] = "Confirmare parola invalida!</br>"; }
-    if($_POST['u_password'] !== $_POST['u_password_c']) { $errors[] = "Parolele nu coincid!</br>"; }
-
     $db = new Database();
-    $check_email = "SELECT email FROM users WHERE email = '$email'";
-    $check_u_name = "SELECT u_name FROM users WHERE u_name = '$u_name'";
-    $result_email = $db->query($check_email);
-    $result_u_name = $db->query($check_u_name);
+    $user = new User($db);
 
-    if($result_email->num_rows > 0){
-        $errors[] = "Email-ul este deja folosit!</br>";
+    if(isset($_POST['user_name'])) { 
+        $u_name = $_POST['user_name'];
+        if($user->userExists($u_name)){
+            $errors[] = "Username is already in use!</br>";
+        }
+    } else { 
+        $errors[] = "Nume utilizator invalid!</br>";
     }
-
-    if($result_u_name->num_rows > 0){
-        $errors[] = "Numele de utilizator este deja folosit!</br>";
+    if(isset($_POST['first_name'])) { $first_name = $_POST['first_name']; } else { $errors[] = "Nume invalid!</br>"; }
+    if(isset($_POST['last_name'])) { $last_name = $_POST['last_name']; } else { $errors[] = "Prenume invalid!</br>"; }
+    if(isset($_POST['email'])) { 
+        $email = $_POST['email'];
+        if($user->emailExists($email)){
+            $errors[] = "This e-mail is already registered! Reset password <a href=\"password-reset.php\" class=\"text-dark\">here</a></br>";
+        }
+    } else { 
+        $errors[] = "Email invalid!</br>";
     }
+    if(isset($_POST['password'])) { $password = $_POST['password']; } else { $errors[] = "Parola invalida!</br>"; }
+    if(isset($_POST['password_c'])) { $password2 = $_POST['password_c']; } else { $errors[] = "Confirmare parola invalida!</br>"; }
+    if($_POST['password'] !== $_POST['password_c']) { $errors[] = "Parolele nu coincid!</br>"; }
 
     if(empty($errors)){
-        // convert password to MD5 encripted string
-        $password = md5($password);
         $now = date('Y-m-d H:i:s');
 
-        $user = new User($db);
-
-        if($user->createUser($u_name, $f_name, $l_name, $email, $password, $now)) {
+        if($user->createUser($u_name, $first_name, $last_name, $email, $password, $now)) {
             $db->close();
-            redirect("autentificare.php");
+            redirect("login.php");
         } else {
-            $error[] = "Eroare la crearea contului! Va rugam incercati mai tarziu!";
+            $errors[] = "Eroare la crearea contului! Va rugam incercati mai tarziu!";
         }
     } else {
         ?>
@@ -64,30 +62,30 @@ if(isset($_POST['register'])){
                                     <div class="row">
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <input type="text" id="u_name" name="u_name" class="form-control form-control-lg"
-                                                value="<?php if(isset($_POST['u_name'])) { echo $_POST['u_name']; } ?>" />
-                                                <label class="form-label" for="u_name">Username</label>
+                                                <input type="text" id="user_name" name="user_name" class="form-control form-control-lg"
+                                                value="<?php if(isset($_POST['user_name'])) { echo $_POST['u_name']; } ?>" />
+                                                <label class="form-label" for="user_name">Username</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <input type="text" id="f_name" name="f_name" class="form-control form-control-lg"
-                                                value="<?php if(isset($_POST['f_name'])) { echo $_POST['f_name']; } ?>"/>
-                                                <label class="form-label" for="f_name">First Name</label>
+                                                <input type="text" id="first_name" name="first_name" class="form-control form-control-lg"
+                                                value="<?php if(isset($_POST['first_name'])) { echo $_POST['first_name']; } ?>"/>
+                                                <label class="form-label" for="first_name">First Name</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4">
                                             <div class="form-outline">
-                                                <input type="text" id="l_name" name="l_name" class="form-control form-control-lg"
-                                                value="<?php if(isset($_POST['l_name'])) { echo $_POST['l_name']; } ?>" />
-                                                <label class="form-label" for="l_name">Last Name</label>
+                                                <input type="text" id="last_name" name="last_name" class="form-control form-control-lg"
+                                                value="<?php if(isset($_POST['last_name'])) { echo $_POST['last_name']; } ?>" />
+                                                <label class="form-label" for="last_name">Last Name</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4 pb-2">
                                             <div class="form-outline">
-                                                <input type="email" id="u_email" name="u_email" class="form-control form-control-lg"
-                                                value="<?php if(isset($_POST['u_email'])) { echo $_POST['u_email']; } ?>" />
-                                                <label class="form-label" for="u_email">Email</label>
+                                                <input type="email" id="email" name="email" class="form-control form-control-lg"
+                                                value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" />
+                                                <label class="form-label" for="email">Email</label>
                                             </div>
                                         </div>
                                     </div>
@@ -107,20 +105,20 @@ if(isset($_POST['register'])){
                                     <div class="row">
                                         <div class="col-md-6 mb-4 pb-2">
                                             <div class="form-outline">
-                                                <input type="password" id="u_password" name="u_password" class="form-control form-control-lg" />
-                                                <label class="form-label" for="u_password">Password</label>
+                                                <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                                <label class="form-label" for="password">Password</label>
                                             </div>
                                         </div>
                                         <div class="col-md-6 mb-4 pb-2">
                                             <div class="form-outline">
-                                                <input type="password" id="u_password_c" name="u_password_c" class="form-control form-control-lg" />
-                                                <label class="form-label" for="u_password_c">Confirm Password</label>
+                                                <input type="password" id="password_c" name="password_c" class="form-control form-control-lg" />
+                                                <label class="form-label" for="password_c">Confirm Password</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mt-4 pt-2">
                                         <div class="d-flex justify-content-center text-center pt-1">
-                                            <input class="btn btn-outline-primary" type="submit" name="inregistrare" value="Inregistrare" />
+                                            <input class="btn btn-outline-primary" type="submit" name="register" value="Register" />
                                         </div>
                                         <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                             <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>
@@ -152,26 +150,26 @@ if(isset($_POST['register'])){
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="u_name" name="u_name" class="form-control form-control-lg" />
+                                            <input type="text" id="user_name" name="user_name" class="form-control form-control-lg" />
                                             <label class="form-label" for="u_name">Username</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="f_name" name="f_name" class="form-control form-control-lg" />
-                                            <label class="form-label" for="f_name">First Name</label>
+                                            <input type="text" id="first_name" name="first_name" class="form-control form-control-lg" />
+                                            <label class="form-label" for="first_name">First Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
-                                            <input type="text" id="l_name" name="l_name" class="form-control form-control-lg" />
-                                            <label class="form-label" for="l_name">Last Name</label>
+                                            <input type="text" id="last_name" name="last_name" class="form-control form-control-lg" />
+                                            <label class="form-label" for="last_name">Last Name</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
-                                            <input type="email" id="u_email" name="u_email" class="form-control form-control-lg" />
-                                            <label class="form-label" for="u_email">Email</label>
+                                            <input type="email" id="email" name="email" class="form-control form-control-lg" />
+                                            <label class="form-label" for="email">Email</label>
                                         </div>
                                     </div>
                                 </div>
@@ -191,20 +189,20 @@ if(isset($_POST['register'])){
                                 <div class="row">
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
-                                            <input type="password" id="u_password" name="u_password" class="form-control form-control-lg" />
-                                            <label class="form-label" for="u_password">Password</label>
+                                            <input type="password" id="password" name="password" class="form-control form-control-lg" />
+                                            <label class="form-label" for="password">Password</label>
                                         </div>
                                     </div>
                                     <div class="col-md-6 mb-4 pb-2">
                                         <div class="form-outline">
-                                            <input type="password" id="u_password_c" name="u_password_c" class="form-control form-control-lg" />
-                                            <label class="form-label" for="u_password_c">Confirm Password</label>
+                                            <input type="password" id="password_c" name="password_c" class="form-control form-control-lg" />
+                                            <label class="form-label" for="password_c">Confirm Password</label>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="mt-4 pt-2">
                                     <div class="d-flex justify-content-center text-center pt-1">
-                                        <input class="btn btn-outline-primary" type="submit" name="inregistrare" value="Inregistrare" />
+                                        <input class="btn btn-outline-primary" type="submit" name="register" value="Register" />
                                     </div>
                                     <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                         <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>

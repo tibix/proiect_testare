@@ -46,3 +46,16 @@ function generateToken()
     $token = bin2hex(random_bytes(64));
     return $token;
 }
+
+/**
+ * Function to display a prettified dump of a variable.
+ *
+ * @param mixed $var The variable to be dumped.
+ * @return void
+ */
+function prety_dump($var)
+{
+    echo '<pre>';
+    print_r($var);
+    echo '</pre>';
+}
