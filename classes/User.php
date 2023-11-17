@@ -193,28 +193,30 @@ class User
         $sql = "SELECT token FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $row = $result->fetch_assoc();
         $token = $row['token'];
         
         return $token;
     }
 
     /**
-     * Checks if a user has a token based on their ID.
+     * Compares provided token with the token in the DB.
      *
      * @param int $id The ID of the user.
-     * @return bool Returns true if the user has a token, false otherwise.
+     * @param string $token The token to compare.
+     * @return bool Returns true if the user has the specified token, false otherwise.
      */
-    public function hasToken($id)
+    public function hasToken($id, $token)
     {
         $id = (int)$id;
+        $token = $this->db->escapeString($token);
         $sql = "SELECT token FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        $row = $result->fetch(PDO::FETCH_ASSOC);
-        $token = $row['token'];
+        $row = $result->fetch_assoc();
+        $user_token = $row['token'];
 
-        if ($token) {
+        if ($user_token == $token) {
             return true;
         } else {
             return false;

@@ -12,14 +12,14 @@
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" name="login" id="login" class="form-control form-control-lg"
                                     value="<?php if(isset($_POST['login'])) { echo $_POST['login']; } ?>" />
-                                    <label class="form-label" for="typeEmailX">Email/Username</label>
+                                    <label class="form-label" for="login">Email/Username</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
                                     <input type="password" name="password" id="password" class="form-control form-control-lg" 
                                     "<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>"/>
                                     <label class="form-label" for="typePasswordX">Password</label>
                                 </div>
-                                <p class="small mb-5 pb-lg-2"><a class="text-dark-50" href="password_reset.php">Reset Password</a></p>
+                                <p class="small mb-5 pb-lg-2"><a class="text-dark" href="password_reset.php">Reset Password</a></p>
                                 <button class="btn btn-outline-dark btn-lg px-5" type="submit" name="autentificare">Log In</button>
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
                                     <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div>
-                                <p class="mb-0">Don't have an account yet? <a href="register.php" class="text-dark-50 fw-bold">Register here</a>
+                                <p class="mb-0">Don't have an account yet? <a href="register.php" class="text-dark fw-bold">Register here</a>
                                 </p>
                             </div>
                         </div>

@@ -63,6 +63,36 @@ if(logged_in()){
 	}
 	include 'templates/t_password_reset.php';
 } else {
+	if(isset($_POST['recover_password']))
+	{
+		$errors = array();
+
+		if(!isset($_POST['email']) || empty($_POST['email'])){
+			$errors[] .= '<p>Please enter your email address!</p>';
+		} else {
+			$db = new Database();
+			$user = new User($db);
+			$user_data = $user->getUserByLogin($_POST['email']);
+			if(empty($user_data)){
+				$errors[] .= '<p>Sorry, we can\'t find that email address!</p>';
+			}
+		}
+
+		if(!empty($errors))
+		{
+			echo '<div class="alert alert-danger alert-dismissible fade show text-secondary" role="alert">';
+			foreach($errors as $error){
+				echo  $error;
+			}
+			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
+			echo '</div>';
+		} else {
+			$user->setToken($user_data['id']);
+			$reset_link = "http://" . $_SERVER['HTTP_HOST'] . "/password_recover.php?user_id=" . $user_data['id'] . "&token=" . $user->getToken($user_data['id']);
+			sleep(2);
+			redirect($reset_link);
+		}
+	}
 	include 'templates/t_password_reset_email.php';
 }
 
