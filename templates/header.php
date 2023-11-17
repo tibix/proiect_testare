@@ -64,7 +64,7 @@
 									</a>
 								</li>
 								<li>
-									<a class="dropdown-item" href="password.php">
+									<a class="dropdown-item" href="password_reset.php">
 										<i class="fa-solid fa-key"></i>
 										Reset Password
 									</a>
