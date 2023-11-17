@@ -53,7 +53,7 @@ class Bookmark
         $sql = "SELECT * FROM bookmarks WHERE id = $id";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_assoc();
     }
 
     /**
@@ -66,7 +66,7 @@ class Bookmark
         $sql = "SELECT * FROM bookmarks";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_all();
     }
 
     /**
@@ -81,7 +81,7 @@ class Bookmark
         $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_all();
     }
 
     /**
@@ -96,7 +96,7 @@ class Bookmark
         $sql = "SELECT * FROM bookmarks WHERE category_id = $category_id";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_all();
     }
 
     /**

@@ -8,33 +8,32 @@
 class Database
 {    
     
-    private $host = "localhost";
-    private $user = "root";
-    private $pass = "";
-    private $dbname = "bookmarks";
-    private $charset = "utf8";
+    /**
+     * @var object $conn The database connection object.
+     */
     private $conn;
     
+    /**
+     * __construct
+     *
+     * @return void
+     */
     public function __construct()
     {
-        $dsn = 'mysql:host='.$this->host.';dbname='.$this->dbname.';charset='.$this->charset;
-        try{
-            $this->conn = new PDO($dsn, $this->user, $this->pass);
+        $this->conn = new mysqli("localhost", "root", "", "bookmarks");
 
-            if($this->conn){
-                echo "Connected";
-            }
-        }catch(PDOException $e){
-            echo $e->getMessage();
+        if ($this->conn->connect_error) {
+            die("DB connection failed: " . $this->conn->connect_error);
         }
+
+        $this->conn->set_charset('utf8');
     }
     
-
     /**
-     * Executes a SQL query on the database.
+     * query
      *
-     * @param string $sql The SQL query to execute.
-     * @return mixed The result of the query.
+     * @param  mixed $sql
+     * @return mixed
      */
     public function query($sql)
     {
@@ -42,19 +41,18 @@ class Database
     }
     
     /**
-     * Escapes special characters in a string for use in an SQL statement. Basic SQL injection prevention.
+     * escapeString
      *
-     * @param string $str The string to be escaped.
-     * @return string The escaped string.
+     * @param  mixed $str
+     * @return string
      */
     public function escapeString($str)
     {
         return $this->conn->quote($str);
     }
     
-   
     /**
-     * Closes the database connection.
+     * close
      *
      * @return void
      */
