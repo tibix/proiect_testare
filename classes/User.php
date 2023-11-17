@@ -13,23 +13,18 @@ class User
         $this->db = $database;
     }
 
-    public function createUser($u_name, $f_name, $l_name, $email, $password, $date_created, $role=NULL)
+    public function createUser($u_name, $f_name, $l_name, $email, $password, $date_created)
     {
         $u_name       = $this->db->escapeString($u_name);
         $f_name       = $this->db->escapeString($f_name);
         $l_name       = $this->db->escapeString($l_name);
         $email        = $this->db->escapeString($email);
-        $password     = $this->db->escapeString($password);
-        $role         = $this->db->escapeString($role);
+        $password     = md5($this->db->escapeString($password));
         $date_created = $this->db->escapeString($date_created);
 
-        if($role == NULL){
-            $role = 1;
-        }
-
         $sql = "INSERT INTO 
-                users  (u_name, f_name, l_name, email, password, date_created, role_id) 
-                VALUES ('$u_name', '$f_name', '$l_name', '$email', md5('$password'), '$date_created', '$role')";
+                users  (user_name, first_name, last_name, email, password, date_created) 
+                VALUES ('$u_name', '$f_name', '$l_name', '$email', '$password', '$date_created')";
 
         return $this->db->query($sql);
     }
@@ -37,7 +32,7 @@ class User
     public function getUserByLogin($login)
     {
         $login = $this->db->escapeString($login);
-        $sql = "SELECT u.*, r.role_type FROM users u JOIN roles r ON u.role_id = r.id WHERE u_name = '$login' OR email = '$login'";
+        $sql = "SELECT * FROM users WHERE user_name = '$login' OR email = '$login'";
 
         $result = $this->db->query($sql);
         return $result->fetch_assoc();
@@ -49,56 +44,27 @@ class User
         $sql = "SELECT * FROM users WHERE id = $id";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_assoc();
     }
 
-    public function getAuthorById($id)
-    {
-        $id = (int)$id;
-        $sql = "SELECT f_name, l_name FROM users WHERE id = $id";
-
-        $result = $this->db->query($sql);
-        return $result;
-    }
-
-    public function getUsers($role = NULL)
-    {
-        if ($role) {
-            $role = $this->db->escapeString($role);
-            $sql = "SELECT u*, r.role_type FROM users u JOIN roles r on u.role_id= r.id WHERE role_id = '$role'";
-        } else {
-            $sql = "SELECT u.*, r.role_type FROM users u JOIN roles r ON u.role_id = r.id";
-        }
-
-        $result = $this->db->query($sql);
-        $users = array();
-
-        while ($row = $result->fetch_assoc()) {
-            $users[] = $row;
-        }
-
-        return $users;
-    }
-
-    public function updateUser($id, $u_name, $f_name, $l_name, $email, $role)
+    public function updateUser($id, $u_name, $f_name, $l_name, $email)
     {
         $id = (int)$id;
         $u_name = $this->db->escapeString($u_name);
         $f_name = $this->db->escapeString($f_name);
         $l_name = $this->db->escapeString($l_name);
         $email = $this->db->escapeString($email);
-        $role = $this->db->escapeString($role);
 
-        $sql = "UPDATE users SET u_name='$u_name', email='$email', role_id='$role' WHERE id = $id";
+        $sql = "UPDATE users SET user_name = '$u_name', first_name = '$f_name', last_name = '$l_name', email='$email'  WHERE id = $id";
         return $this->db->query($sql);
     }
 
     public function updateUserPassword($id, $password)
     {
         $id = (int)$id;
-        $password = $this->db->escapeString($password);
+        $password = md5($this->db->escapeString($password));
 
-        $sql = "UPDATE users SET password=md5('$password') WHERE id = $id";
+        $sql = "UPDATE users SET password='$password' WHERE id = $id";
         return $this->db->query($sql);
     }
 

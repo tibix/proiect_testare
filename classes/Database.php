@@ -15,7 +15,6 @@ class Database
     
     /**
      * __construct
-     *
      * @return void
      */
     public function __construct()
@@ -48,7 +47,7 @@ class Database
      */
     public function escapeString($str)
     {
-        return $this->conn->quote($str);
+        return $this->conn->real_escape_string($str);
     }
     
     /**

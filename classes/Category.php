@@ -24,15 +24,16 @@ class Category{
      *
      * @return bool Returns true if the category was created successfully, false otherwise.
      */
-    public function createCategory($name, $description, $date_created)
+    public function createCategory($name, $description, $date_created, $owner)
     {
         $name         = $this->db->escapeString($name);
         $description  = $this->db->escapeString($description);
         $date_created = $this->db->escapeString($date_created);
+        $owner        = $this->db->escapeString($owner);
 
         $sql = "INSERT INTO 
-                categories (name, description, date_created) 
-                VALUES ('$name', '$description', '$date_created')";
+                categories (name, description, date_created, owner_id)
+                VALUES ('$name', '$description', '$date_created', '$owner')";
 
         return $this->db->query($sql);
     }
@@ -49,7 +50,7 @@ class Category{
         $sql = "SELECT * FROM categories WHERE id = $id";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_assoc();
     }
     
     /**
@@ -62,7 +63,7 @@ class Category{
         $sql = "SELECT * FROM categories";
 
         $result = $this->db->query($sql);
-        return $result->fetch(PDO::FETCH_ASSOC);
+        return $result->fetch_assoc();
     }
 
     /**
@@ -76,14 +77,15 @@ class Category{
      * @return bool Returns true if the category was updated successfully, false otherwise.
      */
 
-    public function updateCategory($id, $name, $description, $date_created)
+    public function updateCategory($id, $name, $category_image, $description, $date_created)
     {
         $id = (int)$id;
         $name = $this->db->escapeString($name);
+        $category_image = $this->db->escapeString($category_image);
         $description = $this->db->escapeString($description);
         $date_created = $this->db->escapeString($date_created);
 
-        $sql = "UPDATE categories SET name = '$name', description = '$description', date_created = '$date_created' WHERE id = $id";
+        $sql = "UPDATE categories SET name = '$name', categ_image = '$category_image', description = '$description', date_created = '$date_created' WHERE id = $id";
 
         return $this->db->query($sql);
     }
