@@ -88,7 +88,16 @@ if(logged_in()){
 			echo '</div>';
 		} else {
 			$user->setToken($user_data['id']);
-			$reset_link = "http://" . $_SERVER['HTTP_HOST'] . "/password_recover.php?user_id=" . $user_data['id'] . "&token=" . $user->getToken($user_data['id']);
+			$uri = $_SERVER['REQUEST_URI'];
+			$uri = explode('/', $uri);
+
+			$reset_link = "http://" . $_SERVER['HTTP_HOST'];
+			foreach($uri as $element){
+				if($element != end($uri))
+					$reset_link .= $element . "/";
+			}
+
+			$reset_link .= "password_recover.php?user_id=" . $user_data['id'] . "&token=" . $user->getToken($user_data['id']);
 			sleep(2);
 			redirect($reset_link);
 		}
