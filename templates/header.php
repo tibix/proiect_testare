@@ -25,8 +25,20 @@
 				</button>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 					<a class="navbar-brand text-light" href="index.php">Bookmarks&trade;Limited</a>
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
-					<li class="nav-item">
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<?php 
+						if(logged_in()){?>
+							<li class="nav-item">
+								<a class="nav-link text-light" href="home.php">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light" href="categories.php">Categories</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link text-light" href="favourites.php">Favourites</a>
+							</li>
+					<?php } ?>
+					<li class="nav-item" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
 							<a class="nav-link text-light" href="#">
 								<i class="fa-solid fa-question"></i> Help
 							</a>
