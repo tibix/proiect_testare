@@ -103,12 +103,12 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<h3>What is "Bookmarks&trade;"?</h3>
-								<p>"Bookmarks&trade;" is an online solution to bookmark your favorit URLs and have access to them from anywhere, without being locked down to one browser.</p>
-								<h3>Who should use "Bookmarks&trade;"?</h3>
+								<h3>What is "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"?</h3>
+								<p>"<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"" is an online solution to bookmark your favorit URLs and have access to them from anywhere, without being locked down to one browser.</p>
+								<h3>Who should use "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"?</h3>
 								<p>This prodcut is for every person that needs to have a URLs collection, but does not want to use a single browser for the rest of his/hers/their/its days.</p>
 								<h3>How do I use this product?</h3>
-								<p>Using "Bookmarks&trade;" is really easy.</p>
+								<p>Using "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited" is really easy.</p>
 								<p>Firs, you need to register your account <a class="text-decoration-none text-primary" href="register.php">here</a></p>
 								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favourites.</p>
 								<h3>How can I contact you?</h3>
