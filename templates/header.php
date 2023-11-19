@@ -24,7 +24,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-					<a class="navbar-brand text-light" href="index.php">Bookmarks&trade;Limited</a>
+					<a class="navbar-brand text-light" href="index.php"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Limited</a>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<?php 
 						if(logged_in()){?>
