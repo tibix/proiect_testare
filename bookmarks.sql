@@ -27,15 +27,16 @@ CREATE TABLE `bookmarks` (
   `title` varchar(255) NOT NULL,
   `URL` varchar(300) NOT NULL,
   `description` text DEFAULT NULL,
+  `date_created` datetime NOT NULL DEFAULT current_timestamp(),
+  `date_modified` datetime DEFAULT NULL,
   `owner_id` int(11) unsigned NOT NULL,
   `category_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `bookmarks_url_unique` (`URL`),
   KEY `fk_bookmarks_users` (`owner_id`),
-  KEY `FK_bookmarks_categories` (`category_id`),
+  KEY `fk_bookmarks_categories` (`category_id`) USING BTREE,
   CONSTRAINT `FK_bookmarks_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_bookmarks_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,6 +45,98 @@ CREATE TABLE `bookmarks` (
 
 LOCK TABLES `bookmarks` WRITE;
 /*!40000 ALTER TABLE `bookmarks` DISABLE KEYS */;
+INSERT INTO `bookmarks` VALUES
+(1,'Google','https://www.google.com','Google','2023-11-18 13:49:47',NULL,3,NULL),
+(2,'Facebook','https://www.facebook.com','Facebook','2023-11-18 13:49:47',NULL,1,NULL),
+(3,'Twitter','https://twitter.com','Twitter','2023-11-18 13:49:47',NULL,2,NULL),
+(4,'GitHub','https://github.com','GitHub','2023-11-18 13:49:47',NULL,3,NULL),
+(5,'LinkedIn','https://www.linkedin.com','LinkedIn','2023-11-18 13:49:47',NULL,2,NULL),
+(6,'Reddit','https://www.reddit.com','Reddit','2023-11-18 13:49:47',NULL,5,NULL),
+(7,'YouTube','https://www.youtube.com','YouTube','2023-11-18 13:49:47',NULL,5,NULL),
+(8,'Stack Overflow','https://stackoverflow.com','Stack Overflow','2023-11-18 13:49:47',NULL,3,NULL),
+(9,'Wikipedia','https://www.wikipedia.org','Wikipedia','2023-11-18 13:49:47',NULL,4,NULL),
+(10,'Medium','https://medium.com','Medium','2023-11-18 13:49:47',NULL,3,NULL),
+(11,'Netflix','https://www.netflix.com','Netflix','2023-11-18 13:49:47',NULL,5,NULL),
+(12,'Amazon','https://www.amazon.com','Amazon','2023-11-18 13:49:47',NULL,3,NULL),
+(13,'Etsy','https://www.etsy.com','Etsy','2023-11-18 13:49:47',NULL,3,NULL),
+(14,'Instagram','https://www.instagram.com','Instagram','2023-11-18 13:49:47',NULL,2,NULL),
+(15,'Pinterest','https://www.pinterest.com','Pinterest','2023-11-18 13:49:47',NULL,2,NULL),
+(16,'Snapchat','https://www.snapchat.com','Snapchat','2023-11-18 13:49:47',NULL,3,NULL),
+(17,'Tumblr','https://www.tumblr.com','Tumblr','2023-11-18 13:49:47',NULL,4,NULL),
+(18,'Spotify','https://www.spotify.com','Spotify','2023-11-18 13:49:47',NULL,4,NULL),
+(19,'Adobe','https://www.adobe.com','Adobe','2023-11-18 13:49:47',NULL,2,NULL),
+(20,'Microsoft','https://www.microsoft.com','Microsoft','2023-11-18 13:49:47',NULL,3,NULL),
+(21,'Apple','https://www.apple.com','Apple','2023-11-18 13:49:47',NULL,5,NULL),
+(22,'CNN','https://www.cnn.com','CNN','2023-11-18 13:49:47',NULL,5,NULL),
+(23,'BBC','https://www.bbc.com','BBC','2023-11-18 13:49:47',NULL,1,NULL),
+(24,'National Geographic','https://www.nationalgeographic.com','National Geographic','2023-11-18 13:49:47',NULL,1,NULL),
+(25,'The New York Times','https://www.nytimes.com','The New York Times','2023-11-18 13:49:47',NULL,2,NULL),
+(26,'The Guardian','https://www.theguardian.com','The Guardian','2023-11-18 13:49:47',NULL,5,NULL),
+(27,'Forbes','https://www.forbes.com','Forbes','2023-11-18 13:49:47',NULL,4,NULL),
+(28,'TechCrunch','https://techcrunch.com','TechCrunch','2023-11-18 13:49:47',NULL,3,NULL),
+(29,'Ars Technica','https://arstechnica.com','Ars Technica','2023-11-18 13:49:47',NULL,2,NULL),
+(30,'The Verge','https://www.theverge.com','The Verge','2023-11-18 13:49:47',NULL,1,NULL),
+(31,'Hacker News','https://news.ycombinator.com','Hacker News','2023-11-18 13:49:47',NULL,4,NULL),
+(32,'Product Hunt','https://www.producthunt.com','Product Hunt','2023-11-18 13:49:47',NULL,1,NULL),
+(33,'Awwwards','https://www.awwwards.com','Awwwards','2023-11-18 13:49:47',NULL,2,NULL),
+(34,'Dribbble','https://dribbble.com','Dribbble','2023-11-18 13:49:47',NULL,3,NULL),
+(35,'Behance','https://www.behance.net','Behance','2023-11-18 13:49:47',NULL,3,NULL),
+(36,'Smashing Magazine','https://www.smashingmagazine.com','Smashing Magazine','2023-11-18 13:49:47',NULL,3,NULL),
+(37,'CodePen','https://codepen.io','CodePen','2023-11-18 13:49:47',NULL,2,NULL),
+(38,'Mozilla Developer Network','https://developer.mozilla.org','Mozilla Developer Network','2023-11-18 13:49:47',NULL,3,NULL),
+(39,'Google Developers','https://developers.google.com','Google Developers','2023-11-18 13:49:47',NULL,5,NULL),
+(40,'CSS-Tricks','https://css-tricks.com','CSS-Tricks','2023-11-18 13:49:47',NULL,5,NULL),
+(41,'W3Schools','https://www.w3schools.com','W3Schools','2023-11-18 13:49:47',NULL,2,NULL),
+(42,'Dev.to','https://dev.to','Dev.to','2023-11-18 13:49:47',NULL,5,NULL),
+(43,'FreeCodeCamp','https://www.freecodecamp.org','FreeCodeCamp','2023-11-18 13:49:47',NULL,3,NULL),
+(44,'Coursera','https://www.coursera.org','Coursera','2023-11-18 13:49:47',NULL,1,NULL),
+(45,'edX','https://www.edx.org','edX','2023-11-18 13:49:47',NULL,4,NULL),
+(46,'Khan Academy','https://www.khanacademy.org','Khan Academy','2023-11-18 13:49:47',NULL,1,NULL),
+(47,'Duolingo','https://www.duolingo.com','Duolingo','2023-11-18 13:49:47',NULL,4,NULL),
+(48,'TED','https://www.ted.com','TED','2023-11-18 13:49:47',NULL,2,NULL),
+(49,'Wolfram Alpha','https://www.wolframalpha.com','Wolfram Alpha','2023-11-18 13:49:47',NULL,1,NULL),
+(50,'SpaceX','https://www.spacex.com','SpaceX','2023-11-18 13:49:47',NULL,3,NULL),
+(51,'NASA','https://www.nasa.gov','NASA','2023-11-18 13:49:47',NULL,2,NULL),
+(52,'Tesla','https://www.tesla.com','Tesla','2023-11-18 13:49:47',NULL,4,NULL),
+(53,'Wired','https://www.wired.com','Wired','2023-11-18 13:49:47',NULL,5,NULL),
+(57,'Mozilla','https://www.mozilla.org','Mozilla','2023-11-18 13:53:26',NULL,4,NULL),
+(58,'Unsplash','https://unsplash.com','Unsplash','2023-11-18 13:53:26',NULL,5,NULL),
+(59,'Pexels','https://www.pexels.com','Pexels','2023-11-18 13:53:26',NULL,1,NULL),
+(60,'Pixabay','https://pixabay.com','Pixabay','2023-11-18 13:53:26',NULL,4,NULL),
+(61,'DuckDuckGo','https://duckduckgo.com','DuckDuckGo','2023-11-18 13:53:26',NULL,1,NULL),
+(62,'The Onion','https://www.theonion.com','The Onion','2023-11-18 13:53:26',NULL,3,NULL),
+(63,'Craigslist','https://www.craigslist.org','Craigslist','2023-11-18 13:53:26',NULL,4,NULL),
+(64,'IMDb','https://www.imdb.com','IMDb','2023-11-18 13:53:26',NULL,1,NULL),
+(65,'Rotten Tomatoes','https://www.rottentomatoes.com','Rotten Tomatoes','2023-11-18 13:53:26',NULL,1,NULL),
+(66,'Metacritic','https://www.metacritic.com','Metacritic','2023-11-18 13:53:26',NULL,2,NULL),
+(67,'Goodreads','https://www.goodreads.com','Goodreads','2023-11-18 13:53:26',NULL,5,NULL),
+(68,'Last.fm','https://www.last.fm','Last.fm','2023-11-18 13:53:26',NULL,3,NULL),
+(69,'Splice','https://splice.com','Splice','2023-11-18 13:53:26',NULL,1,NULL),
+(70,'Figma','https://www.figma.com','Figma','2023-11-18 13:53:26',NULL,1,NULL),
+(71,'Adobe Stock','https://stock.adobe.com','Adobe Stock','2023-11-18 13:53:26',NULL,5,NULL),
+(72,'Sketch','https://www.sketch.com','Sketch','2023-11-18 13:53:26',NULL,3,NULL),
+(73,'Trello','https://trello.com','Trello','2023-11-18 13:53:26',NULL,2,NULL),
+(74,'Asana','https://asana.com','Asana','2023-11-18 13:53:26',NULL,2,NULL),
+(75,'Slack','https://slack.com','Slack','2023-11-18 13:53:26',NULL,3,NULL),
+(76,'Zoom','https://zoom.us','Zoom','2023-11-18 13:53:26',NULL,4,NULL),
+(77,'Google Drive','https://drive.google.com','Google Drive','2023-11-18 13:53:26',NULL,2,NULL),
+(78,'Dropbox','https://www.dropbox.com','Dropbox','2023-11-18 13:53:26',NULL,2,NULL),
+(79,'Evernote','https://evernote.com','Evernote','2023-11-18 13:53:26',NULL,2,NULL),
+(80,'Todoist','https://todoist.com','Todoist','2023-11-18 13:53:26',NULL,1,NULL),
+(81,'Notion','https://www.notion.so','Notion','2023-11-18 13:53:26',NULL,4,NULL),
+(82,'Pocket','https://getpocket.com','Pocket','2023-11-18 13:53:26',NULL,2,NULL),
+(83,'Feedly','https://feedly.com','Feedly','2023-11-18 13:53:26',NULL,3,NULL),
+(85,'Hacker Noon','https://hackernoon.com','Hacker Noon','2023-11-18 13:53:47',NULL,1,NULL),
+(86,'The Next Web','https://thenextweb.com','The Next Web','2023-11-18 13:53:47',NULL,5,NULL),
+(87,'Techmeme','https://www.techmeme.com','Techmeme','2023-11-18 13:53:47',NULL,1,NULL),
+(89,'Designer News','https://www.designernews.co','Designer News','2023-11-18 13:54:00',NULL,4,NULL),
+(91,'A List Apart','https://alistapart.com','A List Apart','2023-11-18 13:54:21',NULL,5,NULL),
+(93,'Web Designer Depot','https://www.webdesignerdepot.com','Web Designer Depot','2023-11-18 13:54:37',NULL,2,NULL),
+(94,'Codrops','https://tympanus.net/codrops','Codrops','2023-11-18 13:54:37',NULL,5,NULL),
+(95,'Google Fonts','https://fonts.google.com','Google Fonts','2023-11-18 13:54:37',NULL,4,NULL),
+(96,'Font Awesome','https://fontawesome.com','Font Awesome','2023-11-18 13:54:37',NULL,3,NULL),
+(100,'Shutterstock','https://www.shutterstock.com','Shutterstock','2023-11-18 13:55:05',NULL,4,NULL),
+(101,'Getty Images','https://www.gettyimages.com','Getty Images','2023-11-18 13:55:05',NULL,4,NULL);
 /*!40000 ALTER TABLE `bookmarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +219,7 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   UNIQUE KEY `users_u_name_unique` (`user_name`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -136,7 +229,11 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES
-(1,'tdascal','Tiberiu','Dascal','tdascal@email.com',NULL,'2d18742fe4852899a04941acd83f132c','en','2023-11-13 22:29:22',NULL);
+(1,'tdascal','Tiberiu','Dascal','tdascal@email.com',NULL,'2d18742fe4852899a04941acd83f132c','en','2023-11-13 22:29:22',NULL),
+(2,'dan','Dan','Mierlut','dan@email.com',NULL,'81dc9bdb52d04dc20036dbd8313ed055','en','2023-11-17 10:49:01',NULL),
+(3,'bea','Beatrice','Movila','bea@email.com',NULL,'81dc9bdb52d04dc20036dbd8313ed055','en','2023-11-17 10:51:29',NULL),
+(4,'gogu','Gogu','Gogulescu','gogu@email.com','78e5e2d377461b2de99f95c79a6c419f0ed9b29b91f1e3e4e98d1681bf85ac9a76b4b223b3616a77978289ca0ac1bc6c439aa19b3084ef0f9661e6cda88b3ff5','658e7dc2068c12966d36147dc0888366','en','2023-11-17 14:07:46',NULL),
+(5,'tibi','Tiberiu','Dascal','tibi@email.com',NULL,'877abcd994b734381a6194acd26241c4','en','2023-11-17 14:13:38',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -149,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-13 23:00:40
+-- Dump completed on 2023-11-19 13:20:05
