@@ -14,7 +14,7 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-primary">
 			<div class="container-fluid">
-				<button class="navbar-toggler"
+				<button class="navbar-toggler bg-light"
 						type="button"
 						data-bs-toggle="collapse"
 						data-bs-target="#navbarTogglerDemo01"
@@ -26,7 +26,7 @@
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
 					<a class="navbar-brand text-light" href="index.php"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Limited</a>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<?php 
+					    <?php
 						if(logged_in()){?>
 							<li class="nav-item">
 								<a class="nav-link text-light" href="home.php">Home</a>
@@ -37,21 +37,23 @@
 							<li class="nav-item">
 								<a class="nav-link text-light" href="favourites.php">Favourites</a>
 							</li>
-					<?php } ?>
-					<li class="nav-item" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
+					    <?php } ?>
+					    <li class="nav-item" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
 							<a class="nav-link text-light" href="#">
 								<i class="fa-solid fa-question"></i> Help
 							</a>
 						</li>
 					</ul>
-					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-							<form class="d-flex d-inline" action="search.php" method="GET">
-								<input class="form-control me-2 w-100" type="search" name="search" placeholder="Search..." aria-label="Search">
-								<button class="btn btn-outline-light" type="submit">Search</button>
-							</form>
-						</ul>
 					<?php
 						if(logged_in()){ ?>
+                        <ul class="navbar-nav my-2">
+                            <li class="nav-item mx-3">
+                                <form class="d-flex d-inline" action="search.php" method="GET">
+                                    <input class="form-control me-2 w-100" type="search" name="search" placeholder="Search..." aria-label="Search">
+                                    <button class="btn btn-outline-light" type="submit">Search</button>
+                                </form>
+                            </li>
+                        </ul>
 						<div class="btn-group">
 							<button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
