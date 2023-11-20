@@ -16,26 +16,42 @@ $db = new Database();
 $bookmark = new Bookmark($db);
 
 $bookmarks = $bookmark->getBookmarksByUserId($_SESSION['user_id']);
-echo '<div class="row mx-3 my-3">';
-foreach($bookmarks as $bm)
+if(count($bookmarks) < 1)
 {
-    ?>  
-        <div class="col-sm-3">
-            <div class="card text-center mb-4">
-                <div class="card-header">
-                    <?= $bm['title'] ?>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"><?= $bm['title'] ?></h5>
-                    <p class="card-text"><?= $bm['description'] ?></p>
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="<?=$bm['URL']?>" target="_blank" class="btn btn-outline-primary">Go to <?= $bm['title']?></a>
-                    <button class="btn btn-outline-dark">Copy to Clipboard</button>
+    ?>
+    <div class="d-flex justify-content-center">
+        <a href="new_bokmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+        <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
+    </div>
+
+    <?php
+} else {
+    echo '
+        <div class="d-flex justify-content-center">
+                <a href="new_bokmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+                <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
+            </div>
+            <div class="row mx-3 my-3">';
+    foreach($bookmarks as $bm)
+    {
+        ?>
+            <div class="col-sm-3">
+                <div class="card text-center mb-4">
+                    <div class="card-header">
+                        <?= $bm['title'] ?>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?= $bm['title'] ?></h5>
+                        <p class="card-text"><?= $bm['description'] ?></p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="<?=$bm['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
+                        <button class="btn btn-outline-dark">Copy to Clipboard</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    <?php
+        <?php
+    }
 }
 echo '</div></div>';
 include 'templates/footer.php';
