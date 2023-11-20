@@ -80,8 +80,12 @@ class Bookmark
         $user_id = (int)$user_id;
         $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
 
-        $result = $this->db->query($sql);
-        return $result->fetch_all();
+        $row = $this->db->query($sql);
+        $results = array();
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+        return $results;
     }
 
     /**
