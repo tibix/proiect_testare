@@ -154,6 +154,7 @@ CREATE TABLE `categories` (
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `owner_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`),
   KEY `fk_categ_users` (`owner_id`),
   CONSTRAINT `fk_categ_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -245,4 +246,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-20  9:18:38
+-- Dump completed on 2023-11-20  9:29:26
