@@ -113,7 +113,7 @@
 								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favourites.</p>
 								<h3>How can I contact you?</h3>
 								<p>Fastest way to get in touch with us is to send us an <a class="text-decoration-none text-primary" href="mailto:example@email.com:">email</a></p>
-								<p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
+								<p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="https://github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
