@@ -1,5 +1,6 @@
 <?php
 
+include 'core/config.php';
 /**
  * Database class
  * It is used to interact with a MySQL database. Here's a brief overview of its properties and methods:
@@ -19,7 +20,7 @@ class Database
      */
     public function __construct()
     {
-        $this->conn = new mysqli("localhost", "root", "", "bookmarks");
+        $this->conn = new mysqli(DB_HOST, DB_USER, DB_PASS, DB_NAME);
 
         if ($this->conn->connect_error) {
             die("DB connection failed: " . $this->conn->connect_error);
