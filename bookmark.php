@@ -1,9 +1,11 @@
 <?php
 
-include 'templetes/header.php';
+session_start();
 
-require_once 'class/Datebase.php';
-require_once 'class/Bookmark.php';
+require_once 'classes/Database.php';
+require_once 'classes/Bookmark.php';
+
+include 'templates/header.php';
 
 if(!logged_in()) {
     header('Location: index.php');
@@ -13,7 +15,8 @@ if(isset($_GET['id'])) {
     $errors = array();
 
     $id = $_GET['id'];
-    $bm = new Bookmark();
+    $db = new Database();
+    $bm = new Bookmark($db);
     $bookmark = $bm->getBookmarkById($id);
 
     /*
@@ -28,11 +31,12 @@ if(isset($_GET['id'])) {
     }
 
     if(!empty($errors)) {
-        foreach($errors as $error) {
-            echo $error, '<br />';
-        }
+        show_errors($errors);
     } else {
-        include 'templates/bookmark.php';
+        include 'templates/t_bookmark.php';
     }
 
 }
+
+include 'templates/footer.php';
+die();
