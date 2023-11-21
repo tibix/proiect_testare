@@ -19,6 +19,7 @@ class Bookmark
      * Creates a new bookmark with the given parameters.
      *
      * @param int $user_id The ID of the user who created the bookmark.
+     * @param int $category_id The ID  of the category this bookmark is a part of (if any)
      * @param string $title The title of the bookmark.
      * @param string $url The URL of the bookmark.
      * @param string $description The description of the bookmark.
@@ -26,17 +27,18 @@ class Bookmark
      *
      * @return bool Returns true if the bookmark was created successfully, false otherwise.
      */
-    public function createBookmark($title, $url, $description, $user_id, $date_created)
+    public function createBookmark($title, $url, $description, $date_created, $user_id, $category_id)
     {
         $user_id      = (int)$user_id;
+        $category_id  = (int)$category_id;
         $title        = $this->db->escapeString($title);
         $url          = $this->db->escapeString($url);
         $description  = $this->db->escapeString($description);
         $date_created = $this->db->escapeString($date_created);
 
         $sql = "INSERT INTO 
-                bookmarks (title, url, description, owner_id, date_created) 
-                VALUES ('$title', '$url', '$description', $user_id, '$date_created')";
+                bookmarks (title, url, description, date_created, owner_id, category_id) 
+                VALUES ('$title', '$url', '$description', '$date_created', $user_id, $category_id)";
 
         return $this->db->query($sql);
     }
@@ -126,7 +128,6 @@ class Bookmark
         } else {
             $sql = "UPDATE bookmarks SET title='$title', url='$url', description='$description' WHERE id = $id";
         }
-
         return $this->db->query($sql);
     }
 

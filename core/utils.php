@@ -1,5 +1,7 @@
 <?php
 
+DEFINE('NOW', date('Y-m-d H:i:s'));
+
 /**
  * logged_in
  * 
@@ -66,7 +68,7 @@ function prety_dump($var)
 function show_errors(array $errors): void
 {
     foreach ($errors as $error) {
-        echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show\" role=\"alert\">$error";
+        echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show text-center\" role=\"alert\">$error";
         echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
     }
 }

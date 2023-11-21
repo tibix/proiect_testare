@@ -20,7 +20,7 @@ if(count($bookmarks) < 1)
 {
     ?>
     <div class="d-flex justify-content-center">
-        <a href="new_bokmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+        <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
         <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
     </div>
 
@@ -28,7 +28,7 @@ if(count($bookmarks) < 1)
 } else {
     echo '
         <div class="d-flex justify-content-center">
-                <a href="new_bokmark.php" class="btn btn-outline-primary mx-4">Add Bookmark</a>
+                <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add Bookmark</a>
                 <a href="new_category.php" class="btn btn-outline-primary">Add Category</a>
             </div>
             <div class="row mx-3 my-3">';
