@@ -11,6 +11,18 @@ body{
     gap: 2rem;
 }
 
+a:-webkit-any-link {
+  text-decoration:none!important;
+}
+
+#logo{
+  font-family: 'DM Serif Display', serif;
+  text-decoration: none!important;
+  font-style: italic;
+}
+
+
+
 @media (min-width: 1050px) { 
   .navbar-expand-large {
     flex-wrap: nowrap;
