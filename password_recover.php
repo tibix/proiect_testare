@@ -71,12 +71,7 @@ if(isset($_GET['user_id']) && isset($_GET['token']))
 
 				if(!empty($errors))
 				{
-					echo '<div class="alert alert-danger alert-dismissible fade show text-secondary" role="alert">';
-					foreach($errors as $error){
-						echo  $error;
-					}
-					echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
-					echo '</div>';
+					show_errors($errors);
 				} else {
 					$user->updateUserPassword($user_id, $_POST['new_password']);
 					$user->deleteToken($user_id);
