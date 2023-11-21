@@ -51,10 +51,7 @@ if(isset($_POST['autentificare'])){
 		$_SESSION['loggedin'] = TRUE;
 		redirect("home.php");
 	} else {
-		foreach($errors as $error){
-			echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show\" role=\"alert\">$error";
-			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
-		}
+		show_errors($errors);
 		include 'templates/t_login.php';
 	}
 } else {

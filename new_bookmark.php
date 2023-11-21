@@ -1,6 +1,8 @@
 <?php
 
-include 'templates/header.php';
+session_start();
 
-require_once 'class/Datebase.php';
-require_once 'class/Bookmark.php';
+require_once 'classes/Database.php';
+require_once 'classes/Bookmark.php';
+
+include 'templates/header.php';
