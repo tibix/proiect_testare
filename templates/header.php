@@ -12,7 +12,7 @@
 	<script src="https://kit.fontawesome.com/6f78ace1ca.js" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-primary">
+<nav class="navbar navbar-expand-large bg-primary">
 			<div class="container-fluid">
 				<button class="navbar-toggler bg-light"
 						type="button"
@@ -24,7 +24,7 @@
 					<span class="navbar-toggler-icon"></span>
 				</button>
 				<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-					<a class="navbar-brand text-light" href="index.php"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Limited</a>
+					<a class="navbar-brand text-light mr-2" href="index.php"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Limited</a>
 					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					    <?php
 						if(logged_in()){?>
@@ -46,7 +46,7 @@
 					</ul>
 					<?php
 						if(logged_in()){ ?>
-                        <ul class="navbar-nav my-2">
+                        <ul class="navbar-nav my-2 my-lg-0">
                             <li class="nav-item mx-3">
                                 <form class="d-flex d-inline" action="search.php" method="GET">
                                     <input class="form-control me-2 w-100" type="search" name="search" placeholder="Search..." aria-label="Search">
