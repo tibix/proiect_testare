@@ -10,3 +10,30 @@ body{
     justify-content: space-between;
     gap: 2rem;
 }
+
+@media (min-width: 1050px) { 
+  .navbar-expand-large {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-large .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-large .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-large .navbar-nav .nav-link {
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+  }
+  .navbar-expand-large .navbar-nav-scroll {
+    overflow: visible;
+  }
+  .navbar-expand-large .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-expand-large .navbar-toggler {
+    display: none !important;
+  }
+}
