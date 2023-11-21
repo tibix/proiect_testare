@@ -11,17 +11,9 @@ body{
     gap: 2rem;
 }
 
-a:-webkit-any-link {
-  text-decoration:none!important;
+a.new-category{
+  font-weight: 600;
 }
-
-#logo{
-  font-family: 'DM Serif Display', serif;
-  text-decoration: none!important;
-  font-style: italic;
-}
-
-
 
 @media (min-width: 1050px) { 
   .navbar-expand-large {

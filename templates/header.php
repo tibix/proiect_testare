@@ -32,9 +32,27 @@
 							<li class="nav-item">
 								<a class="nav-link text-light" href="home.php">Home</a>
 							</li>
-							<li class="nav-item">
-								<a class="nav-link text-light" href="categories.php">Categories</a>
-							</li>
+
+							<!--Categories item to Categories dropdown menu-->
+
+							<div class="btn-group">
+								<button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
+									Categories
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
+									
+								<!--Here will go all the categories already created by the user-->
+									
+								<hr class="dropdown-divider">
+									<li>
+										<a class="dropdown-item new-category" href="#">
+											<i class="fa-solid fa-plus"></i> Add New Category
+										</a>
+									</li>
+								</ul>
+							</div>
+
+
 							<li class="nav-item">
 								<a class="nav-link text-light" href="favourites.php">Favourites</a>
 							</li>
