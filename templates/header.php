@@ -39,9 +39,9 @@
 								<button type="button" class="btn dropdown-toggle text-light" data-bs-toggle="dropdown" aria-expanded="false">
 									Categories
 								</button>
-								<ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
+								<ul class="dropdown-menu" id="dropDownMenu">
 									
-								<!--Here will go all the categories already created by the user-->
+								<!--Here will go all those categories already created by the user-->
 									
 								<hr class="dropdown-divider">
 									<li>
