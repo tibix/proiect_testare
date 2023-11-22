@@ -123,6 +123,6 @@ if($count > 1)
         ?>
     </ul>
 </nav>
-<?php };
+<?php }
 include 'templates/footer.php';
 
