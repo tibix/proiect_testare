@@ -6,9 +6,9 @@ require_once 'classes/Database.php';
 require_once 'classes/User.php';
 
 include 'templates/header.php';
-
+echo '<main>';
 if(isset($_POST['autentificare'])){
-
+	
 	$login = null;
 	$password = null;
 	$errors = array();
@@ -20,7 +20,7 @@ if(isset($_POST['autentificare'])){
 			$log_in = $_POST['login'];
 			$login = $auth->getUserByLogin($log_in);
 			if(!$login){
-				$errors[] .= "This user/email is not registered! You care register it<a href=\"register.php\"> here</a>";
+				$errors[] .= "This user/email is not registered! You care register it <a href=\"register.php\">here</a>";
 			} else {
 				if(isset($_POST['password'])){
 					if(!empty($_POST['password'])){
@@ -41,7 +41,6 @@ if(isset($_POST['autentificare'])){
 	} else {
 		$errors[] .= "Missing username/email!";
 	}
-
 	if(empty($errors)){
 		$_SESSION['user_id'] = $login['id'];
 		$_SESSION['username'] = $login['user_name'];
@@ -50,15 +49,17 @@ if(isset($_POST['autentificare'])){
 		$_SESSION['email'] = $login['email'];
 		$_SESSION['loggedin'] = TRUE;
 		redirect("home.php");
-	} else {
+	} else { 
 		foreach($errors as $error){
 			echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show\" role=\"alert\">$error";
 			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
 		}
 		include 'templates/t_login.php';
+		echo '</main>';
 	}
 } else {
 	include 'templates/t_login.php';
+	echo '</main>';
 }
 
 include 'templates/footer.php';
