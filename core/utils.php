@@ -1,5 +1,7 @@
 <?php
 
+DEFINE('NOW', date('Y-m-d H:i:s'));
+
 /**
  * logged_in
  * 
@@ -38,7 +40,6 @@ function redirect($url)
 
 /**
  * generateToken
- *
  * @return string $token
  */
 function generateToken()
@@ -58,4 +59,16 @@ function prety_dump($var)
     echo '<pre>';
     var_dump($var);
     echo '</pre>';
+}
+
+/**
+ * @param array $errors
+ * @return void
+ */
+function show_errors(array $errors): void
+{
+    foreach ($errors as $error) {
+        echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show text-center\" role=\"alert\">$error";
+        echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
+    }
 }
