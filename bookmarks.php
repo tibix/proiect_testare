@@ -20,14 +20,16 @@ $limit = 10;
 
 $total_pages = ceil($count / $limit);
 
-
 if((isset($_GET['page']) && (!empty($_GET['page']) && (int)$_GET['page'] != 1))){
     $page = (int)$_GET['page'];
+    if($page > $total_pages){
+        redirect('bookmarks.php?page=1');
+    }
 } else {
     $page = 1;
 }
 
-$offset = $page;
+$offset = ($page-1)*$limit;
 
 $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
 
@@ -92,16 +94,32 @@ if($count > 1)
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <?php
-        if ($total_pages <= 10){
-            for ($counter = 1; $counter <= $total_pages; $counter++){
-                if ($counter == $page) {
-                    echo "<li class='page-item active'><a>$counter</a></li>";
-                }else{
-                    echo "<li class='page-item'><a href='?page=$counter'>$counter</a></li>";
+            if($page == 1){
+                $prev_disabled = " disabled ";
+            } else {
+                $prev_disabled = "";
+            }
+
+            if($page == $total_pages)
+            {
+                $next_disabled = " disabled ";
+            } else {
+                $next_disabled = "";
+            }
+            echo '<li class="page-item '.$prev_disabled.'"><a class="page-link" href="bookmarks.php?page=1">&laquo;</a></li>';
+            echo '<li class="page-item '.$prev_disabled.'"><a class="page-link" href="bookmarks.php?page='. ($page-1). '">Previous</a></li>';
+            for($i=1; $i <= $total_pages; $i++)
+            {
+                if($page == $i) {
+                    echo '<li class="page-item active" aria-current="page"><span class="page-link primary" >'. $i .'</span></li>';
+                } else {
+                    $class = "page-item";
+                    $aria = "";
+                    echo '<li '.$class . $aria .'><a class="page-link" href="bookmarks.php?page='.$i.'">'. $i .'</a></li>';
                 }
             }
-        }
-
+            echo '<li class="page-item '.$next_disabled.'"><a class="page-link " href="bookmarks.php?page='.($page+1).'">Next</a></li>';
+            echo '<li class="page-item '.$next_disabled.'"><a class="page-link" href="bookmarks.php?page='.$total_pages.'">&raquo;</a></li>';
         ?>
     </ul>
 </nav>
