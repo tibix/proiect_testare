@@ -1,8 +1,8 @@
--- MariaDB dump 10.19  Distrib 10.9.3-MariaDB, for Win64 (AMD64)
+-- MariaDB dump 10.19-11.1.2-MariaDB, for osx10.19 (arm64)
 --
 -- Host: localhost    Database: bookmarks
 -- ------------------------------------------------------
--- Server version	10.9.3-MariaDB
+-- Server version	11.1.2-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -24,9 +24,9 @@ DROP TABLE IF EXISTS `bookmarks`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `bookmarks` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `URL` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `title` varchar(255) NOT NULL,
+  `URL` varchar(300) NOT NULL,
+  `description` text DEFAULT NULL,
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `date_modified` datetime DEFAULT NULL,
   `owner_id` int(11) unsigned NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE `bookmarks` (
   KEY `fk_bookmarks_categories` (`category_id`) USING BTREE,
   CONSTRAINT `FK_bookmarks_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_bookmarks_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ LOCK TABLES `bookmarks` WRITE;
 /*!40000 ALTER TABLE `bookmarks` DISABLE KEYS */;
 INSERT INTO `bookmarks` VALUES
 (1,'Google','https://www.google.com','Google','2023-11-18 13:49:47',NULL,3,NULL),
-(2,'Facebook','https://www.facebook.com','Facebook','2023-11-18 13:49:47',NULL,1,NULL),
+(2,'Facebook','https://www.facebook2.com','The social network','2023-11-18 13:49:47',NULL,1,1),
 (3,'Twitter','https://twitter.com','Twitter','2023-11-18 13:49:47',NULL,2,NULL),
 (4,'GitHub','https://github.com','GitHub','2023-11-18 13:49:47',NULL,3,NULL),
 (5,'LinkedIn','https://www.linkedin.com','LinkedIn','2023-11-18 13:49:47',NULL,2,NULL),
@@ -136,7 +136,11 @@ INSERT INTO `bookmarks` VALUES
 (95,'Google Fonts','https://fonts.google.com','Google Fonts','2023-11-18 13:54:37',NULL,4,NULL),
 (96,'Font Awesome','https://fontawesome.com','Font Awesome','2023-11-18 13:54:37',NULL,3,NULL),
 (100,'Shutterstock','https://www.shutterstock.com','Shutterstock','2023-11-18 13:55:05',NULL,4,NULL),
-(101,'Getty Images','https://www.gettyimages.com','Getty Images','2023-11-18 13:55:05',NULL,4,NULL);
+(101,'Getty Images','https://www.gettyimages.com','Getty Images','2023-11-18 13:55:05',NULL,4,NULL),
+(102,'Test1','https://test1.com','Test1','2023-11-22 20:19:09',NULL,1,NULL),
+(103,'Test2','https://test2.com','Test2','2023-11-22 20:19:23',NULL,1,NULL),
+(104,'Test3','https://test3.com','Test 3','2023-11-22 20:19:38',NULL,1,NULL),
+(105,'Test 4','https://test4.com','Test 4','2023-11-22 20:19:59',NULL,1,NULL);
 /*!40000 ALTER TABLE `bookmarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,15 +153,15 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `categ_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `categ_image` varchar(255) DEFAULT NULL,
+  `description` text DEFAULT NULL,
   `owner_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `name` (`name`),
+  UNIQUE KEY `categories_UN` (`name`),
   KEY `fk_categ_users` (`owner_id`),
   CONSTRAINT `fk_categ_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -166,6 +170,8 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
+INSERT INTO `categories` VALUES
+(1,'misc',NULL,'Miscellaneous',1);
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,13 +213,13 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `user_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `first_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `last_name` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(200) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(128) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `language` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'en',
+  `user_name` varchar(100) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `last_name` varchar(100) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `token` varchar(128) DEFAULT NULL,
+  `password` varchar(255) NOT NULL,
+  `language` varchar(10) NOT NULL DEFAULT 'en',
   `date_created` datetime NOT NULL DEFAULT current_timestamp(),
   `last_login` datetime DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -246,4 +252,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-20  9:29:26
+-- Dump completed on 2023-11-22 23:27:48
