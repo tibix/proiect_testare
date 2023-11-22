@@ -10,6 +10,9 @@ class Bookmark
      */
     private $db;
 
+    /**
+     * @param Database $database
+     */
     public function __construct(Database $database)
     {
         $this->db = $database;
@@ -42,6 +45,15 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
     }
 
 
+    /**
+     * @param $title
+     * @param $url
+     * @param $description
+     * @param $date_created
+     * @param $user_id
+     * @param $category_id
+     * @return mixed
+     */
     public function createBookmark($title, $url, $description, $date_created, $user_id, $category_id)
     {
         $user_id      = (int)$user_id;
@@ -98,10 +110,19 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
      * @param int $user_id The ID of the user to retrieve bookmarks for.
      * @return array|null The bookmarks data as an associative array, or null if no bookmarks were found.
      */
-    public function getBookmarksByUserId($user_id)
+    public function getBookmarksByUserId($user_id, $limit=null, $offset=null)
     {
         $user_id = (int)$user_id;
-        $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
+        $limit   = (int)$limit ? $limit : null;
+        $offset  = (int)$offset ? $offset : null;
+
+        if($limit && $offset) {
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $offset, $limit";
+        } else if($limit){
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $limit";
+        } else {
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
+        }
 
         $row = $this->db->query($sql);
         $results = array();
@@ -109,6 +130,22 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
             $results[] = $result;
         }
         return $results;
+    }
+
+    /**
+     * @param $user_id
+     * @return mixed
+     */
+    public function getBookmarksCountByUserId($user_id)
+    {
+        $user_id = (int)$user_id;
+
+        $sql = "SELECT COUNT(*) AS count FROM bookmarks WHERE owner_id = $user_id";
+
+        $row = $this->db->query($sql);
+        $result = $row->fetch_assoc();
+
+        return $result['count'];
     }
 
     /**
