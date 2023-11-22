@@ -67,10 +67,10 @@ if (isset($_POST['save'])) {
 
         if($insert){
             echo '<div class="alert alert-success alert-dismissible fade show text-secondary" role="alert">';
-            echo '<p>Bookmark was updated successfully!</p>';
+            echo '<p>Bookmark was created successfully!</p>';
+            echo '<p>Go to <a href="home.php" class="text-dark">home</a> page to see your new bookmark</p>';
             echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            sleep(5);
-            redirect('home.php');
+            die();
         } else {
             $errors[] = "Could not update record! Try again or report the issue!";
         }
