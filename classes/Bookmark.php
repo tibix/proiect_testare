@@ -19,7 +19,6 @@ class Bookmark
      * Creates a new bookmark with the given parameters.
      *
      * @param int $user_id The ID of the user who created the bookmark.
-     * @param int $category_id The ID  of the category this bookmark is a part of (if any)
      * @param string $title The title of the bookmark.
      * @param string $url The URL of the bookmark.
      * @param string $description The description of the bookmark.
@@ -27,6 +26,22 @@ class Bookmark
      *
      * @return bool Returns true if the bookmark was created successfully, false otherwise.
      */
+public function createSimpleBookmark($title, $url, $description, $date_created, $user_id)
+    {
+        $user_id      = (int)$user_id;
+        $title        = $this->db->escapeString($title);
+        $url          = $this->db->escapeString($url);
+        $description  = $this->db->escapeString($description);
+        $date_created = $this->db->escapeString($date_created);
+
+
+        $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id) 
+                VALUES ('$title', '$url', '$description', '$date_created', $user_id)";
+
+        return $this->db->query($sql);
+    }
+
+
     public function createBookmark($title, $url, $description, $date_created, $user_id, $category_id)
     {
         $user_id      = (int)$user_id;
@@ -36,9 +51,15 @@ class Bookmark
         $description  = $this->db->escapeString($description);
         $date_created = $this->db->escapeString($date_created);
 
-        $sql = "INSERT INTO 
+        if($category_id == null)
+        {
+            $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id) 
+                    VALUES ('$title', '$url', '$description', '$date_created', $user_id";
+        } else {
+            $sql = "INSERT INTO 
                 bookmarks (title, url, description, date_created, owner_id, category_id) 
                 VALUES ('$title', '$url', '$description', '$date_created', $user_id, $category_id)";
+        }
 
         return $this->db->query($sql);
     }

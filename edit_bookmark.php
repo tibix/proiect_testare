@@ -47,7 +47,6 @@ $description = $bookmark['description'];
 $category = $bookmark['category_id'];
 
 if (isset($_POST['save'])) {
-    prety_dump($_POST);
     $errors = array();
 
     /**
@@ -89,8 +88,6 @@ if (isset($_POST['save'])) {
         if (!empty($_POST['category'])) {
             $category = (int)$_POST['category'];
         }
-    } else {
-        $category = 1;
     }
 
     if (empty($errors))
@@ -102,7 +99,7 @@ if (isset($_POST['save'])) {
         {
             echo '<div class="alert alert-success alert-dismissible fade show text-secondary" role="alert">';
             echo '<p>Bookmark was updated successfully!</p>';
-            echo '</div>';
+            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
             sleep(5);
             redirect('home.php');
         } else {

@@ -10,19 +10,19 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" name="title" id="title" class="form-control form-control-lg"
-                                           value="<?php if(isset($title)) { echo $title; } ?>" />
-                                    <label class="form-label" for="title">Bookmark Title</label>
+                                           value="<?php if(isset($title)) { echo $title; } ?>" required/>
+                                    <label class="form-label" for="title">Title</label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" name="url" id="url" class="form-control form-control-lg"
-                                           value="<?php if(isset($url)) { echo $url; } ?>" />
+                                           value="<?php if(isset($url)) { echo $url; } ?>" required/>
                                     <label class="form-label" for="url">URL</label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
                                     <textarea name="description" id="description" class="form-control form-control-lg" rows="4"><?php if(isset($description)) { echo $description; } ?></textarea>
-                                    <label class="form-label" for="description">Bookmark Description</label>
+                                    <label class="form-label" for="description">Description</label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
@@ -33,7 +33,7 @@
                                         <option value="3">Categ 3</option>
                                         <option value="4">Categ 4</option>
                                     </select>
-                                    <label class="form-label" for="category">Bookmark Category</label>
+                                    <label class="form-label" for="category">Category</label>
                                 </div>
 
                                 <button class="btn btn-outline-dark btn-lg px-5" type="submit" name="save">Save</button>
