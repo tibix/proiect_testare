@@ -11,7 +11,11 @@ body{
     gap: 2rem;
 }
 
-@media (min-width: 1050px) { 
+a.new-category{
+  font-weight: 600;
+}
+
+@media (min-width: 1070px) { 
   .navbar-expand-large {
     flex-wrap: nowrap;
     justify-content: flex-start;
