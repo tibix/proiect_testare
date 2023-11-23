@@ -20,7 +20,7 @@ if(isset($_POST['autentificare'])){
 			$log_in = $_POST['login'];
 			$login = $auth->getUserByLogin($log_in);
 			if(!$login){
-				$errors[] .= "This user/email is not registered! You care register it <a href=\"register.php\">here</a>";
+				$errors[] .= "This user/email is not registered! You can register it <a href=\"register.php\">here</a>";
 			} else {
 				if(isset($_POST['password'])){
 					if(!empty($_POST['password'])){

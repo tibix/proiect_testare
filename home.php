@@ -17,13 +17,13 @@ $bookmark = new Bookmark($db);
 
 $bookmarks = $bookmark->getBookmarksByUserId($_SESSION['user_id']);
 ?>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center p-3">
     <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
     <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
 </div>
 <?php
 if(count($bookmarks) > 1){
-    echo '<div class="row mx-3 my-3">';
+    echo '<div class="row m-3">';
     foreach($bookmarks as $bm)
     {?>
         <div class="col-sm-3">

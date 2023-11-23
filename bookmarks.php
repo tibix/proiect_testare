@@ -34,7 +34,7 @@ $offset = ($page-1)*$limit;
 $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
 
 ?>
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center p-3">
     <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
     <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
 </div>
@@ -43,7 +43,7 @@ $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
 if($count > 1)
 {
 ?>
-<section class="intro mx-4">
+<section class="intro mx-4 my-3 ">
     <div class="row justify-content-center">
         <div class="col-12">
             <div class="card shadow-sm">
