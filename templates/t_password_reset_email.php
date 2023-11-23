@@ -1,6 +1,6 @@
 <form method="POST">
     <section class="gradient-custom">
-        <div class="container py-2 h-100">
+        <div class="container py-4 h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-light text-dark" style="border-radius: 1rem;">
