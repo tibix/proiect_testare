@@ -70,10 +70,10 @@
                                     <input class="btn btn-outline-primary" type="submit" name="register" value="Register" />
                                 </div>
                                 <div class="d-flex justify-content-center text-center mt-4 pt-1">
-                                    <a href="#!" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>
-                                    <a href="#!" class="text-dark"><i class="fab fa-twitter fa-lg mx-4"></i></a>
-                                    <a href="#!" class="text-dark"><i class="fab fa-google fa-lg mx-4"></i></a>
-                                    <a href="#!" class="text-dark"><i class="fab fa-github fa-lg mx-4"></i></a>
+                                    <a href="https://facebook.com" class="text-dark"><i class="fab fa-facebook-f fa-lg mx-4"></i></a>
+                                    <a href="https://twitter.com" class="text-dark"><i class="fab fa-x-twitter fa-lg mx-4"></i></a>
+                                    <a href="https://google.com" class="text-dark"><i class="fab fa-google fa-lg mx-4"></i></a>
+                                    <a href="https://github.com" class="text-dark"><i class="fab fa-github fa-lg mx-4"></i></a>
                                 </div> 
                             </div>
                         </form>

@@ -26,20 +26,20 @@ if(isset($_POST['autentificare'])){
 					if(!empty($_POST['password'])){
 						$password = $_POST['password'];
 						if($login['password'] != md5($password)){
-							$errors[] .= "Invalid password!";
+							$errors[] = "Invalid password!";
 						}
 					} else {
-						$errors[] .= "Field Password cannot be empty!";
+						$errors[] = "Field Password cannot be empty!";
 					}
 				} else {
-					$errors[] .= "Missing password!";
+					$errors[] = "Missing password!";
 				}
 			}
 		} else {
-			$errors[] .= "Field Email/Username cannot be empty!";
+			$errors[] = "Field Email/Username cannot be empty!";
 		}
 	} else {
-		$errors[] .= "Missing username/email!";
+		$errors[] = "Missing username/email!";
 	}
 
 	if(empty($errors)){
