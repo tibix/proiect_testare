@@ -61,28 +61,51 @@
 								<i class="fa-solid fa-question"></i> Help
 							</a>
 						</li>
-						<li>
-							<a class="dropdown-item" href="favourites.php">
-								<i class="fa-regular fa-bookmark"></i>
-								Favourites
-							</a>
-						</li>
-						<li><hr class="dropdown-divider"></li>
-						<li>
-							<a class="dropdown-item" href="profile.php">
-								<i class="fa-solid fa-pen"></i>
-								Edit Profile
-							</a>
-						</li>
-						<li>
-							<a class="dropdown-item" href="password_reset.php">
-								<i class="fa-solid fa-key"></i>
-								Reset Password
-							</a>
-						</li>
-						<li><hr class="dropdown-divider"></li>
-						<li><a class="dropdown-item" href="logout.php"><span><i class="fa-solid fa-arrow-right-from-bracket"> </i> Logout</span></a></li>
 					</ul>
+                    <?php
+                    if(logged_in()){ ?>
+                    <ul class="navbar-nav my-2 my-lg-0">
+                        <li class="nav-item mx-3">
+                            <form class="d-flex d-inline" action="search.php" method="GET">
+                                <input class="form-control me-2 w-100" type="search" name="search" placeholder="Search..." aria-label="Search">
+                                <button class="btn btn-outline-light" type="submit">Search</button>
+                            </form>
+                        </li>
+                    </ul>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
+                            <li>
+                                <a class="dropdown-item" href="bookmarks.php">
+                                    <i class="fa-solid fa-book-bookmark"></i>
+                                    My Bookmarks
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="favourites.php">
+                                    <i class="fa-regular fa-bookmark"></i>
+                                    Favourites
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item" href="profile.php">
+                                    <i class="fa-solid fa-pen"></i>
+                                    Edit Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="password_reset.php">
+                                    <i class="fa-solid fa-key"></i>
+                                    Reset Password
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="logout.php"><span><i class="fa-solid fa-arrow-right-from-bracket"> </i> Logout</span></a></li>
+                        </ul>
+                    </div>
 				</div>
 				<?php } else { ?>
 				<a class="text-decoration-none text-white" href="login.php">
