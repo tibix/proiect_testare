@@ -6,7 +6,7 @@ require_once 'classes/Database.php';
 require_once 'classes/User.php';
 
 include 'templates/header.php';
-echo '<main>';
+
 if(isset($_POST['autentificare'])){
 	
 	$login = null;
@@ -59,7 +59,6 @@ if(isset($_POST['autentificare'])){
 	}
 } else {
 	include 'templates/t_login.php';
-	echo '</main>';
 }
 
 include 'templates/footer.php';
