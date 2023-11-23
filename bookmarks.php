@@ -4,6 +4,7 @@ session_start();
 
 require_once 'classes/Database.php';
 require_once 'classes/Bookmark.php';
+require_once 'classes/Category.php';
 
 include 'templates/header.php';
 
@@ -14,8 +15,20 @@ if(!logged_in())
 
 $db = new Database();
 $bm = new Bookmark($db);
+$cat = new Category($db);
 
-$count = $bm->getBookmarksCountByUserId($_SESSION['user_id']);
+if(!empty($_GET['category'])){
+    $category = $_GET['category'];
+} else {
+    $category = false;
+}
+
+if(!$category){
+    $count = $bm->getBookmarksCountByUserId($_SESSION['user_id']);
+} else {
+    $count = $bm->getBookmarksCountByUserId($_SESSION['user_id'], $category);
+}
+
 $limit = 10;
 
 $total_pages = ceil($count / $limit);
@@ -31,12 +44,15 @@ if((isset($_GET['page']) && (!empty($_GET['page']) && (int)$_GET['page'] != 1)))
 
 $offset = ($page-1)*$limit;
 
-$bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
+if($category){
+    $bookmarks = $bm->getUserBookmarksByCategoryId($_SESSION['user_id'], $category, $limit, $offset);
+} else {
+    $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
+}
 
 ?>
 <div class="d-flex justify-content-center p-3">
     <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
-    <a href="new_category.php" class="btn btn-outline-primary">Add New Category</a>
 </div>
 
 <?php
@@ -72,7 +88,7 @@ if($count > 1)
                                     <td><?=$bookmark['description'];?></td>
                                     <td><?=$bookmark['date_created'];?></td>
                                     <td><?=$bookmark['date_modified'];?></td>
-                                    <td><?=$bookmark['category_id'];?></td>
+                                    <td><?=$cat->getCategoryNameById($bookmark['category_id']);?></td>
                                     <td>
                                         <a class="btn btn-outline-primary" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
                                     </td>
