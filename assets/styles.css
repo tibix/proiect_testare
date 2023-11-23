@@ -8,12 +8,15 @@ body{
     display:flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: 2rem;
 }
 
-a.new-category{
-  font-weight: 600;
+main{
+    margin: 0.25rem 0;
 }
+
+/* .btn-container{
+  margin-top: 0.5rem !important;
+} */
 
 @media (min-width: 1070px) { 
   .navbar-expand-large {

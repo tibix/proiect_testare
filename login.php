@@ -8,7 +8,7 @@ require_once 'classes/User.php';
 include 'templates/header.php';
 
 if(isset($_POST['autentificare'])){
-
+	
 	$login = null;
 	$password = null;
 	$errors = array();
@@ -20,7 +20,7 @@ if(isset($_POST['autentificare'])){
 			$log_in = $_POST['login'];
 			$login = $auth->getUserByLogin($log_in);
 			if(!$login){
-				$errors[] .= "This user/email is not registered! You can register it<a href=\"register.php\"> here</a>";
+				$errors[] .= "This user/email is not registered! You care register it <a href=\"register.php\">here</a>";
 			} else {
 				if(isset($_POST['password'])){
 					if(!empty($_POST['password'])){
@@ -41,7 +41,6 @@ if(isset($_POST['autentificare'])){
 	} else {
 		$errors[] = "Missing username/email!";
 	}
-
 	if(empty($errors)){
 		$_SESSION['user_id'] = $login['id'];
 		$_SESSION['username'] = $login['user_name'];
