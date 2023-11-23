@@ -46,12 +46,7 @@ if(logged_in()){
 
 		if(!empty($errors))
 		{
-			echo '<div class="alert alert-danger alert-dismissible fade show text-secondary" role="alert">';
-			foreach($errors as $error){
-				echo  $error;
-			}
-			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
-			echo '</div>';
+			show_errors($errors);
 		} else {
 			$user->updateUserPassword($_SESSION['user_id'], $_POST['new_password']);
 			echo '<div class="alert alert-success alert-dismissible fade show text-secondary" role="alert">';
@@ -80,12 +75,7 @@ if(logged_in()){
 
 		if(!empty($errors))
 		{
-			echo '<div class="alert alert-danger alert-dismissible fade show text-secondary" role="alert">';
-			foreach($errors as $error){
-				echo  $error;
-			}
-			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
-			echo '</div>';
+			show_errors($errors);
 		} else {
 			$user->setToken($user_data['id']);
 			$uri = $_SERVER['REQUEST_URI'];

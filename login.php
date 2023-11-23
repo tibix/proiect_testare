@@ -26,20 +26,20 @@ if(isset($_POST['autentificare'])){
 					if(!empty($_POST['password'])){
 						$password = $_POST['password'];
 						if($login['password'] != md5($password)){
-							$errors[] .= "Invalid password!";
+							$errors[] = "Invalid password!";
 						}
 					} else {
-						$errors[] .= "Field Password cannot be empty!";
+						$errors[] = "Field Password cannot be empty!";
 					}
 				} else {
-					$errors[] .= "Missing password!";
+					$errors[] = "Missing password!";
 				}
 			}
 		} else {
-			$errors[] .= "Field Email/Username cannot be empty!";
+			$errors[] = "Field Email/Username cannot be empty!";
 		}
 	} else {
-		$errors[] .= "Missing username/email!";
+		$errors[] = "Missing username/email!";
 	}
 	if(empty($errors)){
 		$_SESSION['user_id'] = $login['id'];
@@ -49,13 +49,9 @@ if(isset($_POST['autentificare'])){
 		$_SESSION['email'] = $login['email'];
 		$_SESSION['loggedin'] = TRUE;
 		redirect("home.php");
-	} else { 
-		foreach($errors as $error){
-			echo "<div class=\"alert alert-danger alert-dismissible text-secondary fade show\" role=\"alert\">$error";
-			echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
-		}
+	} else {
+		show_errors($errors);
 		include 'templates/t_login.php';
-		echo '</main>';
 	}
 } else {
 	include 'templates/t_login.php';

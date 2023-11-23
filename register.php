@@ -24,7 +24,7 @@ if(isset($_POST['register'])){
     if(isset($_POST['email'])) { 
         $email = $_POST['email'];
         if($user->emailExists($email)){
-            $errors[] = "This e-mail is already registered! Reset password <a href=\"password-reset.php\" class=\"text-dark\">here</a></br>";
+            $errors[] = "This e-mail is already registered! Reset password <a href=\"password_reset.php\" class=\"text-dark\">here</a></br>";
         }
     } else { 
         $errors[] = "Invalid e-mail address!</br>";
@@ -43,12 +43,7 @@ if(isset($_POST['register'])){
             $errors[] = "Error creating the account! Please try again later";
         }
     } else {
-        echo '<div class="alert alert-danger alert-dismissible fade show text-secondary" role="alert">';
-        foreach($errors as $error){
-            echo  $error;
-        }
-        echo '</div>';
-
+        show_errors($errors);
         include 'templates/t_register.php';
     }
 } else {
