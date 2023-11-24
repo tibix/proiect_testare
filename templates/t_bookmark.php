@@ -10,7 +10,7 @@
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" name="title" id="title" class="form-control form-control-lg"
-                                           value="<?php if(isset($title)) { echo $title; } ?>" required/>
+                                           value="<?php if(isset($title)) { echo $title; } ?>" required autofocus />
                                     <label class="form-label" for="title">Title</label>
                                 </div>
 

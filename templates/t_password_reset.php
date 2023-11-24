@@ -10,7 +10,7 @@
                                 <p class="text-dark-50 mb-5">Insert your current password and the new password!</p>
                                 <div class="form-outline form-white mb-4">
                                     <input type="password" name="current_password" id="current_password" class="form-control form-control-lg"
-                                    value="<?php if(isset($_POST['current_password'])) { echo $_POST['current_password']; } ?>" />
+                                    value="<?php if(isset($_POST['current_password'])) { echo $_POST['current_password']; } ?>" autofocus />
                                     <label class="form-label" for="current_password">Curent Password</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
