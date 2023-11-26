@@ -1,0 +1,318 @@
+:root{
+
+    --clr-green-900: #344e41;
+    --clr-green-600: #3a5a40;
+    --clr-green-300: #588157;
+
+    --clr-green-900-op: rgba(51, 79, 65, 0.85);
+    --clr-green-600-op: rgba(59, 89, 64, 0.85);
+    --clr-green-300-op: rgba(87, 127, 87, 0.85);
+
+    --clr-light: #eaf4f4;
+}
+
+header,
+footer{
+    color: var(--clr-light);
+    width: 100%;
+    height: 55px;
+    background-image: linear-gradient(to right, 
+                                    var(--clr-green-900) 10%, 
+                                    var(--clr-green-600) 20%, 
+                                    var(--clr-green-300) 50%, 
+                                    var(--clr-green-600) 80%, 
+                                    var(--clr-green-900) 90%);
+}
+
+header{
+    position: fixed;
+    top: 0;
+    z-index: 999;
+}
+
+/* Class used to toggle transparency on the header's background */
+
+.scrolled{
+    background-image: linear-gradient(to right, 
+                                    var(--clr-green-900-op) 10%, 
+                                    var(--clr-green-600-op) 20%, 
+                                    var(--clr-green-300-op) 50%, 
+                                    var(--clr-green-600-op) 80%, 
+                                    var(--clr-green-900-op) 90%);
+}
+/*  */
+
+a{
+    text-decoration: none !important;
+}
+
+.my-row{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.menu{
+    padding: 0 2.5%;
+    max-width: 1700px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+
+    position: relative;
+}
+
+.menu__logo{
+    margin: 0 auto;
+    padding: 0.5rem 1rem 0.5rem 0;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--clr-light);
+}
+
+.menu__list{
+    list-style: none;
+    margin: 0;
+    padding: 1.5rem 0;
+    width: 100%;
+
+    background-image: linear-gradient(to right, 
+                                    var(--clr-green-900) 10%, 
+                                    var(--clr-green-600) 20%, 
+                                    var(--clr-green-300) 50%, 
+                                    var(--clr-green-600) 80%, 
+                                    var(--clr-green-900) 90%);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+
+    position: absolute;
+    top: 55px;
+    left: -100%;
+    z-index: 999;
+
+    transition: transform 0.4s ease-in-out; 
+}
+
+/* class to show the menu when hamburger clicked */
+.menu__list.opened{
+    left: 0;
+}
+/*  */
+
+.menu__link{
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.8rem 0.6rem;
+    color: var(--clr-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.menu__item--form{
+    border-radius: 10px !important;
+    margin: 1rem 0;
+}
+
+.menu__search{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+ }
+
+.form-control[type="search"]{
+    padding: .3rem .75rem;
+    max-width: 200px;
+}
+
+.form-control[type="search"]:focus {
+    color: var(--clr-green-900);
+    border: #fff;
+    box-shadow: -1px -1px 4px #fff,
+                1px 1px 4px #fff;
+
+    transition: all 200ms ease-in-out;
+}
+
+.shiny-item:hover,
+.shiny-item:focus{
+    text-shadow: 1px 1px 5px var(--clr-light),
+                 -1px -1px 5px var(--clr-light);
+}
+
+.framed-item{
+    padding: 0.5rem 0.75rem !important;
+    border: 1px solid var(--clr-light);
+    border-radius: 10px;
+}
+
+.framed-item--dif{
+    text-transform: none;
+    padding: 0.3rem 0.75rem !important;
+}
+
+.framed-item.shiny-item:focus,
+.framed-item.shiny-item:hover{
+    box-shadow: 0px 0.5px 4px var(--clr-light),
+                0px -0.5px 4px var(--clr-light);
+}
+
+.help{
+    margin-bottom: 0.5rem;
+}
+
+.sign-in,
+.register{
+    margin: 0.2rem;
+}
+
+.btn-group a{
+    cursor: pointer;
+}
+
+
+/* Menu toggler */
+
+.menu-toggler{
+    display: block;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    border-radius: 20%;
+}
+/*  */
+
+/* Hamburger appearance (those 3 lines) */
+
+.hamburger{
+    position: relative;
+    width: 17px;
+}
+
+.hamburger,
+.hamburger::before,
+.hamburger::after{
+    margin: 0 auto;
+    display: block;
+    height: 2px;
+    background-color: var(--clr-light);
+
+    transition: transform 0.3s ease-in-out, 
+                opacity 0s;
+}
+
+.hamburger::before,
+.hamburger::after{
+    content: '';
+    position: absolute;
+}
+
+.hamburger::before{
+    width: 22px;
+    transform: translateY(-5.5px);
+}
+
+.hamburger::after{
+    width: 12px;
+    transform: translateY(5.5px);
+}
+/*  */
+
+/* Changing the hamburger appearance (from hamburger to X)*/
+
+.menu-toggler.active .hamburger{
+    width: 22px;
+    transform: rotate(-45deg);
+}
+
+.menu-toggler.active .hamburger::after{
+    opacity: 0;
+}
+
+.menu-toggler.active .hamburger::before{
+    width: 100%;
+    transform: rotate(90deg) translateY(0);
+}
+/*  */
+
+/* Dark overlay on the main content when hamburger clicked
+disabling functionality of the main content until a link it's clicked or until the menu is closed */
+
+header[data-overlay]::after{
+    content:'';
+    position: fixed;
+    inset: 0;
+    top: 55px;
+    background-color: rgb(0,0,0, 0.5);
+}
+/*  */
+
+@media(min-width: 900px){
+    html{
+        font-size: 13.5px;
+    }
+
+    .menu-toggler{
+        display: none;
+    }
+
+    .menu__logo{
+        flex: 1 0 auto;
+    }
+
+    .menu__list{
+        width: 90%;
+        background-image: none;
+        position: static;
+        flex-direction: row;
+        justify-content: start;
+        gap: 0.5rem;
+    }
+    
+    .menu__link{
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .menu__item--centered{
+        margin: 0 auto;
+    }
+
+    .help{
+        margin-bottom: 0;
+    }
+    
+    .sign-in,
+    .register{
+        margin: 0;
+    }
+    
+    .menu__item--right{
+        margin-left: auto;
+    }
+
+    .menu__link.account{
+        margin-left: 1rem;
+    }
+
+    header[data-overlay]::after{
+        display: none;
+    }
+}
+
+
+@media (min-width: 1100px){
+    html{
+        font-size: 17px;
+    }
+}

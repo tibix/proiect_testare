@@ -1,0 +1,5 @@
+.btn{
+    color: var(--clr-green-900);
+    border: 1px solid var(--clr-green-900);
+    border-radius: 10px;
+}

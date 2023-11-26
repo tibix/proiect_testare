@@ -1,0 +1,22 @@
+html,
+body{
+    height:100vh;
+    margin:0;
+}
+
+body{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+*,
+::before,
+::after{
+    box-sizing: border-box;
+}
+
+main{
+    padding: 55px 0 0;
+    margin: 0.25rem 0;
+}
