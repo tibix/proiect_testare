@@ -4,7 +4,6 @@
             <div class="panel">
                 <div class="user-heading round">
                     <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png" alt="" class="img-thumbnail rounded">
-
                     <h1 class="text-center"><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h1>
                     <p class="text-center"><?=$_SESSION['email']?></p>
                 </div>
@@ -68,6 +67,7 @@
                     <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2">Save User Data</button>
                 </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -142,14 +142,13 @@
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 
 <script>
-    const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName("input"));
-    const select_list = document.getElementById('language');
-    const submit = document.getElementById('save_data');
+    const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName('input'));
     const enable_form = document.getElementById("enable_form");
+    const select_list = document.getElementById("language");
+    const submit = document.getElementById("save_data");
 
     let total_inputs = input_fields.length;
     let index = 0;
@@ -158,6 +157,7 @@
         input_fields[index++].disabled = true;
         total_inputs--;
     }
+
     select_list.disabled = true;
     submit.disabled = true;
 
@@ -171,6 +171,3 @@
         });
     });
 </script>
-=======
-</div>
->>>>>>> 6ee89d8 (Phase 1: UI ready)
