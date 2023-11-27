@@ -10,6 +10,7 @@ body{
     justify-content: space-between;
 }
 
+<<<<<<< HEAD
 main{
     margin: 0.25rem 0;
 }
@@ -40,3 +41,15 @@ main{
     display: none !important;
   }
 }
+=======
+*,
+::before,
+::after{
+    box-sizing: border-box;
+}
+
+main{
+    padding: 55px 0 0;
+    margin: 0.25rem 0;
+}
+>>>>>>> navbar_refactoring
