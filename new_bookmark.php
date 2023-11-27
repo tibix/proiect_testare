@@ -21,6 +21,9 @@ if (isset($_POST['save'])) {
         if (empty($_POST['title'])) {
             $errors[] = "Title field cannot be empty";
             $title = '';
+        } else if(strlen(trim($_POST['title'])) < 1) {
+            $errors[] = 'Title field must contain valid string';
+            $title = '';
         } else {
             $title = $_POST['title'];
         }
@@ -31,6 +34,9 @@ if (isset($_POST['save'])) {
     if (isset($_POST['url'])) {
         if (empty($_POST['url'])) {
             $errors[] = "URL field cannot be empty";
+            $url = '';
+        } else if(!filter_var($_POST['url'], FILTER_VALIDATE_URL)) {
+            $errors[] = 'URL field must contain a valid URL!';
             $url = '';
         } else {
             $url = $_POST['url'];

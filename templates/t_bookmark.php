@@ -15,7 +15,7 @@
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
-                                    <input type="text" name="url" id="url" class="form-control form-control-lg"
+                                    <input type="url" name="url" id="url" class="form-control form-control-lg"
                                            value="<?php if(isset($url)) { echo $url; } ?>" required/>
                                     <label class="form-label" for="url">URL</label>
                                 </div>
