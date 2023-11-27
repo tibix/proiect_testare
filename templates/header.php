@@ -53,7 +53,7 @@
 							</div>
 
 							<li class="nav-item">
-								<a class="nav-link text-light" href="favourites.php">Favourites</a>
+								<a class="nav-link text-light" href="favorites.php">Favorites</a>
 							</li>
 					    <?php } ?>
 					    <li class="nav-item" data-bs-toggle="modal" data-bs-target="#aboutUsModal">

@@ -40,16 +40,11 @@ if(count($bookmarks) > 1){
                 <div class="card-footer text-muted">
                     <a href="<?=$bm['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
                     <button class="btn btn-outline-dark">Copy to Clipboard</button>
-                    <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bm['id']?>">
-                        <?php
-                            if($fav->isFavorite($bm['id']))
-                            {
-                                echo '<i class="fa-solid fa-heart"></i>';
-                            } else {
-                                echo '<i class="fa-regular fa-heart"></i>';
-                            }
-                        ?>
-                    </a>
+                    <?php if($fav->isFavorite($bm['id'])) { ?>
+                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bm['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                    <?php } else { ?>
+                        <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bm['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                    <?php } ?>
                 </div>
             </div>
         </div>

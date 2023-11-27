@@ -78,7 +78,7 @@ if($count > 1)
                                 <th scope="col">In category</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
-                                <th scope="col">Favorites</th>
+                                <th scope="col">Favorite</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -96,19 +96,14 @@ if($count > 1)
                                         <a class="btn btn-outline-primary" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-danger" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                                        <a class="btn btn-outline-secondary" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-secondary" href="">
-                                            <?php
-                                            if($fav->isFavorite($bookmark['id']))
-                                            {
-                                                echo '<i class="fa-solid fa-heart"></i>';
-                                            } else {
-                                                echo '<i class="fa-regular fa-heart"></i>';
-                                            }
-                                            ?>
-                                        Favorite</a>
+                                        <?php if($fav->isFavorite($bookmark['id'])) { ?>
+                                            <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                                        <?php } ?>
                                     </td>
 
                                 </tr>
