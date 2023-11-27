@@ -1,6 +1,6 @@
 <?php
 
-class Favourite
+class Favorite
 {
 
     private $db;
@@ -22,9 +22,7 @@ class Favourite
         $user_id = (int)$user_id;
         $bookmark_id = (int)$bookmark_id;
 
-        $sql = "INSERT INTO 
-                favourites (user_id, bookmark_id) 
-                VALUES ($user_id, $bookmark_id)";
+        $sql = "INSERT INTO favourites (user_id, bookmark_id) VALUES ($user_id, $bookmark_id)";
 
         return $this->db->query($sql);
     }
@@ -59,5 +57,19 @@ class Favourite
 
         $result = $this->db->query($sql);
         return $result->fetch_assoc();
+    }
+
+    public function isFavorite($id)
+    {
+        $id = (int)$id;
+        $sql = "SELECT bookmark_id FROM favorites WHERE bookmark_id = $id";
+        $result = $this->db->query($sql);
+        $row = $result->fetch_assoc();
+        if($row)
+        {
+            return true;
+        }
+
+        return false;
     }
 }
