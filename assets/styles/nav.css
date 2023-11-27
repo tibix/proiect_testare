@@ -106,7 +106,7 @@ a{
     left: -100%;
     z-index: 999;
 
-    transition: transform 0.4s ease-in-out; 
+    transition: all  0.4s ease-in-out; 
 }
 
 /* class to show the menu when hamburger clicked */
