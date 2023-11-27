@@ -18,4 +18,4 @@ foreach($uri as $element){
     </div>
     <!-- Copyright -->
 </footer>
-<script src="assets/js/nav.js"></script>
+<script src="assets/js/main.js"></script>
