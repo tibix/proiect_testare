@@ -42,6 +42,16 @@ header{
 }
 /*  */
 
+.scrolled:hover,
+.scrolled:focus{
+    background-image: linear-gradient(to right, 
+                                    var(--clr-green-900) 10%, 
+                                    var(--clr-green-600) 20%, 
+                                    var(--clr-green-300) 50%, 
+                                    var(--clr-green-600) 80%, 
+                                    var(--clr-green-900) 90%);
+}
+
 a{
     text-decoration: none !important;
 }
