@@ -5,6 +5,7 @@ session_start();
 require_once 'classes/Database.php';
 require_once 'classes/Bookmark.php';
 require_once 'classes/Category.php';
+require_once 'classes/Favorite.php';
 
 include 'templates/header.php';
 
@@ -16,6 +17,7 @@ if(!logged_in())
 $db = new Database();
 $bm = new Bookmark($db);
 $cat = new Category($db);
+$fav = new Favorite($db);
 
 if(!empty($_GET['category'])){
     $category = $_GET['category'];
@@ -76,6 +78,7 @@ if($count > 1)
                                 <th scope="col">In category</th>
                                 <th scope="col">Edit</th>
                                 <th scope="col">Delete</th>
+                                <th scope="col">Favorite</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -93,7 +96,14 @@ if($count > 1)
                                         <a class="btn btn-outline-primary" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-danger" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                                        <a class="btn btn-outline-secondary" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                                    </td>
+                                    <td>
+                                        <?php if($fav->isFavorite($bookmark['id'])) { ?>
+                                            <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                                        <?php } else { ?>
+                                            <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                                        <?php } ?>
                                     </td>
 
                                 </tr>
