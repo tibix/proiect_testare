@@ -3,18 +3,17 @@
         <div class="profile-nav col-md-3">
             <div class="panel">
                 <div class="user-heading round">
-                    <a href="#">
-                        <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png" alt="" class="img-thumbnail rounded">
-                    </a>
+                    <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png" alt="" class="img-thumbnail rounded">
                     <h1 class="text-center"><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h1>
                     <p class="text-center"><?=$_SESSION['email']?></p>
+                    <a class="text-center text-dark" href="password_reset.php">Reset Password</a>
                 </div>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="row">
-                <button type="button" class="btn btn-lg btn-outline-primary btn-block mb-2">Enable Edit</button>
-
+            <div class="row input_fields">
+                <button type="button" id="enable_form" class="btn btn-lg btn-outline-primary btn-block mb-2">Enable Edit</button>
+                <form method="POST">
                 <div class="col-md-6 mb-4">
                     <div class="form-outline">
                         <input type="text" id="user_name" name="user_name" class="form-control form-control-lg"
@@ -44,13 +43,13 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
-                    <select class="form-control form-control-lg" name="language" id="language">
+                    <select class="form-control form-control-lg" name="language" id="language" disabled>
                         <option value="no_language" disabled selected class="text-muted"> ... select your language ...</option>
-                        <option value="en">English</option>
-                        <option value="ro">Romanian</option>
-                        <option value="hu">Hungarian</option>
-                        <option value="fr">French</option>
-                        <option value="de">German</option>
+                        <option value="en" <?php  if($_SESSION['lang'] == 'en') { echo "selected"; }?>>English</option>
+                        <option value="ro" <?php  if($_SESSION['lang'] == 'ro') { echo "selected"; }?>>Romanian</option>
+                        <option value="hu" <?php  if($_SESSION['lang'] == 'hu') { echo "selected"; }?>>Hungarian</option>
+                        <option value="fr" <?php  if($_SESSION['lang'] == 'fr') { echo "selected"; }?>>French</option>
+                        <option value="de" <?php  if($_SESSION['lang'] == 'de') { echo "selected"; }?>>German</option>
                     </select>
                     <label class="form-label" for="language">Preffered Language</label>
                 </div>
@@ -58,8 +57,13 @@
                     <input id="date_created" class="form-control form-control-lg" disabled value="to be added">
                     <label class="form-label" for="date_created">Date Created</label>
                 </div>
-                <button type="submit" class="btn btn-lg btn-primary btn-block mb-2">Save User Data</button>
-                <a href="password_reset.php" class="btn btn-lg btn-dark btn-block mb-2">Reset Password</a>
+                <div class="col-md-6 mb-4 pb-2">
+                    <button type="submit" class="btn btn-lg btn-primary mb-2">Save User Data</button>
+                </div>
+                </form>
+                <div class="col-md-6 mb-4 pb-2">
+
+                </div>
             </div>
         </div>
     </div>
@@ -71,11 +75,11 @@
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li class="item">1</li></hr>
-                        <li>2</li></hr>
-                        <li>3</li></hr>
-                        <li>4</li></hr>
-                        <li>5</li></hr>
+                        <li class="item">1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
 
                     </ul>
                 </div>
@@ -88,11 +92,11 @@
                 </div>
                 <div class="card-body">
                     <ul>
-                        <li>1</li></hr>
-                        <li>2</li></hr>
-                        <li>3</li></hr>
-                        <li>4</li></hr>
-                        <li>5</li></hr>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
                     </ul>
                 </div>
             </div>
@@ -131,3 +135,22 @@
         </div>
     </div>
 </div>
+
+<script>
+    const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName('input'));
+    const enable_form = document.getElementById("enable_form");
+    let total_inputs = input_fields.length;
+    let index = 0;
+
+    while(total_inputs){
+        input_fields[index++].disabled = true;
+        total_inputs--;
+    }
+    enable_form.addEventListener("click", () => {
+        input_fields.forEach((input) => {
+            input.disabled = false;
+            console.log("Clicked");
+            console.log(input.name + " is now Enabled");
+        });
+    });
+</script>

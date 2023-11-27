@@ -48,6 +48,7 @@ if(isset($_POST['autentificare'])){
 		$_SESSION['first_name'] = $login['first_name'];
 		$_SESSION['last_name'] = $login['last_name'];
 		$_SESSION['email'] = $login['email'];
+        $_SESSION['lang'] = $login['language'];
 		$_SESSION['loggedin'] = TRUE;
 		redirect("home.php");
 	} else {
