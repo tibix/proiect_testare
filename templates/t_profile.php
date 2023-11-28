@@ -68,9 +68,12 @@
                 </div>
                 </form>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 9445849 (Profile update functionality done)
+=======
+>>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
             </div>
         </div>
     </div>
@@ -82,6 +85,7 @@
                 </div>
                 <div class="card-body">
                     <ul>
+<<<<<<< HEAD
 <<<<<<< HEAD
                         <?php if(sizeof($latest_bms) > 0 && sizeof($latest_bms < 5)):?>
                             <?php foreach($latest_bms as $lbm):?>
@@ -98,6 +102,11 @@
                             <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
                         <?php endforeach;?>
 >>>>>>> 9445849 (Profile update functionality done)
+=======
+                        <?php foreach($latest_bms as $lbm):?>
+                            <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
+                        <?php endforeach;?>
+>>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
                     </ul>
                 </div>
             </div>
@@ -159,10 +168,13 @@
     const submit = document.getElementById('save_data');
     const enable_form = document.getElementById("enable_form");
 <<<<<<< HEAD
+<<<<<<< HEAD
     const select_list = document.getElementById("language");
     const submit = document.getElementById("save_data");
 =======
 >>>>>>> 9445849 (Profile update functionality done)
+=======
+>>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
 
     let total_inputs = input_fields.length;
     let index = 0;
@@ -172,9 +184,12 @@
         total_inputs--;
     }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 9445849 (Profile update functionality done)
+=======
+>>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
     select_list.disabled = true;
     submit.disabled = true;
 
@@ -187,4 +202,8 @@
             submit.disabled=false;
         });
     });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
