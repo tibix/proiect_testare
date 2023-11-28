@@ -165,11 +165,9 @@
     enable_form.addEventListener("click", () => {
         input_fields.forEach((input) => {
             input.disabled = false;
-            console.log("Clicked");
-            console.log(input.name + " is now Enabled");
-            select_list.disabled=false;
-            submit.disabled=false;
         });
+        select_list.disabled=false;
+        submit.disabled=false;
     });
 </script>
 
@@ -190,18 +188,18 @@
             datasets: [{
                 data: [
                     <?php
-                    foreach($bms_categ as $bm_cat)
-                    {
-                        echo $bm_cat['total_bms'] . ',';
-                    }
+                        foreach($bms_categ as $bm_cat)
+                        {
+                            echo $bm_cat['total_bms'] . ',';
+                        }
                     ?>
                 ],
                 backgroundColor: [
                     <?php
-                    foreach($bms_categ as $bm_cat)
-                    {
-                        echo(generateRandomColor() . ',');
-                    }
+                        foreach($bms_categ as $bm_cat)
+                        {
+                            echo(generateRandomColor() . ',');
+                        }
                     ?>
                 ],
                 hoverOffset: 4
