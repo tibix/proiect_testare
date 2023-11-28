@@ -36,7 +36,7 @@ CREATE TABLE `bookmarks` (
   KEY `fk_bookmarks_categories` (`category_id`) USING BTREE,
   CONSTRAINT `FK_bookmarks_categories` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
   CONSTRAINT `fk_bookmarks_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ INSERT INTO `bookmarks` VALUES
 (62,'The Onion','https://www.theonion.com','The Onion','2023-11-18 13:53:26',NULL,3,1),
 (63,'Craigslist','https://www.craigslist.org','Craigslist','2023-11-18 13:53:26',NULL,4,1),
 (64,'IMDb','https://www.imdb.com','IMDb','2023-11-18 13:53:26',NULL,1,6),
-(65,'Rotten Tomatoes','https://www.rottentomatoes.com','Rotten Tomatoes','2023-11-18 13:53:26',NULL,1,1),
+(65,'Rotten Tomatoes','https://www.rottentomatoes.com','Rotten Tomatoes','2023-11-18 13:53:26','2023-11-23 17:28:31',1,2),
 (66,'Metacritic','https://www.metacritic.com','Metacritic','2023-11-18 13:53:26',NULL,2,1),
 (67,'Goodreads','https://www.goodreads.com','Goodreads','2023-11-18 13:53:26',NULL,5,1),
 (68,'Last.fm','https://www.last.fm','Last.fm','2023-11-18 13:53:26',NULL,3,1),
@@ -142,7 +142,7 @@ INSERT INTO `bookmarks` VALUES
 (116,'Test2','https://test2.com','Test 2 or whatever','2023-11-22 11:11:55',NULL,1,1),
 (117,'No redirect','https://no.redirect','test no redirect','2023-11-22 11:14:35',NULL,1,1),
 (118,'No redirect2','https://no.redirect2','test no redirect2','2023-11-22 11:15:06',NULL,1,1),
-(120,'Gogule','https://gogule.com','Gogule','2023-11-23 16:38:25',NULL,1,7);
+(123,'Valid string','http://invalid','someting','2023-11-27 11:35:30',NULL,1,1);
 /*!40000 ALTER TABLE `bookmarks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,13 +181,13 @@ INSERT INTO `categories` VALUES
 UNLOCK TABLES;
 
 --
--- Table structure for table `favourites`
+-- Table structure for table `favorites`
 --
 
-DROP TABLE IF EXISTS `favourites`;
+DROP TABLE IF EXISTS `favorites`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `favourites` (
+CREATE TABLE `favorites` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `owner_id` int(10) unsigned NOT NULL,
   `bookmark_id` int(10) unsigned NOT NULL,
@@ -197,16 +197,20 @@ CREATE TABLE `favourites` (
   KEY `fk_fav_bookmarks` (`bookmark_id`),
   CONSTRAINT `fk_fav_bookmarks` FOREIGN KEY (`bookmark_id`) REFERENCES `bookmarks` (`id`),
   CONSTRAINT `fk_fav_users` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `favourites`
+-- Dumping data for table `favorites`
 --
 
-LOCK TABLES `favourites` WRITE;
-/*!40000 ALTER TABLE `favourites` DISABLE KEYS */;
-/*!40000 ALTER TABLE `favourites` ENABLE KEYS */;
+LOCK TABLES `favorites` WRITE;
+/*!40000 ALTER TABLE `favorites` DISABLE KEYS */;
+INSERT INTO `favorites` VALUES
+(2,1,23,'2023-11-27 10:18:53'),
+(3,1,24,'2023-11-27 10:18:54'),
+(7,1,2,'2023-11-27 11:13:32');
+/*!40000 ALTER TABLE `favorites` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -258,4 +262,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-23 17:51:16
+-- Dump completed on 2023-11-28 12:10:28
