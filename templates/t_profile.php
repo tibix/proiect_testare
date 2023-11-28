@@ -67,7 +67,10 @@
                     <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2">Save User Data</button>
                 </div>
                 </form>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9445849 (Profile update functionality done)
             </div>
         </div>
     </div>
@@ -79,6 +82,7 @@
                 </div>
                 <div class="card-body">
                     <ul>
+<<<<<<< HEAD
                         <?php if(sizeof($latest_bms) > 0 && sizeof($latest_bms < 5)):?>
                             <?php foreach($latest_bms as $lbm):?>
                                 <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
@@ -89,6 +93,11 @@
                                 <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
                             <?php endforeach;?>
                         <?php endif; ?>
+=======
+                        <?php foreach($latest_bms as $lbm):?>
+                            <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
+                        <?php endforeach;?>
+>>>>>>> 9445849 (Profile update functionality done)
                     </ul>
                 </div>
             </div>
@@ -145,10 +154,15 @@
 </div>
 
 <script>
-    const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName('input'));
+    const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName("input"));
+    const select_list = document.getElementById('language');
+    const submit = document.getElementById('save_data');
     const enable_form = document.getElementById("enable_form");
+<<<<<<< HEAD
     const select_list = document.getElementById("language");
     const submit = document.getElementById("save_data");
+=======
+>>>>>>> 9445849 (Profile update functionality done)
 
     let total_inputs = input_fields.length;
     let index = 0;
@@ -157,7 +171,10 @@
         input_fields[index++].disabled = true;
         total_inputs--;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9445849 (Profile update functionality done)
     select_list.disabled = true;
     submit.disabled = true;
 
