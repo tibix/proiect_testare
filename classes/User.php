@@ -131,7 +131,7 @@ class User
         $email = $this->db->escapeString($email);
         $language = $this->db->escapeString($language);
 
-        $sql = "UPDATE users SET user_name = '$u_name', first_name = '$f_name', last_name = '$l_name', email='$email'  language = '$language' WHERE id = $id";
+        $sql = "UPDATE users SET user_name = '$u_name', first_name = '$f_name', last_name = '$l_name', email='$email',  language = '$language' WHERE id = $id";
         return $this->db->query($sql);
     }
 
