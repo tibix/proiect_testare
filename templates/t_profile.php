@@ -4,6 +4,7 @@
             <div class="panel">
                 <div class="user-heading round">
                     <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-512.png" alt="" class="img-thumbnail rounded">
+
                     <h1 class="text-center"><?=$_SESSION['first_name'].' '.$_SESSION['last_name']?></h1>
                     <p class="text-center"><?=$_SESSION['email']?></p>
                 </div>
@@ -78,9 +79,16 @@
                 </div>
                 <div class="card-body">
                     <ul>
-                        <?php foreach($latest_bms as $lbm):?>
-                            <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
-                        <?php endforeach;?>
+                        <?php if(sizeof($latest_bms) > 0 && sizeof($latest_bms < 5)):?>
+                            <?php foreach($latest_bms as $lbm):?>
+                                <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
+                            <?php endforeach;?>
+                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                        <?php else:?>
+                            <?php foreach($latest_bms as $lbm):?>
+                                <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
+                            <?php endforeach;?>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -134,6 +142,7 @@
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 
 <script>
@@ -162,3 +171,6 @@
         });
     });
 </script>
+=======
+</div>
+>>>>>>> 6ee89d8 (Phase 1: UI ready)
