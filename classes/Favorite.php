@@ -1,5 +1,8 @@
 <?php
 
+/**
+ *
+ */
 class Favorite
 {
 
@@ -45,23 +48,64 @@ class Favorite
     }
 
     /**
-     * Retrieves all favorites for a given user ID.
+     * Retrieves all favorites for a given user ID and limit results is argument is supplied
      *
      * @param int $id The user ID.
      * @return array|null The fetched favorites as an associative array, or null if no favorites found.
      */
-    public function getAllFavorites($id)
+    public function getAllFavorites($id, $limit=null)
     {
         $id = (int)$id;
-        $sql = "SELECT * FROM favorites WHERE user_id = $id";
+        $limit = (int)$limit ? $limit : null;
 
-        $result = $this->db->query($sql);
-        return $result->fetch_assoc();
+        if($limit) {
+            $sql = "SELECT favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id FROM favorites
+                    JOIN bookmarks
+                    ON favorites.bookmark_id = bookmarks.id
+                    WHERE favorites.owner_id = $id
+                    ORDER BY favorites.bookmark_id
+                    LIMIT $limit";
+        } else {
+            $sql = "SELECT favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id FROM favorites
+                    JOIN bookmarks
+                    ON favorites.bookmark_id = bookmarks.id
+                    WHERE favorites.owner_id = $id
+                    ORDER BY favorites.bookmark_id";
+        }
+        
+        $row = $this->db->query($sql);
+        
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+
+        return $results;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCountFavorites($id)
+    {
+        $id = (int)$id;
+        $sql = "SELECT COUNT(id) AS count FROM favorites WHERE owner_id = $id";
+
+        $row = $this->db->query($sql);
+        $result = $row->fetch_assoc();
+
+        return $result['count'];
+    }
+
+
+    /**
+     * @param $id
+     * @return bool
+     */
     public function isFavorite($id)
     {
         $id = (int)$id;
+
         $sql = "SELECT bookmark_id FROM favorites WHERE bookmark_id = $id";
         $result = $this->db->query($sql);
         $row = $result->fetch_assoc();

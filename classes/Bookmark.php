@@ -132,8 +132,10 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         return $results;
     }
 
+
     /**
      * @param $user_id
+     * @param $category_id
      * @return mixed
      */
     public function getBookmarksCountByUserId($user_id, $category_id=null)
@@ -173,6 +175,19 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         } else {
             $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id AND category_id = $category_id";
         }
+
+        $row = $this->db->query($sql);
+        $results = array();
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+        return $results;
+    }
+
+    public function getCountUserBookmarksByCategory($id)
+    {
+        $id = (int)$id;
+        $sql = "select count(category_id) as total_bms, name from bookmarks,categories WHERE bookmarks.category_id=categories.id AND bookmarks.owner_id = $id group by category_id ";
 
         $row = $this->db->query($sql);
         $results = array();
