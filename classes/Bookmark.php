@@ -236,12 +236,13 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         return $this->db->query($sql);
     }
 
-    public function searchBookmarks($search)
+    public function searchBookmarks($id, $search)
     {
+        $id = (int)$id;
         $search = $this->db->escapeString($search);
         $results = array();
 
-        $sql = "SELECT * FROM bookmarks WHERE title LIKE '%".$search."%' OR URL LIKE '%".$search."%' OR description LIKE '%".$search."%'";
+        $sql = "SELECT * FROM bookmarks WHERE owner_id = $id AND (title LIKE '%".$search."%' OR URL LIKE '%".$search."%' OR description LIKE '%".$search."%')";
 
         $row = $this->db->query($sql);
 

@@ -5,6 +5,7 @@ session_start();
 require_once 'classes/Database.php';
 require_once 'classes/Bookmark.php';
 require_once 'classes/Category.php';
+require_once 'classes/Favorite.php';
 
 include 'templates/header.php';
 
@@ -20,7 +21,8 @@ if(isset($_GET))
         $query = $_GET['query'];
         $db = new Database();
         $bm = new Bookmark($db);
-        $results = $bm->searchBookmarks($query);
+        $fav = new Favorite($db);
+        $results = $bm->searchBookmarks($_SESSION['user_id'], $query);
         if($results) {
             $result_count = count($results);
             echo "<div class='container'>";
@@ -35,11 +37,16 @@ if(isset($_GET))
                 echo '
                         <a href="'.$result["URL"].'" target="_blank" class="list-group-item list-group-item-action">
                             <div class="d-flex w-100 justify-content-between">
-                              <h5 class="mb-1">'.$result["title"].'</h5>
-                              <small class="text-muted">Date added: '.$result["date_created"].'</small>
-                            </div>
+                              <h5 class="mb-1">'.$result["title"].'</h5>';
+                if ($fav->isFavorite($result['id'])) {
+                    echo '<small class="text-danger"><i class="fa-solid fa-heart"></i></small>';
+                } else {
+                    echo '<small class="text-muted text-danger"><i class="fa-regular fa-heart"></i></small>';
+                }
+                echo '
+                        </div>
                             <p class="mb-1">'.$result["description"].'</p>
-                            <small class="text-muted">'.$result['URL'].'</small>
+                            <small class="text-muted">Added: '.$result['date_created'].'</small>
                           </a>
                 ';
             }
