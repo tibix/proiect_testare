@@ -52,6 +52,23 @@ class Category{
         $result = $this->db->query($sql);
         return $result->fetch_assoc();
     }
+
+    /**
+     * Retrieves a category from the database by its ID.
+     *
+     * @param int $id The ID of the category to retrieve.
+     * @return string The category name.
+     */
+    public function getCategoryNameById($id)
+    {
+        $id  = (int)$id;
+        $sql = "SELECT name FROM categories WHERE id = $id";
+
+        $row = $this->db->query($sql);
+        $result = $row->fetch_assoc();
+
+        return $result['name'];
+    }
     
     /**
      * Retrieves all categories from the database.
@@ -62,8 +79,12 @@ class Category{
     {
         $sql = "SELECT * FROM categories";
 
-        $result = $this->db->query($sql);
-        return $result->fetch_assoc();
+        $row = $this->db->query($sql);
+        $results = array();
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+        return $results;
     }
 
     /**

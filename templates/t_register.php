@@ -3,14 +3,14 @@
         <div class="row justify-content-center align-items-center h-100">
             <div class="col-12 col-lg-9 col-xl-7">
                 <div class="card bg-light text-dark shadow-2-strong card-registration" style="border-radius: 15px;">
-                    <div class="card-body p-4 p-md-5">
-                        <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Register</h3>
+                    <div class="card-body p-4 p-md-5 text-center">
+                        <h2 class="fw-bold mb-4 text-uppercase">Register</h2>
                         <form name="inregistrare" method="POST">
                             <div class="row">
                                 <div class="col-md-6 mb-4">
                                     <div class="form-outline">
                                         <input type="text" id="user_name" name="user_name" class="form-control form-control-lg" 
-                                        value="<?php if(isset($_POST['user_name'])) { echo $_POST['user_name']; }?>" />
+                                        value="<?php if(isset($_POST['user_name'])) { echo $_POST['user_name']; }?>" autofocus />
                                         <label class="form-label" for="u_name">Username</label>
                                     </div>
                                 </div>
@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="col-md-12 mb-4 pb-2">
                                     <select class="form-control form-control-lg" name="language" id="language">
-                                        <option value="no_language" disabled selected class="text-muted">Select your preffered language ...</option>
+                                        <option value="no_language" disabled selected class="text-muted"> ... select your language ...</option>
                                         <option value="en">English</option>
                                         <option value="ro">Romanian</option>
                                         <option value="hu">Hungarian</option>

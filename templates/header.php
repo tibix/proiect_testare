@@ -1,5 +1,8 @@
 <?php
 	include(dirname(__DIR__).'/core/utils.php');
+    $db = new Database();
+    $categ = new Category($db);
+    $cats = $categ->getAllCategories();
 ?>
 <!DOCTYPE html>
 <html>
