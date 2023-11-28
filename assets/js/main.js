@@ -1,5 +1,4 @@
 const header = document.querySelector("header");
-
 const menuToggler = document.querySelector(".menu-toggler");
 const menu = document.querySelector(".menu__list");
 
