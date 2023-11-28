@@ -132,8 +132,10 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         return $results;
     }
 
+
     /**
      * @param $user_id
+     * @param $category_id
      * @return mixed
      */
     public function getBookmarksCountByUserId($user_id, $category_id=null)
