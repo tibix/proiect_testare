@@ -53,7 +53,7 @@
 					</li>
 
 					<li class="menu__item">
-						<a class="menu__link shiny-item" href="favourites.php">Favourites</a>
+						<a class="menu__link shiny-item" href="favorites.php">Favorites</a>
 					</li>
 				<?php } ?>
 					<li class="menu__item help" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
@@ -63,8 +63,8 @@
 				if(logged_in()){ ?>
 					<li class="menu__item menu__item--form menu__item--centered">
 						<form class="menu__search" action="search.php" method="GET">
-							<input class="form-control" type="search" name="search" placeholder="Search..." aria-label="Search">
-							<a class="menu__link framed-item framed-item--dif shiny-item" type="submit">Search</a>
+							<input class="form-control" type="search" name="query" placeholder="Search..." aria-label="Search">
+                            <button class="menu__link framed-item framed-item--dif shiny-item btn" type="submit"><i class="fa fa-search"></i></button>
 						</form>
 					</li>
 					
@@ -81,9 +81,9 @@
 								</a>
 							</li>
 							<li>
-								<a class="dropdown-item" href="favourites.php">
+								<a class="dropdown-item" href="favorites.php">
 									<i class="fa-regular fa-bookmark"></i>
-									Favourites
+									Favorites
 								</a>
 							</li>
 							<li><hr class="dropdown-divider"></li>
@@ -134,7 +134,7 @@
 								<h3>How do I use this product?</h3>
 								<p>Using "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited" is really easy.</p>
 								<p>Firs, you need to register your account <a class="text-decoration-none text-primary" href="register.php">here</a></p>
-								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favourites.</p>
+								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favorites.</p>
 								<h3>How can I contact you?</h3>
 								<p>Fastest way to get in touch with us is to send us an <a class="text-decoration-none text-primary" href="mailto:example@email.com:">email</a></p>
 								<p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="https://github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
