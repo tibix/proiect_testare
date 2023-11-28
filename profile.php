@@ -21,7 +21,10 @@ $bm = new Bookmark($db);
 $fav = new Favorite($db);
 
 $count_bms = $bm->getBookmarksCountByUserId($_SESSION['user_id']);
+$count_favs = $fav->getCountFavorites($_SESSION['user_id']);
 $latest_bms = $bm->getBookmarksByUserId($_SESSION['user_id'], 5);
+$my_favs = $fav->getAllFavorites($_SESSION['user_id']);
+$bms_categ = $bm->getCountUserBookmarksByCategory($_SESSION['user_id']);
 
 if(isset($_POST['update_profile']))
 {

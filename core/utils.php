@@ -78,3 +78,11 @@ function show_success($message): void
     echo "<div class=\"alert alert-success alert-dismissible text-secondary fade show text-center mb-1\" role=\"alert\">$message";
     echo "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button></div>";
 }
+
+function generateRandomColor() {
+    $red = mt_rand(0, 255);
+    $green = mt_rand(0, 255);
+    $blue = mt_rand(0, 255);
+
+    return "'rgb($red, $green, $blue)'";
+}

@@ -53,12 +53,32 @@ class Favorite
     public function getAllFavorites($id)
     {
         $id = (int)$id;
-        $sql = "SELECT * FROM favorites WHERE user_id = $id";
 
-        $result = $this->db->query($sql);
-        return $result->fetch_assoc();
+        $sql = "SELECT favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id FROM favorites
+        JOIN bookmarks
+        ON favorites.bookmark_id = bookmarks.id
+        WHERE favorites.owner_id = $id
+        ORDER BY favorites.bookmark_id
+        LIMIT 5";
+
+        $row = $this->db->query($sql);
+        $results = array();
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+        return $results;
     }
 
+    public function getCountFavorites($id)
+    {
+        $id = (int)$id;
+        $sql = "SELECT COUNT(*) AS count FROM favorites WHERE owner_id= $id";
+
+        $row = $this->db->query($sql);
+        $result = $row->fetch_assoc();
+
+        return $result['count'];
+    }
     public function isFavorite($id)
     {
         $id = (int)$id;

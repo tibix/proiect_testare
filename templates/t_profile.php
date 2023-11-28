@@ -1,4 +1,4 @@
-<div class="container bootstrap snippets bootdey">
+<div class="container">
     <div class="row">
         <div class="profile-nav col-md-3">
             <div class="panel">
@@ -48,11 +48,11 @@
                     <div class="form-floating">
                         <select class="form-control" name="language" id="language">
                             <option value="no_language" disabled selected class="text-muted"> ... select your language ...</option>
-                            <option value="en" <?php  if($_SESSION['lang'] == 'en') { echo "selected"; }?>>English</option>
-                            <option value="ro" <?php  if($_SESSION['lang'] == 'ro') { echo "selected"; }?>>Romanian</option>
-                            <option value="hu" <?php  if($_SESSION['lang'] == 'hu') { echo "selected"; }?>>Hungarian</option>
-                            <option value="fr" <?php  if($_SESSION['lang'] == 'fr') { echo "selected"; }?>>French</option>
-                            <option value="de" <?php  if($_SESSION['lang'] == 'de') { echo "selected"; }?>>German</option>
+                            <option value="en" <?php  if($_SESSION['language'] == 'en') { echo "selected"; }?>>English</option>
+                            <option value="ro" <?php  if($_SESSION['language'] == 'ro') { echo "selected"; }?>>Romanian</option>
+                            <option value="hu" <?php  if($_SESSION['language'] == 'hu') { echo "selected"; }?>>Hungarian</option>
+                            <option value="fr" <?php  if($_SESSION['language'] == 'fr') { echo "selected"; }?>>French</option>
+                            <option value="de" <?php  if($_SESSION['language'] == 'de') { echo "selected"; }?>>German</option>
                         </select>
                         <label class="form-label" for="language">Preffered Language</label>
                     </div>
@@ -67,62 +67,47 @@
                     <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2">Save User Data</button>
                 </div>
                 </form>
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> 9445849 (Profile update functionality done)
-=======
->>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
             </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 mb-4">
             <div class="card">
-                <div class="card-header bg-primary text-light fw-bold">
+                <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
                     Latest bookmarks added
                 </div>
                 <div class="card-body">
-                    <ul>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        <?php if(sizeof($latest_bms) > 0 && sizeof($latest_bms < 5)):?>
+                    <ul class="list-unstyled">
+                        <?php if(count($latest_bms) < 1):?>
+                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                        <?php elseif(count($latest_bms) < 5):?>
                             <?php foreach($latest_bms as $lbm):?>
                                 <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
                             <?php endforeach;?>
                             <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
                         <?php else:?>
                             <?php foreach($latest_bms as $lbm):?>
-                                <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
+                            <li><a href="<?=$lbm['URL']?>" class="text-secondary text-decoration-underline" target="_blank"><?=$lbm['title'];?></a></li>
                             <?php endforeach;?>
                         <?php endif; ?>
-=======
-                        <?php foreach($latest_bms as $lbm):?>
-                            <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
-                        <?php endforeach;?>
->>>>>>> 9445849 (Profile update functionality done)
-=======
-                        <?php foreach($latest_bms as $lbm):?>
-                            <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
-                        <?php endforeach;?>
->>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
                     </ul>
                 </div>
             </div>
         </div>
         <div class="col-md-6 mb-4">
             <div class="card">
-                <div class="card-header bg-primary text-light fw-bold">
-                    Latest vavorites
+                <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
+                    Latest favorites
                 </div>
                 <div class="card-body">
-                    <ul>
-                        <li>1</li>
-                        <li>2</li>
-                        <li>3</li>
-                        <li>4</li>
-                        <li>5</li>
+                    <ul class="list-unstyled">
+                        <?php if(count($my_favs) > 0):?>
+                            <?php foreach($my_favs as $mfav):?>
+                                <li><i class="fa-solid fa-heart"></i> <?=$mfav['title']?></li>
+                            <?php endforeach;?>
+                        <?php else: ?>
+                            <li><i class="fa-solid fa-face-sad-tear"></i> There are no favorites yet! Make sure to add a few from your home or bookmarks page.</li>
+                        <?php endif; ?>
                     </ul>
                 </div>
             </div>
@@ -131,31 +116,29 @@
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Featured</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-header">Total bookmarks</h5>
+                <div class="card-body text-center">
+                    <span class="display-1">
+                        <?=$count_bms?>
+                    </span>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Featured</h5>
+                <h5 class="card-header">Bookmarks / category</h5>
                 <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <canvas id="stats"></canvas>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Featured</h5>
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                <h5 class="card-header">Total Favorites</h5>
+                <div class="card-body text-center">
+                    <span class="display-1">
+                        <?=$count_favs?>
+                    </span>
                 </div>
             </div>
         </div>
@@ -164,17 +147,9 @@
 
 <script>
     const input_fields = Array.from(document.querySelector(".input_fields").getElementsByTagName("input"));
-    const select_list = document.getElementById('language');
-    const submit = document.getElementById('save_data');
-    const enable_form = document.getElementById("enable_form");
-<<<<<<< HEAD
-<<<<<<< HEAD
     const select_list = document.getElementById("language");
     const submit = document.getElementById("save_data");
-=======
->>>>>>> 9445849 (Profile update functionality done)
-=======
->>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
+    const enable_form = document.getElementById("enable_form");
 
     let total_inputs = input_fields.length;
     let index = 0;
@@ -183,13 +158,7 @@
         input_fields[index++].disabled = true;
         total_inputs--;
     }
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
->>>>>>> 9445849 (Profile update functionality done)
-=======
->>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
     select_list.disabled = true;
     submit.disabled = true;
 
@@ -202,8 +171,41 @@
             submit.disabled=false;
         });
     });
-<<<<<<< HEAD
 </script>
-=======
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3""></script>
+<script>
+    var mychart = document.getElementById("stats");
+    new Chart(mychart, {
+        type: "doughnut",
+        data: {
+            labels: [
+                <?php
+                    foreach($bms_categ as $bm_cat)
+                    {
+                        echo '\'' . $bm_cat['name'] . '\',';
+                    }
+                ?>
+            ],
+            datasets: [{
+                data: [
+                    <?php
+                    foreach($bms_categ as $bm_cat)
+                    {
+                        echo $bm_cat['total_bms'] . ',';
+                    }
+                    ?>
+                ],
+                backgroundColor: [
+                    <?php
+                    foreach($bms_categ as $bm_cat)
+                    {
+                        echo(generateRandomColor() . ',');
+                    }
+                    ?>
+                ],
+                hoverOffset: 4
+            }]
+        }
+    });
 </script>
->>>>>>> aa9155052e529f4cbe2ec1fb38587dc79e878865
