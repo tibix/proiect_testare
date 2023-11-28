@@ -38,15 +38,17 @@
 							Categories
 						</a>
 						<ul class="dropdown-menu" id="dropDownMenu">
-							
-						<!--Here will go all those categories already created by the user-->
-							
-						<hr class="dropdown-divider">
-							<li>
-								<a class="dropdown-item new-category" href="#">
-									<i class="fa-solid fa-plus"></i> Add New Category
-								</a>
-							</li>
+                            <?php foreach($cats as $cat):?>
+                                <li>
+                                    <a class="dropdown-item new-category" href="bookmarks.php?category=<?=$cat['id']?>"><?=$cat['name'];?>
+                                    </a>
+                                </li>
+                            <?php endforeach;?>
+                            <hr class="dropdown-divider">
+                            <li>
+                                <a class="dropdown-item new-category bg-dark text-light" href="bookmarks.php">Reset Categories
+                                </a>
+                            </li>
 						</ul>
 					</li>
 
