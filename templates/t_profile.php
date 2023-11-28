@@ -71,12 +71,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-6 mb-4">
+        <div class="col-lg-6 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
                     Latest bookmarks added
                 </div>
-                <div class="card-body">
+                <div class="card-body h-100">
                     <ul class="list-unstyled">
                         <?php if(count($latest_bms) < 1):?>
                             <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
@@ -94,16 +94,16 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6 mb-4">
+        <div class="col-lg-6 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
                     Latest favorites
                 </div>
-                <div class="card-body">
+                <div class="card-body h-100">
                     <ul class="list-unstyled">
                         <?php if(count($my_favs) > 0):?>
                             <?php foreach($my_favs as $mfav):?>
-                                <li><i class="fa-solid fa-heart"></i> <?=$mfav['title']?></li>
+                                <li><i class="fa-solid fa-heart"></i> <a href="<?=$mfav['URL']?>" class="text-dark text-decoration-underline text-opacity-75"><?=$mfav['title']?></a></li>
                             <?php endforeach;?>
                         <?php else: ?>
                             <li><i class="fa-solid fa-face-sad-tear"></i> There are no favorites yet! Make sure to add a few from your home or bookmarks page.</li>
@@ -116,7 +116,7 @@
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Total bookmarks</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total bookmarks</h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_bms?>
@@ -126,7 +126,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Bookmarks / category</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Bookmarks / category</h5>
                 <div class="card-body">
                     <canvas id="stats"></canvas>
                 </div>
@@ -134,7 +134,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header">Total Favorites</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total Favorites</h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_favs?>

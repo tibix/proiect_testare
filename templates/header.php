@@ -46,7 +46,7 @@
                             <?php endforeach;?>
                             <hr class="dropdown-divider">
                             <li>
-                                <a class="dropdown-item new-category bg-dark text-light" href="bookmarks.php">Reset Categories
+                                <a class="dropdown-item new-category bg-danger text-light" href="bookmarks.php">Reset Categories
                                 </a>
                             </li>
 						</ul>
