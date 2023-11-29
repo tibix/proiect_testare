@@ -59,14 +59,14 @@ class Favorite
         $limit = (int)$limit ? $limit : null;
 
         if($limit) {
-            $sql = "SELECT favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id FROM favorites
+            $sql = "SELECT favorites.id, favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id, bookmarks.description FROM favorites
                     JOIN bookmarks
                     ON favorites.bookmark_id = bookmarks.id
                     WHERE favorites.owner_id = $id
                     ORDER BY favorites.bookmark_id
                     LIMIT $limit";
         } else {
-            $sql = "SELECT favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id FROM favorites
+            $sql = "SELECT favorites.id, favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id, bookmarks.description FROM favorites
                     JOIN bookmarks
                     ON favorites.bookmark_id = bookmarks.id
                     WHERE favorites.owner_id = $id
@@ -81,6 +81,7 @@ class Favorite
 
         return $results;
     }
+
 
     /**
      * @param $id

@@ -20,7 +20,6 @@ if(!empty($_GET['id']))
 {
     $id = $_GET['id'];
     $db = new Database();
-    $user = new User($db);
     $bm = new Bookmark($db);
     $fav = new Favorite($db);
 
@@ -62,7 +61,6 @@ if(!empty($_GET['id']))
                     $errors[] = 'This bookmark is not part of favorites!';
                 }
             }
-
         }
     } else {
         $bmi = null;
@@ -76,5 +74,34 @@ if(!empty($_GET['id']))
         show_errors($errors);
     }
 } else {
-    redirect('home.php');
+
+    $db = new Database;
+    $bm = new Bookmark($db);
+    $fav = new Favorite($db);
+
+    $user_favs = $fav->getAllFavorites($_SESSION['user_id']);
+
+    echo '<div class="row m-3">';
+
+    foreach($user_favs as $u_fav)
+    {?>
+        <div class="col-sm-3">
+            <div class="card text-center mb-4">
+                <div class="card-header">
+                    <?=$u_fav['title']?>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title"><?=$u_fav['title']?></h5>
+                    <p class="card-text"><?=$u_fav['description']?></p>
+                </div>
+                <div class="card-footer text-muted">
+                    <a href="<?=$u_fav['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
+                    <button class="btn btn-outline-dark">Copy to Clipboard</button>
+                    <a class="btn btn-outline-danger" href="favorites.php?id=<?=$u_fav['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+
+                </div>
+            </div>
+        </div>
+        <?php
+    }
 }
