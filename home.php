@@ -69,6 +69,7 @@ if(count($bookmarks) > 1){
     }
 }
 echo '</div>';
+if($count > $limit){
 ?>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
@@ -103,4 +104,5 @@ echo '</div>';
     </ul>
 </nav>
 <?php
+}
 include 'templates/footer.php';

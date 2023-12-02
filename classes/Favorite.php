@@ -58,6 +58,8 @@ class Favorite
         $id = (int)$id;
         $limit = (int)$limit ? $limit : null;
 
+        $results = array();
+
         if($limit) {
             $sql = "SELECT favorites.id, favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id, bookmarks.description FROM favorites
                     JOIN bookmarks

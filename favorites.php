@@ -82,26 +82,27 @@ if(!empty($_GET['id']))
     $user_favs = $fav->getAllFavorites($_SESSION['user_id']);
 
     echo '<div class="row m-3">';
+    if($user_favs){
+        foreach($user_favs as $u_fav)
+        {?>
+            <div class="col-sm-3">
+                <div class="card text-center mb-4">
+                    <div class="card-header">
+                        <?=$u_fav['title']?>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title"><?=$u_fav['title']?></h5>
+                        <p class="card-text"><?=$u_fav['description']?></p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="<?=$u_fav['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
+                        <button class="btn btn-outline-dark">Copy to Clipboard</button>
+                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
 
-    foreach($user_favs as $u_fav)
-    {?>
-        <div class="col-sm-3">
-            <div class="card text-center mb-4">
-                <div class="card-header">
-                    <?=$u_fav['title']?>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title"><?=$u_fav['title']?></h5>
-                    <p class="card-text"><?=$u_fav['description']?></p>
-                </div>
-                <div class="card-footer text-muted">
-                    <a href="<?=$u_fav['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
-                    <button class="btn btn-outline-dark">Copy to Clipboard</button>
-                    <a class="btn btn-outline-danger" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
-
+                    </div>
                 </div>
             </div>
-        </div>
-        <?php
+            <?php
+        }
     }
 }

@@ -117,6 +117,7 @@ if($count > 1)
         </div>
     </div>
 </section>
+<?php if($count > $limit){ ?>
 <nav aria-label="Page navigation example">
     <ul class="pagination justify-content-center">
         <?php
@@ -149,6 +150,6 @@ if($count > 1)
         ?>
     </ul>
 </nav>
-<?php }
+<?php } }
 include 'templates/footer.php';
 
