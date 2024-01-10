@@ -60,6 +60,7 @@ a{
     max-width: 1700px;
     margin: 0 auto;
     height: 55px;
+    border-bottom: 1px solid var(--clr-light);
 
     display: flex;
     align-items: center;
