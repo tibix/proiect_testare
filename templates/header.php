@@ -34,19 +34,20 @@
 					<!--Categories item to Categories dropdown menu-->
 
 					<li class="menu__item"> <!--Changed in li from div-->
-						<a class="dropdown-toggle menu__link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
-							Categories
+                        <a class="dropdown_btn cat_dropdown_btn menu__link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
+							Categories <i class="fa-solid fa-caret-down"></i>
 						</a>
-						<ul class="dropdown-menu" id="dropDownMenu">
+						<ul class="dropdown_menu cat_dropdown_menu" id="dropDownMenu">
                             <?php foreach($cats as $cat):?>
-                                <li>
-                                    <a class="dropdown-item new-category" href="bookmarks.php?category=<?=$cat['id']?>"><?=$cat['name'];?>
-                                    </a>
-                                </li>
+                            <li class="menu__item">
+                                <a class="menu__link shiny-item" href="bookmarks.php?category=<?=$cat['id']?>">
+                                    <?=$cat['name'];?>
+                                </a>
+                            </li>
                             <?php endforeach;?>
                             <hr class="dropdown-divider">
-                            <li>
-                                <a class="dropdown-item new-category bg-danger text-light" href="bookmarks.php">Reset Categories
+                            <li class="menu__item">
+                                <a class="menu__link shiny-item" href="bookmarks.php">Reset Categories
                                 </a>
                             </li>
 						</ul>
@@ -70,38 +71,38 @@
 					
 					<!-- <div class="btn-group"> -->
 					<li class="menu__item">
-						<a class="menu__link framed-item framed-item--dif shiny-item dropdown-toggle account" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="fa-solid fa-user"> </i>  <?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
+						<a class="dropdown_btn acc_dropdown_btn menu__link shiny-item framed-item framed-item--dif account" data-toggle="dropdown">
+							<i class="fa-solid fa-user"> </i>  
+							<?php echo($_SESSION['first_name'] . ' ' .$_SESSION['last_name']); ?>
+							<i class="fa-solid fa-caret-down"></i>
 						</a>
-						<ul class="dropdown-menu dropdown-menu-end" id="dropDownMenu">
-							<li>
-								<a class="dropdown-item" href="bookmarks.php">
+						<ul class="dropdown_menu acc_dropdown_menu" id="account_dropdown">
+							<li class="menu__item">
+								<a class="menu__link shiny-item" href="bookmarks.php">
 									<i class="fa-solid fa-book-bookmark"></i>
 									My Bookmarks
 								</a>
 							</li>
-							<li>
-								<a class="dropdown-item" href="favorites.php">
+							<li class="menu__item">
+								<a class="menu__link shiny-item" href="favourites.php">
 									<i class="fa-regular fa-bookmark"></i>
-									Favorites
+									Favourites
 								</a>
 							</li>
-							<li><hr class="dropdown-divider"></li>
-							<li>
-								<a class="dropdown-item" href="profile.php">
+							<li class="menu__item">
+								<a class="menu__link shiny-item" href="profile.php">
 									<i class="fa-solid fa-pen"></i>
 									Edit Profile
 								</a>
 							</li>
-							<li>
-								<a class="dropdown-item" href="password_reset.php">
+							<li class="menu__item">
+								<a class="menu__link shiny-item" href="password_reset.php">
 									<i class="fa-solid fa-key"></i>
 									Reset Password
 								</a>
 							</li>
-							<li><hr class="dropdown-divider"></li>
-							<li>
-								<a class="dropdown-item" href="logout.php">
+							<li class="menu__item">
+								<a class="menu__link shiny-item" href="logout.php">
 									<span><i class="fa-solid fa-arrow-right-from-bracket"> </i> Logout</span>
 								</a>
 							</li>
