@@ -4,6 +4,7 @@ session_start();
 
 require_once 'classes/Database.php';
 require_once 'classes/Bookmark.php';
+require_once 'classes/Category.php';
 
 include 'templates/header.php';
 
@@ -97,11 +98,7 @@ if (isset($_POST['save'])) {
 
         if ($new_bm->updateBookmark($bookmark['id'], $title, $url, $description, $category))
         {
-            echo '<div class="alert alert-success alert-dismissible fade show text-secondary" role="alert">';
-            echo '<p>Bookmark was updated successfully!</p>';
-            echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-            sleep(5);
-            redirect('home.php');
+            redirect('bookmarks.php');
         } else {
             $errors[] = "Could not update record! Try again or report the issue!";
         }

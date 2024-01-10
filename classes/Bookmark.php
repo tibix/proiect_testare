@@ -136,11 +136,16 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
      * @param $user_id
      * @return mixed
      */
-    public function getBookmarksCountByUserId($user_id)
+    public function getBookmarksCountByUserId($user_id, $category_id=null)
     {
         $user_id = (int)$user_id;
+        $category_id = (int)$category_id;
 
-        $sql = "SELECT COUNT(*) AS count FROM bookmarks WHERE owner_id = $user_id";
+        if($category_id){
+            $sql = "SELECT COUNT(*) AS count FROM bookmarks WHERE owner_id = $user_id AND category_id = $category_id";
+        } else {
+            $sql = "SELECT COUNT(*) AS count FROM bookmarks WHERE owner_id = $user_id";
+        }
 
         $row = $this->db->query($sql);
         $result = $row->fetch_assoc();
@@ -154,13 +159,27 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
      * @param int $category_id The ID of the category to retrieve bookmarks for.
      * @return array|null The bookmarks data as an associative array, or null if no bookmarks were found.
      */
-    public function getBookmarksByCategoryId($category_id)
+    public function getUserBookmarksByCategoryId($user_id, $category_id, $limit=null, $offset=null)
     {
+        $user_id = (int)$user_id;
         $category_id = (int)$category_id;
-        $sql = "SELECT * FROM bookmarks WHERE category_id = $category_id";
+        $limit   = (int)$limit ? $limit : null;
+        $offset  = (int)$offset ? $offset : null;
 
-        $result = $this->db->query($sql);
-        return $result->fetch_all();
+        if($limit && $offset) {
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id AND category_id = $category_id LIMIT $offset, $limit";
+        } else if($limit) {
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id AND category_id = $category_id LIMIT $limit";
+        } else {
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id AND category_id = $category_id";
+        }
+
+        $row = $this->db->query($sql);
+        $results = array();
+        while($result = $row->fetch_assoc()){
+            $results[] = $result;
+        }
+        return $results;
     }
 
     /**
@@ -182,9 +201,9 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
 
         if (!is_null($category_id)) {
             $category_id = (int)$category_id;
-            $sql = "UPDATE bookmarks SET title='$title', url='$url', description='$description', category_id=$category_id WHERE id = $id";
+            $sql = "UPDATE bookmarks SET title='$title', url='$url', description='$description', date_modified='". NOW ."', category_id=$category_id WHERE id = $id";
         } else {
-            $sql = "UPDATE bookmarks SET title='$title', url='$url', description='$description' WHERE id = $id";
+            $sql = "UPDATE bookmarks SET title='$title', url='$url', description='$description', date_modified='". NOW ."' WHERE id = $id";
         }
         return $this->db->query($sql);
     }

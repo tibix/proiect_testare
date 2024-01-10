@@ -1,15 +1,15 @@
-<form method="POST">
-    <section class="gradient-custom">
-        <div class="container py-4 h-100">
-            <div class="row d-flex justify-content-center align-items-center h-100">
-                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-                    <div class="card bg-light text-dark" style="border-radius: 1rem;">
-                        <div class="card-body p-5 text-center">
-                            <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase">Log In</h2>
+<section class="gradient-custom">
+    <div class="container py-4 h-100">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                <div class="card bg-light text-dark" style="border-radius: 1rem;">
+                    <div class="card-body p-5 text-center">
+                        <div class="mb-md-5 mt-md-4 pb-5">
+                            <h2 class="fw-bold mb-2 text-uppercase">Log In</h2>
+                            <form method="POST">
                                 <div class="form-outline form-white mt-4 mb-4">
                                     <input type="text" name="login" id="login" class="form-control form-control-lg"
-                                    value="<?php if(isset($_POST['login'])) { echo $_POST['login']; } ?>" />
+                                    value="<?php if(isset($_POST['login'])) { echo $_POST['login']; } ?>" autofocus/>
                                     <label class="form-label" for="login">Email/Username</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
@@ -25,15 +25,16 @@
                                     <a href="https://google.com" class="text-dark"><i class="fab fa-google fa-lg mx-4"></i></a>
                                     <a href="https://github.com" class="text-dark"><i class="fab fa-github fa-lg mx-4"></i></a>
                                 </div>
-                            </div>
-                            <div>
-                                <p class="mb-0">Don't have an account yet? <a href="register.php" class="text-dark fw-bold">Register here</a>
-                                </p>
-                            </div>
+                            </form>
+                        </div>
+                        <div>
+                            <p class="mb-0">Don't have an account yet? <a href="register.php" class="text-dark fw-bold">Register here</a>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 </form>
