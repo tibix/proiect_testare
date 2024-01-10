@@ -54,11 +54,11 @@ if($category){
 
 ?>
 <div class="d-flex justify-content-center p-3">
-    <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+    <a href="new_bookmark.php" class="bttn btn_md btn-green-900">Add New Bookmark</a>
 </div>
 
 <?php
-if($count > 1)
+if($count > 0)
 {
 ?>
 <section class="intro mx-4 my-3 ">
@@ -93,16 +93,16 @@ if($count > 1)
                                     <td><?=$bookmark['date_modified'];?></td>
                                     <td><?=$cat->getCategoryNameById($bookmark['category_id']);?></td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
+                                        <a class="bttn btn_sm btn-green-300" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-secondary" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                                        <a class="bttn btn_sm btn_dark" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
                                     </td>
                                     <td>
                                         <?php if($fav->isFavorite($bookmark['id'])) { ?>
-                                            <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                                            <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                                         <?php } else { ?>
-                                            <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                                            <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
                                         <?php } ?>
                                     </td>
 

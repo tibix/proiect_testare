@@ -4,11 +4,11 @@
 		<p class="lead">It looks like you are not signed in. To take full advantage of our application, you can either ... </p>
 		<div class=row>
 			<div class="col-sm-6">
-				<a class="btn btn-outline-primary btn-lg my-3" href="login.php" role="button">Sign in</a>
+				<a class="btn btn-lg btn-green-900 my-3" href="login.php" role="button">Sign in</a>
 				<p class="lead">if you are already registerd, or ...</p>
 			</div>
 			<div class="col-sm-6">
-				<a class="btn btn-outline-primary btn-lg my-3" href="register.php" role="button">Register</a>
+				<a class="btn btn-lg btn-green-900 my-3" href="register.php" role="button">Register</a>
 				<p class="lead">if you don't have an account with us!</p>
 			</div>
 		</div>

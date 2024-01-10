@@ -95,14 +95,16 @@ if(!empty($_GET['id']))
                         <p class="card-text"><?=$u_fav['description']?></p>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="<?=$u_fav['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
-                        <button class="btn btn-outline-dark">Copy to Clipboard</button>
-                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                        <a href="<?=$u_fav['URL']?>" target="_blank" class="bttn btn_sm btn-green-300">Go to Page</a>
+                        <button class="bttn btn_sm btn_dark">Copy to Clipboard</button>
+                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
 
                     </div>
                 </div>
             </div>
             <?php
         }
-    }
+    } 
 }
+
+include 'templates/footer.php';

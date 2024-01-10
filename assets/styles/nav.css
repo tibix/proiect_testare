@@ -1,15 +1,4 @@
-:root{
 
-    --clr-green-900: #344e41;
-    --clr-green-600: #3a5a40;
-    --clr-green-300: #588157;
-
-    --clr-green-900-op: rgba(51, 79, 65, 0.85);
-    --clr-green-600-op: rgba(59, 89, 64, 0.85);
-    --clr-green-300-op: rgba(87, 127, 87, 0.85);
-
-    --clr-light: #eaf4f4;
-}
 
 header,
 footer{
@@ -235,8 +224,8 @@ a{
 .reset:hover,
 .reset:focus{
     background-color: var(--clr-light);
-    text-shadow: 2px 2px 3px var(--clr-green-900),
-                -2px -2px 3px var(--clr-green-900);
+    text-shadow: 1.5px 1.5px 3px var(--clr-green-900),
+                -1.5px -1.5px 3px var(--clr-green-900);
 }
 
 .expanded{

@@ -38,10 +38,10 @@ $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
 
 ?>
 <div class="d-flex justify-content-center p-3">
-    <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+    <a href="new_bookmark.php" class="btn btn-md btn-green-900">Add New Bookmark <i class="fa-solid fa-plus"></i></a>
 </div>
 <?php
-if(count($bookmarks) > 1){
+if(count($bookmarks) > 0){
     echo '<div class="row m-3">';
     foreach($bookmarks as $bookmark)
     {?>
@@ -54,13 +54,13 @@ if(count($bookmarks) > 1){
                     <h5 class="card-title"><?= $bookmark['title'] ?></h5>
                     <p class="card-text"><?= $bookmark['description'] ?></p>
                 </div>
-                <div class="card-footer text-muted">
-                    <a href="<?=$bookmark['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
-                    <button class="btn btn-outline-dark">Copy to Clipboard</button>
+                <div class="card-footer py-2">
+                    <a href="<?=$bookmark['URL']?>" target="_blank" class="bttn btn_sm btn-green-300">Go to Page</a>
+                    <button class="bttn btn_sm btn_dark">Copy to Clipboard</button>
                     <?php if($fav->isFavorite($bookmark['id'])) { ?>
-                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                     <?php } else { ?>
-                        <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
                     <?php } ?>
                 </div>
             </div>
