@@ -38,6 +38,26 @@ main{
     margin: 0.25rem 0;
 }
 
-.container{
-    margin: 1rem auto !important; 
+.hero{
+    background-color: #f2f5f3;
+    color: var(--clr-dark);
+    padding: 1rem;
+}
+
+.hero-logo{
+    font-size: 3rem;
+}
+
+.b-text{
+    font-weight: 700;
+}
+
+.em-text{
+    color: var(--clr-green-900);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+}
+
+.em-text--lower{
+    text-transform: lowercase;
 }

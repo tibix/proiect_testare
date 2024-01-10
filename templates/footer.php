@@ -10,11 +10,11 @@ foreach($uri as $element){
 
 ?>
 </main>
-<footer class="text-center text-lg-start">
+<footer>
     <!-- Copyright -->
     <div class="text-center">
         © 2023 Copyright
-        <a class="text-light text-decoration-none mx-2 shiny-item" id="logo" href="<?=$base_url?>"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Ltd</a>
+        <a class="text-light text-decoration-none mx-2 shiny-item" id="footer-logo" href="<?=$base_url?>"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Ltd</a>
     </div>
     <!-- Copyright -->
 </footer>
