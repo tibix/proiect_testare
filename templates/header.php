@@ -46,9 +46,8 @@
                                 </a>
                             </li>
                             <?php endforeach;?>
-                            <hr class="dropdown-divider">
                             <li class="menu__item">
-                                <a class="menu__link shiny-item" href="bookmarks.php">Reset Categories
+                                <a class="menu__link shiny-item reset" href="bookmarks.php">Reset Categories
                                 </a>
                             </li>
 						</ul>
