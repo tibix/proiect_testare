@@ -29,6 +29,12 @@ header{
     z-index: 900;
 }
 
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /* Class used to toggle transparency on the header's background */
 
 .scrolled{
