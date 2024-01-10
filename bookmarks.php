@@ -118,7 +118,7 @@ if($count > 0)
     </div>
 </section>
 <?php if($count > $limit){ ?>
-<nav aria-label="Page navigation example">
+<nav aria-label="Page navigation example" id="mtop">
     <ul class="pagination justify-content-center">
         <?php
             if($page == 1){
@@ -138,14 +138,14 @@ if($count > 0)
             for($i=1; $i <= $total_pages; $i++)
             {
                 if($page == $i) {
-                    echo '<li class="page-item active" aria-current="page"><span class="page-link primary" >'. $i .'</span></li>';
+                    echo '<li class="page-item" aria-current="page"><span class="page-link" id="active" >'. $i .'</span></li>';
                 } else {
                     $class = "page-item";
                     $aria = "";
                     echo '<li '.$class . $aria .'><a class="page-link" href="bookmarks.php?page='.$i.'">'. $i .'</a></li>';
                 }
             }
-            echo '<li class="page-item '.$next_disabled.'"><a class="page-link " href="bookmarks.php?page='.($page+1).'">Next</a></li>';
+            echo '<li class="page-item '.$next_disabled.'"><a class="page-link"  href="bookmarks.php?page='.($page+1).'">Next</a></li>';
             echo '<li class="page-item '.$next_disabled.'"><a class="page-link" href="bookmarks.php?page='.$total_pages.'">&raquo;</a></li>';
         ?>
     </ul>

@@ -5,15 +5,35 @@
     --clr-green-300: #588157;
 
     --clr-green-900-op: rgba(51, 79, 65, 0.85);
-    --clr-green-600-op: rgba(59, 89, 64, 0.85);
+    --clr-green-600-op: rgba(70, 112, 77, 0.85);
     --clr-green-300-op: rgba(87, 127, 87, 0.85);
 
-    --clr-light: #eaf4f4;
+    --clr-light: #f3f3f3;
     --clr-blue: #16697a;
     --clr-accent: #c1121f;
-    --clr-dark: #22181c;
-    --clr-dark-op: rgba(33, 23, 27, 0.75)
+    --clr-dark: #151c14;
+    --clr-dark-op: rgba(33, 23, 27, 0.8)
+
 }
+
+.bg-blue{
+    background-color: var(--clr-blue);
+    color: var(--clr-light);
+}
+
+.bg-green-600{
+    background-color: var(--clr-green-600);
+    color: var(--clr-light);
+}
+
+.text-accent{
+    color: var(--clr-accent);
+}
+
+.text-dark{
+    color:var(--clr-dark);
+}
+
 
 html,
 body{
@@ -60,4 +80,33 @@ main{
 
 .em-text--lower{
     text-transform: lowercase;
+}
+
+.modal-backdrop {
+    --bs-backdrop-zindex: 6 !important;
+}
+
+/* Stylings for pagination */
+span#active{
+    background-color: var(--clr-green-600) !important;
+    border: 1px solid var(--clr-green-600) !important;
+    color: var(--clr-light) !important ;
+}
+
+.pagination{
+    --bs-pagination-color: var(--clr-green-600) !important;
+    --bs-pagination-hover-color: var(--clr-green-600) !important;
+    --bs-pagination-focus-box-shadow:  -1px -1px 4px var(--clr-green-600),
+                                        1px 1px 4px var(--clr-green-600) !important;
+}
+/*  */
+
+.fav-link{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.fav-link:hover{
+    font-weight: 500;
+    text-decoration: underline !important;
 }

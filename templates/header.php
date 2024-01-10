@@ -122,7 +122,8 @@
 				</ul>
 				
 
-				<div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" data-bs-backdrop="false">
+				<div class="modal fade" id="aboutUsModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<!-- data-bs-backdrop="false" -->
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
