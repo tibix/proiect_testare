@@ -126,6 +126,18 @@ a{
     cursor: pointer;
     transition: all .2s ease-in;
 }
+.menu__btn{
+    font-weight: 400;
+    font-size: 1rem;
+    padding: 0.8rem 0.6rem;
+    color: var(--clr-light);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+
+    cursor: pointer;
+    transition: all .2s ease-in;
+    background-color: transparent;
+}
 
 .menu__item--form{
     border-radius: 10px !important;
@@ -178,6 +190,7 @@ a{
 
 .help{
     margin-bottom: 0.5rem;
+    white-space: nowrap;
 }
 
 .sign-in,
@@ -188,6 +201,21 @@ a{
 .btn-group a{
     cursor: pointer;
 }
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust the alpha channel (last value) for transparency */
+    z-index: 999;
+}
+
+.modal-open .overlay {
+    display: block;
+}
+
 
 
 /* Menu toggler */

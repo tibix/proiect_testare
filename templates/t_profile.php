@@ -12,59 +12,58 @@
         <div class="col-md-9">
             <div class="row input_fields">
                 <div class="col mb-2">
-                    <button type="button" id="enable_form" class="btn btn-block btn-secondary">Enable Form</button>
-                    <a class="btn btn-danger float-end" href="password_reset.php">Reset Password</a>
+                    <button type="button" id="enable_form" class="btn btn-block btn-secondary"><?php echo _("Enable Form"); ?></button>
+                    <a class="btn btn-danger float-end" href="password_reset.php"><?php echo _("Reset Password"); ?></a>
                 </div>
                 <form method="POST">
                 <div class="col mb-4">
                     <div class="form-floating">
-                        <input type="text" id="user_name" name="user_name" class="form-control"
-                               value="<?php if(isset($_SESSION['username'])) { echo $_SESSION['username']; } ?>" autofocus required/>
-                        <label class="form-label" for="user_name">Username</label>
-                    </div>
-                </div>
-                <div class="col mb-4">
-                    <div class="form-floating">
                         <input type="text" id="first_name" name="first_name" class="form-control"
                                value="<?php if(isset($_SESSION['first_name'])) {echo($_SESSION['first_name']);}?>" required/>
-                        <label class="form-label" for="first_name">First Name</label>
+                        <label class="form-label" for="first_name"><?php echo _("First Name"); ?></label>
                     </div>
                 </div>
                 <div class="col mb-4">
                     <div class="form-floating">
                         <input type="text" id="last_name" name="last_name" class="form-control"
                                value="<?php if(isset($_SESSION['last_name'])) {echo($_SESSION['last_name']);}?>" required/>
-                        <label class="form-label" for="last_name">Last Name</label>
+                        <label class="form-label" for="last_name"><?php echo _("Last Name"); ?></label>
+                    </div>
+                </div>
+                <div class="col mb-4">
+                    <div class="form-floating">
+                        <input type="text" id="user_name" name="user_name" class="form-control"
+                               value="<?php if(isset($_SESSION['username'])) { echo $_SESSION['username']; } ?>" autofocus required/>
+                        <label class="form-label" for="user_name"><?php echo _("Username"); ?></label>
                     </div>
                 </div>
                 <div class="col mb-4 pb-2">
                     <div class="form-floating">
                         <input type="email" id="email" name="email" class="form-control"
                                value="<?php if(isset($_SESSION['email'])) {echo($_SESSION['email']);} ?>" required/>
-                        <label class="form-label" for="email">Email</label>
+                        <label class="form-label" for="email"><?php echo _("Email"); ?></label>
                     </div>
                 </div>
                 <div class="col mb-4 pb-2">
                     <div class="form-floating">
                         <select class="form-control" name="language" id="language">
-                            <option value="no_language" disabled selected class="text-muted"> ... select your language ...</option>
-                            <option value="en" <?php  if($_SESSION['language'] == 'en') { echo "selected"; }?>>English</option>
-                            <option value="ro" <?php  if($_SESSION['language'] == 'ro') { echo "selected"; }?>>Romanian</option>
-                            <option value="hu" <?php  if($_SESSION['language'] == 'hu') { echo "selected"; }?>>Hungarian</option>
-                            <option value="fr" <?php  if($_SESSION['language'] == 'fr') { echo "selected"; }?>>French</option>
-                            <option value="de" <?php  if($_SESSION['language'] == 'de') { echo "selected"; }?>>German</option>
+                            <option value="no_language" disabled selected class="text-muted"><?php echo _(" ... select your language ..."); ?></option>
+                            <option value="en" <?php  if($_SESSION['language'] == 'en') { echo "selected"; }?>><?php echo _("English"); ?></option>
+                            <option value="ro" <?php  if($_SESSION['language'] == 'ro') { echo "selected"; }?>><?php echo _("French"); ?></option>
+                            <option value="hu" <?php  if($_SESSION['language'] == 'hu') { echo "selected"; }?>><?php echo _("Hungarian"); ?></option>
+                            <option value="fr" <?php  if($_SESSION['language'] == 'fr') { echo "selected"; }?>><?php echo _("Romanian"); ?></option>
                         </select>
-                        <label class="form-label" for="language">Preffered Language</label>
+                        <label class="form-label" for="language"><?php echo _("Preffered Language"); ?></label>
                     </div>
                 </div>
                 <div class="col mb-4 pb-2">
                     <div class="form-floating">
                         <input id="date_created" class="form-control" disabled value="to be added">
-                        <label class="form-label" for="date_created">Date Created</label>
+                        <label class="form-label" for="date_created"><?php echo _("Date Created"); ?></label>
                     </div>
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
-                    <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2">Save User Data</button>
+                    <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2"><?php echo _("Save User Data"); ?></button>
                 </div>
                 </form>
             </div>
@@ -74,17 +73,17 @@
         <div class="col-lg-6 mb-4">
             <div class="card">
                 <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
-                    Latest bookmarks added
+                <?php echo _("Latest bookmarks added"); ?>
                 </div>
                 <div class="card-body h-100">
                     <ul class="list-unstyled">
                         <?php if(count($latest_bms) < 1):?>
-                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i><?php echo _(" Add New Bookmark"); ?></a></li>
                         <?php elseif(count($latest_bms) < 5):?>
                             <?php foreach($latest_bms as $lbm):?>
                                 <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
                             <?php endforeach;?>
-                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i><?php echo _(" Add New Bookmark"); ?></a></li>
                         <?php else:?>
                             <?php foreach($latest_bms as $lbm):?>
                             <li><a href="<?=$lbm['URL']?>" class="text-secondary text-decoration-underline" target="_blank"><?=$lbm['title'];?></a></li>
@@ -106,7 +105,7 @@
                                 <li><i class="fa-solid fa-heart"></i> <a href="<?=$mfav['URL']?>" class="text-dark text-decoration-underline text-opacity-75"><?=$mfav['title']?></a></li>
                             <?php endforeach;?>
                         <?php else: ?>
-                            <li><i class="fa-solid fa-face-sad-tear"></i> There are no favorites yet! Make sure to add a few from your home or bookmarks page.</li>
+                            <li><i class="fa-solid fa-face-sad-tear"></i><?php echo _(" There are no favorites yet! Make sure to add a few from your home or bookmarks page."); ?></li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -116,7 +115,7 @@
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total bookmarks</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75"><?php echo _("Total bookmarks"); ?></h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_bms?>
@@ -126,7 +125,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Bookmarks / category</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75"><?php echo _("Bookmarks / category"); ?></h5>
                 <div class="card-body">
                     <canvas id="stats"></canvas>
                 </div>
@@ -134,7 +133,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total Favorites</h5>
+                <h5 class="card-header bg-success text-light fw-bold text-opacity-75"><?php echo _("Total Favorites"); ?></h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_favs?>

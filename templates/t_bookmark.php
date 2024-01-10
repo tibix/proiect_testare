@@ -6,23 +6,23 @@
                     <div class="card bg-light text-dark" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
                             <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase"><?=$form_title?> Bookmark</h2>
+                                <h2 class="fw-bold mb-2 text-uppercase"><?=$form_title?><?php echo _(" Bookmark") ?></h2>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="text" name="title" id="title" class="form-control form-control-lg"
                                            value="<?php if(isset($title)) { echo $title; } ?>" required autofocus />
-                                    <label class="form-label" for="title">Title</label>
+                                    <label class="form-label" for="title"><?php echo _("Title"); ?></label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
                                     <input type="url" name="url" id="url" class="form-control form-control-lg"
                                            value="<?php if(isset($url)) { echo $url; } ?>" required/>
-                                    <label class="form-label" for="url">URL</label>
+                                    <label class="form-label" for="url"><?php echo _("URL"); ?></label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
                                     <textarea name="description" id="description" class="form-control form-control-lg" rows="4"><?php if(isset($description)) { echo $description; } ?></textarea>
-                                    <label class="form-label" for="description">Description</label>
+                                    <label class="form-label" for="description"><?php echo _("Description"); ?></label>
                                 </div>
 
                                 <div class="form-outline form-white mb-4">
@@ -34,10 +34,10 @@
                                             </option>
                                         <?php endforeach; ?>
                                     </select>
-                                    <label class="form-label" for="category">Category</label>
+                                    <label class="form-label" for="category"><?php echo _("Category"); ?></label>
                                 </div>
 
-                                <button class="btn btn-outline-dark btn-lg px-5" type="submit" name="save">Save</button>
+                                <button class="btn btn-outline-dark btn-lg px-5" type="submit" name="save"><?php echo _("Save"); ?></button>
 
                             </div>
                         </div>

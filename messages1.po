@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-09 23:11+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: bookmarks.php:56
+msgid "Add New Bookmark"
+msgstr ""
+
+#: bookmarks.php:71
+msgid "Title"
+msgstr ""
+
+#: bookmarks.php:72
+msgid "URL"
+msgstr ""
+
+#: bookmarks.php:73
+msgid "Description"
+msgstr ""
+
+#: bookmarks.php:74
+msgid "Date Created"
+msgstr ""
+
+#: bookmarks.php:75
+msgid "Date Modified"
+msgstr ""
+
+#: bookmarks.php:76
+msgid "In category"
+msgstr ""
+
+#: bookmarks.php:77 bookmarks.php:95
+msgid "Edit"
+msgstr ""
+
+#: bookmarks.php:78 bookmarks.php:100
+msgid "Delete"
+msgstr ""
+
+#: bookmarks.php:79
+msgid "Favorite"
+msgstr ""
+
+#: bookmarks.php:142
+msgid "Previous"
+msgstr ""
+
+#: bookmarks.php:152
+msgid "Next"
+msgstr ""

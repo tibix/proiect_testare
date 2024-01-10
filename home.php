@@ -38,7 +38,7 @@ $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
 
 ?>
 <div class="d-flex justify-content-center p-3">
-    <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+    <a href="new_bookmark.php" class="btn btn-outline-primary mx-4"><?php echo _("Add New Bookmark"); ?></a>
 </div>
 <?php
 if(count($bookmarks) > 1){
@@ -55,7 +55,7 @@ if(count($bookmarks) > 1){
                     <p class="card-text"><?= $bookmark['description'] ?></p>
                 </div>
                 <div class="card-footer text-muted">
-                    <a href="<?=$bookmark['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
+                    <a href="<?=$bookmark['URL']?>" target="_blank" class="btn btn-outline-primary my-2"><?php echo _("Go to Page"); ?></a>
                     <button class="btn btn-outline-dark">Copy to Clipboard</button>
                     <?php if($fav->isFavorite($bookmark['id'])) { ?>
                         <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
