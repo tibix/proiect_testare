@@ -12,10 +12,9 @@ foreach($uri as $element){
 </main>
 <footer class="text-center text-lg-start">
     <!-- Copyright -->
-    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center"">
         © 2023 Copyright
         <a class="text-light text-decoration-none mx-2 shiny-item" id="logo" href="<?=$base_url?>"><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade;Ltd</a>
     </div>
     <!-- Copyright -->
 </footer>
-<script src="assets/js/main.js"></script>
