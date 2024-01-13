@@ -1,11 +1,24 @@
 <?php
+
+	//session_start();
+
 	include(dirname(__DIR__).'/core/utils.php');
     $db = new Database();
     $categ = new Category($db);
     $cats = $categ->getAllCategories();
+	$selectedLanguage = isset($_SESSION['user_language']) ? $_SESSION['user_language'] : 'en';
+
+	$langFilePath = dirname(__DIR__)."/lang/lang_$selectedLanguage.json";
+
+	if (file_exists($langFilePath)) {
+		$languageData = json_decode(file_get_contents($langFilePath), true);
+	} else {
+		// Fallback to English or handle the error accordingly
+		$languageData = json_decode(file_get_contents(__DIR__ . "/lang/lang_en.json"), true);
+	}
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo $selectedLanguage; ?>">
 <head>
 	<meta charset="UTF-8">
 	<title>Bookmarks</title>
@@ -18,6 +31,8 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/6f78ace1ca.js" crossorigin="anonymous"></script>
 	<script src="assets/js/main.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 	<header>
@@ -31,14 +46,14 @@
 				<?php
 				if(logged_in()){?>
 					<li class="menu__item">
-						<a class="menu__link shiny-item" href="home.php">Home</a>
+						<a class="menu__link shiny-item" href="home.php"><?php echo $languageData['home']; ?></a>
 					</li>
 
 					<!--Categories item to Categories dropdown menu-->
 
 					<li class="menu__item"> <!--Changed in li from div-->
                         <a class="dropdown_btn cat_dropdown_btn menu__link shiny-item" data-bs-toggle="dropdown" aria-expanded="false">
-							Categories <i class="fa-solid fa-caret-down"></i>
+						<?php echo $languageData['categ']; ?><i class="fa-solid fa-caret-down"></i>
 						</a>
 						<ul class="dropdown_menu cat_dropdown_menu" id="dropDownMenu">
                             <?php foreach($cats as $cat):?>
@@ -49,22 +64,31 @@
                             </li>
                             <?php endforeach;?>
                             <li class="menu__item">
-                                <a class="menu__link shiny-item reset" href="bookmarks.php">All Categories
+                                <a class="menu__link shiny-item reset" href="bookmarks.php"><?php echo $languageData['allcateg']; ?>
                                 </a>
                             </li>
 						</ul>
 					</li>
 
 					<li class="menu__item">
-						<a class="menu__link shiny-item" href="favorites.php">Favorites</a>
+						<a class="menu__link shiny-item" href="favorites.php"><?php echo $languageData['fav']; ?></a>
 					</li>
 				<?php } ?>
 					<li class="menu__item help" data-bs-toggle="modal" data-bs-target="#aboutUsModal">
-						<a class="menu__link shiny-item" href="#"> Help </a>
+						<a class="menu__link shiny-item" href="#"><?php echo $languageData['help']; ?></a>
 					</li>
+					
+					<form method="post" action="templates/language_switch.php">
+						<select name="selected_language" id="selected_language">
+							<option value="en" <?php echo ($selectedLanguage === 'en') ? 'selected' : ''; ?>><?php echo $languageData['lang1']; ?></option>
+							<option value="hu" <?php echo ($selectedLanguage === 'hu') ? 'selected' : ''; ?>><?php echo $languageData['lang2']; ?></option>
+							<option value="ro" <?php echo ($selectedLanguage === 'ro') ? 'selected' : ''; ?>><?php echo $languageData['lang3']; ?></option>
+						</select>
+						<button type="submit"><?php echo $languageData['submit']; ?></button>
+					</form>
 				<?php
 				if(logged_in()){ ?>
-					<li class="menu__item menu__item--form menu__item--right">
+					<li class="menu__item menu__item--form menu__item--centered">
 						<form class="menu__search" action="search.php" method="GET">
 							<input class="form-control" type="search" name="query" placeholder="Search..." aria-label="Search">
                             <button class="menu__link framed-item framed-item--dif shiny-item btn" type="submit"><i class="fa fa-search"></i></button>
@@ -82,30 +106,30 @@
 							<li class="menu__item">
 								<a class="menu__link shiny-item" href="bookmarks.php">
 									<i class="fa-solid fa-book-bookmark"></i>
-									My Bookmarks
+									<?php echo $languageData['mybkm']; ?>
 								</a>
 							</li>
 							<li class="menu__item">
 								<a class="menu__link shiny-item" href="favorites.php">
 									<i class="fa-regular fa-bookmark"></i>
-									Favorites
+									<?php echo $languageData['fav']; ?>
 								</a>
 							</li>
 							<li class="menu__item">
 								<a class="menu__link shiny-item" href="profile.php">
 									<i class="fa-solid fa-pen"></i>
-									Edit Profile
+									<?php echo $languageData['edprf']; ?>
 								</a>
 							</li>
 							<li class="menu__item">
 								<a class="menu__link shiny-item" href="password_reset.php">
 									<i class="fa-solid fa-key"></i>
-									Reset Password
+									<?php echo $languageData['rstpw']; ?>
 								</a>
 							</li>
 							<li class="menu__item">
 								<a class="menu__link shiny-item" href="logout.php">
-									<span><i class="fa-solid fa-arrow-right-from-bracket"> </i> Logout</span>
+									<span><i class="fa-solid fa-arrow-right-from-bracket"> </i><?php echo $languageData['logout']; ?></span>
 								</a>
 							</li>
 						</ul>
@@ -113,10 +137,10 @@
 				<?php } 
 				else { ?>
 					<li class="menu__item menu__item--right sign-in">
-						<a class="menu__link framed-item shiny-item" href="login.php"> Sign In </a>
+						<a class="menu__link framed-item shiny-item" href="login.php"><?php echo $languageData['sni']; ?></a>
 					</li>
 					<li class="menu__item register">
-						<a class="menu__link framed-item shiny-item" href="register.php">Register</a>
+						<a class="menu__link framed-item shiny-item" href="register.php"><?php echo $languageData['reg']; ?></a>
 					</li>
 				<?php } ?>
 				</ul>
@@ -127,16 +151,16 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="exampleModalLabel">HELP</h1>
+								<h1 class="modal-title fs-5" id="exampleModalLabel"><?php echo $languageData['help']; ?></h1>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
-								<h3>What is <i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited?</h3>
-								<p><i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited is an online solution to bookmark your favorit URLs and have access to them from anywhere, without being locked down to one browser.</p>
-								<h3>Who should use <i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited?</h3>
+								<h3>What is "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"?</h3>
+								<p>"<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"" is an online solution to bookmark your favorit URLs and have access to them from anywhere, without being locked down to one browser.</p>
+								<h3>Who should use "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited"?</h3>
 								<p>This prodcut is for every person that needs to have a URLs collection, but does not want to use a single browser for the rest of his/hers/their/its days.</p>
 								<h3>How do I use this product?</h3>
-								<p>Using <i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited is really easy.</p>
+								<p>Using "<i class="fa-solid fa-book-bookmark"></i> Bookmarks&trade; Limited" is really easy.</p>
 								<p>Firs, you need to register your account <a class="text-decoration-none text-primary" href="register.php">here</a></p>
 								<p>As a registered user, you can add/update/delete your URLs, have them grouped in categories defined by you and even configure favorites.</p>
 								<h3>How can I contact you?</h3>
@@ -144,7 +168,7 @@
 								<p>If you experience service dissruptions, you can raise a ticket <a class="text-decoration-none text-primary" href="https://github.com"><i class="fa fa-github"></i> here</a> explaining the issue in great details.</p>
 							</div>
 							<div class="modal-footer">
-								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?php echo $languageData['close']; ?></button>
 							</div>
 						</div>
 					</div>

@@ -1,0 +1,20 @@
+{
+  "greeting": "Helló",
+  "farewell": "Viszlát",
+  "submit": "Beküldés",
+  "lang1": "Angol",
+  "lang2": "Magyar",
+  "lang3": "Román",
+  "home": "Főoldal",
+  "categ": "Kategóriák",
+  "allcateg": "Összes kategória",
+  "fav": "Kedvencek",
+  "mybkm": "Saját könyvjelzők",
+  "edprf": "Profil szerkesztése",
+  "rstpw": "Jelszó visszaállítása",
+  "logout": "Kijelentkezés",
+  "sni": "Bejelentkezés",
+  "reg": "Regisztráció",
+  "help": "Segítség",
+  "close": "Bezárás"
+}

@@ -1,0 +1,20 @@
+{
+  "greeting": "Salut",
+  "farewell": "La revedere",
+  "submit": "Aplică",
+  "lang1": "Engleză",
+  "lang2": "Maghiară",
+  "lang3": "Română",
+  "home": "Acasă",
+  "categ": "Categorii",
+  "allcateg": "Toate Categoriile",
+  "fav": "Favorite",
+  "mybkm": "Semnele mele de carte",
+  "edprf": "Editează Profilul",
+  "rstpw": "Resetează Parola",
+  "logout": "Deconectare",
+  "sni": "Autentificare",
+  "reg": "Înregistrare",
+  "help": "Ajutor",
+  "close": "Închide"
+}

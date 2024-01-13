@@ -67,9 +67,15 @@ if(!empty($_GET['id']))
         $errors[] = "This bookmarks does not exists!";
     }
 
-    if(empty($errors))
-    {
-        redirect('home.php');
+    if (empty($errors)) {
+        // Redirect based on the action
+        if (!empty($_GET['action']) && $_GET['action'] === 'add') {
+            redirect('home.php');
+        } elseif (!empty($_GET['action']) && $_GET['action'] === 'remove') {
+            redirect('favorites.php');
+        } else {
+            redirect('home.php');
+        }
     } else {
         show_errors($errors);
     }
@@ -80,7 +86,32 @@ if(!empty($_GET['id']))
     $fav = new Favorite($db);
 
     $user_favs = $fav->getAllFavorites($_SESSION['user_id']);
-
+	if (empty($user_favs)) {
+        echo '<div id="countdown-message" class="alert alert-info alert-dismissible fade show text-center" role="alert">';
+        echo '<p>' . _("You have no favorites. Add some ") . '<a href="home.php">' . _("here") . '</a>' . _(" - Page will be redirected in") . ' <span id="countdown">5</span> ' . _("seconds.") . '</p>';
+        echo '</div>';
+        echo '<script>
+            var seconds = 5;
+            function updateCountdown() {
+                document.getElementById("countdown").innerText = seconds;
+                seconds--;
+                if (seconds < 0) {
+                    window.location.href = "home.php";
+                } else {
+                    setTimeout(updateCountdown, 1000);
+                }
+            }
+            updateCountdown(); // Call the function to start the countdown immediately
+        </script>';
+        }
+        
+        echo '</div>';
+        echo '<script>';
+        echo 'setTimeout(function() {';
+        echo '   window.location.href = "home.php";';
+        echo '}, 5000);'; // Introduce a 5-second delay
+        echo '</script>';
+    }
     echo '<div class="row m-3">';
     if($user_favs){
         foreach($user_favs as $u_fav)
@@ -95,7 +126,7 @@ if(!empty($_GET['id']))
                         <p class="card-text"><?=$u_fav['description']?></p>
                     </div>
                     <div class="card-footer text-muted">
-                        <a href="<?=$u_fav['URL']?>" target="_blank" class="bttn btn_sm btn-green-300">Go to Page</a>
+                        <a href="<?=$u_fav['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
                         <script>
                             function copyToClipboard(text) {
                                 navigator.clipboard.writeText(text).then(function() {
@@ -105,14 +136,13 @@ if(!empty($_GET['id']))
                                 });
                             }
                         </script>
-                        <button class="bttn btn_sm btn_dark" onclick="copyToClipboard('<?=$u_fav['URL']?>')"><?php echo _("Copy to Clipboard"); ?></button>
-                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                        <button class="btn btn-outline-dark" onclick="copyToClipboard('<?=$u_fav['URL']?>')"><?php echo _("Copy to Clipboard"); ?></button>
+                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$u_fav['bookmark_id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                     </div>
                 </div>
             </div>
             <?php
         }
     } 
-}
 
 include 'templates/footer.php';

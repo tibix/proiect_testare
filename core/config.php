@@ -3,7 +3,7 @@
 /**
  * DB Connection details for PROD and other envs
  */
-if($_SERVER['HTTP_HOST'] == "testare.itdev.ro")
+if($_SERVER['HTTP_HOST'] == "testlang.itdev.ro")
 {
     DEFINE('DB_HOST', 'localhost');
     DEFINE('DB_USER', 'bookmarks');

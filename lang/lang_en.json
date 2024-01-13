@@ -1,0 +1,20 @@
+{
+  "greeting": "Hello",
+  "farewell": "Goodbye",
+  "submit": "Submit",
+  "lang1": "English",
+  "lang2": "Hungarian",
+  "lang3": "Romanian",
+  "home": "Home",
+  "categ": "Categories",
+  "allcateg": "All Categories",
+  "fav": "Favorites",
+  "mybkm": "My Bookmarks",
+  "edprf": "Edit Profile",
+  "rstpw": "Reset Password",
+  "logout": "Logout",
+  "sni": "Sign In",
+  "reg": "Register",
+  "help": "Help",
+  "close": "Close"
+}

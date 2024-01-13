@@ -232,17 +232,6 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
     public function deleteBookmark($id)
     {
         $id = (int)$id;
-
-        $fav = "SELECT bookmark_id FROM favorites WHERE bookmark_id = $id";
-        $result = $this->db->query($fav);
-        $isFavorite = $result->fetch_assoc();
-        
-        if($isFavorite)
-        {
-            $sql = "DELETE FROM favorites WHERE bookmark_id = $id";
-            $this->db->query($sql);
-        }
-        
         $sql = "DELETE FROM bookmarks WHERE id = $id";
         return $this->db->query($sql);
     }
