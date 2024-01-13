@@ -54,13 +54,22 @@ if(count($bookmarks) > 1){
                     <h5 class="card-title"><?= $bookmark['title'] ?></h5>
                     <p class="card-text"><?= $bookmark['description'] ?></p>
                 </div>
-                <div class="card-footer py-2">
-                    <a href="<?=$bookmark['URL']?>" target="_blank" class="bttn btn_sm btn-green-300">Go to Page</a>
-                    <button class="bttn btn_sm btn_dark">Copy to Clipboard</button>
+                <div class="card-footer text-muted">
+                    <a href="<?=$bookmark['URL']?>" target="_blank" class="btn btn-outline-primary my-2">Go to Page</a>
+                    <script>
+                            function copyToClipboard(text) {
+                                navigator.clipboard.writeText(text).then(function() {
+                                    alert(<?php echo json_encode(_("Copied to clipboard: ")); ?> + text);
+                                }).catch(function(err) {
+                                    console.error(<?php echo json_encode("Unable to copy to clipboard"); ?>, err);
+                                });
+                            }
+                        </script>
+                    <button class="btn btn-outline-dark" onclick="copyToClipboard('<?= $bookmark['URL'] ?>')"><?php echo _("Copy to Clipboard"); ?></button>
                     <?php if($fav->isFavorite($bookmark['id'])) { ?>
-                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                        <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                     <?php } else { ?>
-                        <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                        <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
                     <?php } ?>
                 </div>
             </div>
