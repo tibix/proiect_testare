@@ -43,7 +43,7 @@
 			<div class="index-text">
 				<h2 class="featurette-heading">It's open source <p class="b-text em-text">See for yourself.</p></h2>
 				<p class="lead">So you can see how it work underneath the hood. You can also contribute if you feel like getting your hands dirty with some code </p>
-				<p>... checkout our <a href="https://github.com/" class="b-textem-text em-text--lower"><i class="fa-brands fa-github"></i> GitHub page</a></p>
+				<p>... checkout our <a href="https://github.com/tibix/proiect_testare" target="blank" class="b-textem-text em-text--lower"><i class="fa-brands fa-github"></i> GitHub page</a></p>
 			</div>
 		</div>
 		<div class="col-md-6 order-md-1">
