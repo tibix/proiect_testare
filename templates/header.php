@@ -49,7 +49,7 @@
                             </li>
                             <?php endforeach;?>
                             <li class="menu__item">
-                                <a class="menu__link shiny-item reset" href="bookmarks.php">Reset Categories
+                                <a class="menu__link shiny-item reset" href="bookmarks.php">All Categories
                                 </a>
                             </li>
 						</ul>
@@ -127,7 +127,7 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
-								<h1 class="modal-title fs-5" id="exampleModalLabel">About Us</h1>
+								<h1 class="modal-title fs-5" id="exampleModalLabel">HELP</h1>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 							</div>
 							<div class="modal-body">
