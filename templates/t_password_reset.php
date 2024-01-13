@@ -9,21 +9,21 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Password Reset</h2>
                                 <p class="text-dark-50 mb-5">Insert your current password and the new password!</p>
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" name="current_password" id="current_password" class="form-control form-control-lg"
+                                    <input type="password" name="current_password" id="current_password" class="form__data"
                                     value="<?php if(isset($_POST['current_password'])) { echo $_POST['current_password']; } ?>" autofocus />
                                     <label class="form-label" for="current_password">Curent Password</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" name="new_password" id="new_password" class="form-control form-control-lg"
+                                    <input type="password" name="new_password" id="new_password" class="form__data"
                                     value="<?php if(isset($_POST['new_password'])) { echo $_POST['new_password']; } ?>" />
                                     <label class="form-label" for="new_password">New Password</label>
                                 </div>
                                 <div class="form-outline form-white mb-4">
-                                    <input type="password" name="new_password_c" id="new_password_c" class="form-control form-control-lg"
+                                    <input type="password" name="new_password_c" id="new_password_c" class="form__data"
                                     value="<?php if(isset($_POST['new_password_c'])) { echo $_POST['new_password_c']; } ?>" />
                                     <label class="form-label" for="new_password_c">Confirm New Password</label>
                                 </div>
-                                <button class="btn btn-dark btn-lg px-5" type="submit" name="reset_password">Reset Password</button>
+                                <button class="bttn btn_lg btn-green-600" type="submit" name="reset_password">Reset Password</button>
                             </div
                         </div>
                     </div>

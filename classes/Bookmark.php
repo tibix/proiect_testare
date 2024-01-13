@@ -119,7 +119,7 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         if($limit && $offset) {
             $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $offset, $limit";
         } else if($limit){
-            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $limit";
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id /*ORDER BY date_created DESC*/ LIMIT $limit";
         } else {
             $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
         }

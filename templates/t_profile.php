@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container my-4">
     <div class="row">
         <div class="profile-nav col-md-3">
             <div class="panel">
@@ -12,8 +12,8 @@
         <div class="col-md-9">
             <div class="row input_fields">
                 <div class="col mb-2">
-                    <button type="button" id="enable_form" class="btn btn-block btn-secondary">Enable Form</button>
-                    <a class="btn btn-danger float-end" href="password_reset.php">Reset Password</a>
+                    <button type="button" id="enable_form" class="bttn btn_md btn_dark">Enable Form</button>
+                    <a class="bttn btn_md btn_accent float-end" href="password_reset.php">Reset Password</a>
                 </div>
                 <form method="POST">
                 <div class="col mb-4">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
                 <div class="col-md-6 mb-4 pb-2">
-                    <button type="submit" id="save_data" name="update_profile" class="btn btn-primary mb-2">Save User Data</button>
+                    <button type="submit" id="save_data" name="update_profile" class="bttn btn_md btn-green-600">Save User Data</button>
                 </div>
                 </form>
             </div>
@@ -73,18 +73,18 @@
     <div class="row">
         <div class="col-lg-6 mb-4">
             <div class="card">
-                <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
+                <div class="card-header bg-blue fw-bold">
                     Latest bookmarks added
                 </div>
                 <div class="card-body h-100">
                     <ul class="list-unstyled">
                         <?php if(count($latest_bms) < 1):?>
-                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                            <li><a href="new_bookmark.php" class="btn btn-sm btn-green-600 my-2"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
                         <?php elseif(count($latest_bms) < 5):?>
                             <?php foreach($latest_bms as $lbm):?>
                                 <li><a href="<?=$lbm['URL']?>" class="text-dark" target="_blank"><?=$lbm['title'];?></a></li>
                             <?php endforeach;?>
-                            <li><a href="new_bookmark.php"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
+                            <li><a href="new_bookmark.php" class="btn btn-sm btn-green-600 my-2"><i class="fa fa-plus"></i> Add New Bookmark</a></li>
                         <?php else:?>
                             <?php foreach($latest_bms as $lbm):?>
                             <li><a href="<?=$lbm['URL']?>" class="text-secondary text-decoration-underline" target="_blank"><?=$lbm['title'];?></a></li>
@@ -96,14 +96,15 @@
         </div>
         <div class="col-lg-6 mb-4">
             <div class="card">
-                <div class="card-header bg-primary text-light text-opacity-75 fw-bold">
+                <div class="card-header bg-blue fw-bold">
                     Latest favorites
                 </div>
                 <div class="card-body h-100">
                     <ul class="list-unstyled">
                         <?php if(count($my_favs) > 0):?>
                             <?php foreach($my_favs as $mfav):?>
-                                <li><i class="fa-solid fa-heart"></i> <a href="<?=$mfav['URL']?>" class="text-dark text-decoration-underline text-opacity-75"><?=$mfav['title']?></a></li>
+                                <li><i class="fa-solid fa-heart text-accent"></i> <a href="<?=$mfav['URL']?>"
+                                    class="text-dark fav-link"><?=$mfav['title']?></a></li>
                             <?php endforeach;?>
                         <?php else: ?>
                             <li><i class="fa-solid fa-face-sad-tear"></i> There are no favorites yet! Make sure to add a few from your home or bookmarks page.</li>
@@ -116,7 +117,7 @@
     <div class="row">
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total bookmarks</h5>
+                <h5 class="card-header bg-green-600 fw-bold">Total bookmarks</h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_bms?>
@@ -126,7 +127,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Bookmarks / category</h5>
+                <h5 class="card-header bg-green-600 fw-bold">Bookmarks / category</h5>
                 <div class="card-body">
                     <canvas id="stats"></canvas>
                 </div>
@@ -134,7 +135,7 @@
         </div>
         <div class="col-md-4 mb-4">
             <div class="card">
-                <h5 class="card-header bg-success text-light fw-bold text-opacity-75">Total Favorites</h5>
+                <h5 class="card-header bg-green-600 fw-bold">Total Favorites</h5>
                 <div class="card-body text-center">
                     <span class="display-1">
                         <?=$count_favs?>

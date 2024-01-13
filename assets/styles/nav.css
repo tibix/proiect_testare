@@ -1,21 +1,9 @@
-:root{
 
-    --clr-green-900: #344e41;
-    --clr-green-600: #3a5a40;
-    --clr-green-300: #588157;
-
-    --clr-green-900-op: rgba(51, 79, 65, 0.85);
-    --clr-green-600-op: rgba(59, 89, 64, 0.85);
-    --clr-green-300-op: rgba(87, 127, 87, 0.85);
-
-    --clr-light: #eaf4f4;
-}
 
 header,
 footer{
-    color: var(--clr-light);
     width: 100%;
-    height: 55px;
+    min-height: 55px;
     background-image: linear-gradient(to right, 
                                     var(--clr-green-900) 10%, 
                                     var(--clr-green-600) 20%, 
@@ -27,7 +15,14 @@ footer{
 header{
     position: fixed;
     top: 0;
-    z-index: 999;
+    z-index: 20;
+}
+
+footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.1rem;
 }
 
 /* Class used to toggle transparency on the header's background */
@@ -56,16 +51,12 @@ a{
     text-decoration: none !important;
 }
 
-.my-row{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
 .menu{
     padding: 0 2.5%;
     max-width: 1700px;
+    margin: 0 auto;
     height: 55px;
+    border-bottom: 1px solid var(--clr-light);
 
     display: flex;
     align-items: center;
@@ -88,6 +79,7 @@ a{
     padding: 1.5rem 0;
     width: 100%;
 
+    color: var(--clr-light);
     background-image: linear-gradient(to right, 
                                     var(--clr-green-900) 10%, 
                                     var(--clr-green-600) 20%, 
@@ -104,9 +96,18 @@ a{
     position: absolute;
     top: 55px;
     left: -100%;
-    z-index: 999;
+    z-index: 3;
+
+    max-height: 90vh;
+    overflow-y: scroll;
+    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;  /* Internet Explorer 10*/
 
     transition: all  0.4s ease-in-out; 
+}
+
+.menu__list::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
 }
 
 /* class to show the menu when hamburger clicked */
@@ -115,10 +116,15 @@ a{
 }
 /*  */
 
+.menu__item{
+    width: 100%;
+    text-align: center;
+}
+
 .menu__link{
+    padding: 0.8rem 0.6rem;
     font-weight: 400;
     font-size: 1rem;
-    padding: 0.8rem 0.6rem;
     color: var(--clr-light);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -189,6 +195,67 @@ a{
     cursor: pointer;
 }
 
+/* Dropdown menu - Categories */
+.dropdown_menu{
+    max-height: 0;
+    overflow: hidden;
+
+    background-color: linear-gradient(to right, 
+                                    var(--clr-green-900) 10%, 
+                                    var(--clr-green-600) 20%, 
+                                    var(--clr-green-300) 50%, 
+                                    var(--clr-green-600) 80%, 
+                                    var(--clr-green-900) 90%);
+
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    gap: 1rem;
+
+    transition: all 0.4s ease-in-out;
+}
+
+.reset{
+    display: inline-block;
+    padding: 0.6rem;
+    color: var(--clr-light);
+    border: 1px solid var(--clr-light);
+    text-shadow: 2px 2px 3px var(--clr-green-900),
+                -2px -2px 3px var(--clr-green-900);
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.reset:hover,
+.reset:focus{
+    background-color: var(--clr-light);
+    text-shadow: 1.5px 1.5px 3px var(--clr-green-900),
+                -1.5px -1.5px 3px var(--clr-green-900);
+}
+
+.expanded{
+    background: rgba(0,0,0,0.2);
+    max-height: 500px;
+    margin: 1rem auto 0;
+    padding: 1rem;
+    transition: all 0.4s ease-in-out;
+}
+
+.fa-caret-down{
+    transition: transform 0.4s ease-in-out;
+    font-size: 0.8em !important;
+    transform: translateY(-2px);
+}
+
+.upside_down{
+    transform: rotate(180deg);
+}
+/*  */
 
 /* Menu toggler */
 
@@ -265,12 +332,19 @@ header[data-overlay]::after{
     inset: 0;
     top: 55px;
     background-color: rgb(0,0,0, 0.5);
+    z-index: 2;
 }
 /*  */
 
-@media(min-width: 900px){
+
+@media(min-width: 950px){
     html{
         font-size: 13.5px;
+    }
+
+    .menu__item{
+        width: auto;
+        text-align: default;
     }
 
     .menu-toggler{
@@ -293,15 +367,28 @@ header[data-overlay]::after{
     .menu__link{
         padding: 0.6rem 0.4rem;
     }
-    
-    .menu__item--centered{
-        margin: 0 auto;
-    }
 
     .help{
         margin-bottom: 0;
     }
-    
+
+    .dropdown_menu{
+        position: absolute;
+        transform: translateY(10px);
+        gap: 0.7rem;
+    }
+
+    .reset{
+        padding: 0.6rem;
+        width: 100%;
+    }
+
+    .expanded{
+        margin:0;
+        transform: translateY(20px);
+        background-color: var(--clr-green-600);
+    }    
+
     .sign-in,
     .register{
         margin: 0;
@@ -321,7 +408,7 @@ header[data-overlay]::after{
 }
 
 
-@media (min-width: 1100px){
+@media (min-width: 1200px){
     html{
         font-size: 17px;
     }

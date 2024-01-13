@@ -9,11 +9,11 @@
                                 <h2 class="fw-bold mb-2 text-uppercase">Recover Password</h2>
                                 <p class="text-dark fw-bold my-5">Provide your email so we can give you a password recovery link!</p>
                                 <div class="form-outline form-white mb-4">
-                                    <input type="email" name="email" id="email" class="form-control form-control-lg"
+                                    <input type="email" name="email" id="email" class="form__data"
                                     value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" autofocus/>
                                     <label class="form-label" for="typeEmailX">Email</label>
                                 </div>
-                                <button class="btn btn-dark btn-lg px-5" type="submit" name="recover_password">Send Recovery Link</button>
+                                <button class="bttn btn_lg btn-green-600" type="submit" name="recover_password">Send Recovery Link</button>
                             </div
                         </div>
                     </div>
