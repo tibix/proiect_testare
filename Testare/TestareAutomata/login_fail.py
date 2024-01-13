@@ -39,14 +39,12 @@ password_field.send_keys("bla")
 login_button.click()
 time.sleep(5)
 
-# Check if an error message is present indicating incorrect username or password
 try:
     error_message_element = WebDriverWait(driver, 5).until(
         EC.presence_of_element_located((By.XPATH, '//div[contains(@class, "alert-danger")]'))
     )
     print("Login Failed! Incorrect username or password.")
 except TimeoutException:
-    # If there is no error message, consider the login successful
     print("Login Successful!")
 
 driver.quit()
