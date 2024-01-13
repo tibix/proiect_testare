@@ -200,12 +200,7 @@ a{
     max-height: 0;
     overflow: hidden;
 
-    background-image: linear-gradient(to right, 
-                                    var(--clr-green-900) 10%, 
-                                    var(--clr-green-600) 20%, 
-                                    var(--clr-green-300) 50%, 
-                                    var(--clr-green-600) 80%, 
-                                    var(--clr-green-900) 90%);
+    background-color: var(--clr-green-600);
 
     list-style: none;
     margin: 0 auto;
