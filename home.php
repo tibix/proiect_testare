@@ -59,13 +59,13 @@ if(count($bookmarks) > 1){
                     <script>
                             function copyToClipboard(text) {
                                 navigator.clipboard.writeText(text).then(function() {
-                                    alert(<?php echo json_encode(_("Copied to clipboard: ")); ?> + text);
+                                    alert('<?php echo "Copied to clipboard: ";?>' + text);
                                 }).catch(function(err) {
-                                    console.error(<?php echo json_encode("Unable to copy to clipboard"); ?>, err);
+                                    console.error('<?php echo "Unable to copy to clipboard"; ?>', err);
                                 });
                             }
                         </script>
-                    <button class="btn btn-outline-dark" onclick="copyToClipboard('<?= $bookmark['URL'] ?>')"><?php echo _("Copy to Clipboard"); ?></button>
+                    <button class="btn btn-outline-dark" onclick="copyToClipboard('<?=$bookmark['URL']?>')">Copy to Clipboard</button>
                     <?php if($fav->isFavorite($bookmark['id'])) { ?>
                         <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                     <?php } else { ?>
