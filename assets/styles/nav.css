@@ -200,7 +200,12 @@ a{
     max-height: 0;
     overflow: hidden;
 
-    background-color: var(--clr-green-600);
+    background-color: linear-gradient(to right, 
+                                    var(--clr-green-900) 10%, 
+                                    var(--clr-green-600) 20%, 
+                                    var(--clr-green-300) 50%, 
+                                    var(--clr-green-600) 80%, 
+                                    var(--clr-green-900) 90%);
 
     list-style: none;
     margin: 0 auto;
@@ -385,12 +390,7 @@ header[data-overlay]::after{
     .expanded{
         margin:0;
         transform: translateY(20px);
-        background-image: linear-gradient(to right, 
-                            var(--clr-green-900) 10%, 
-                            var(--clr-green-600) 20%, 
-                            var(--clr-green-300) 50%, 
-                            var(--clr-green-600) 80%, 
-                            var(--clr-green-900) 90%);
+        background-color: var(--clr-green-600);
     }    
 
     .sign-in,

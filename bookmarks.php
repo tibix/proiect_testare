@@ -58,7 +58,7 @@ if($category){
 </div>
 
 <?php
-if($count > 0)
+if($count > 1)
 {
 ?>
 <section class="intro mx-4 my-3 ">

@@ -41,7 +41,7 @@ $bookmarks = $bm->getBookmarksByUserId($_SESSION['user_id'], $limit, $offset);
     <a href="new_bookmark.php" class="btn btn-md btn-green-900">Add New Bookmark <i class="fa-solid fa-plus"></i></a>
 </div>
 <?php
-if(count($bookmarks) > 0){
+if(count($bookmarks) > 1){
     echo '<div class="row m-3">';
     foreach($bookmarks as $bookmark)
     {?>
