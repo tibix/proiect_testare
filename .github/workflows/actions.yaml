@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v2
+      - name: Change to project directory
+        run: cd /home/testare/htdocs/testare.itdev.ro/
+      - name: Pull latest changes
+        run: git pull origin main
         with:
           ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: 22
-          script: |
-            cd /home/testare/htdocs/testare.itdev.ro
-            git pull origin main
