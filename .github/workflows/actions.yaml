@@ -15,5 +15,5 @@ jobs:
 
       - name: Deploy to remote server
         run:
-          ssh testare@testare.itdev.ro "cd /home/testare/htdocs/testarea.itdev.ro/ && pull origin main && ./deploy.sh"
+          ssh testare@testare.itdev.ro "cd /home/testare/htdocs/testarea.itdev.ro/ && pull origin main"
         env: SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
