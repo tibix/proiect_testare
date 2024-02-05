@@ -3,7 +3,7 @@
 /**
  * Bookmark class
  */
-class Bookmark 
+class Bookmark
 {
     /**
      * @var object $db The database connection object.
@@ -38,7 +38,7 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         $date_created = $this->db->escapeString($date_created);
 
 
-        $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id) 
+        $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id)
                 VALUES ('$title', '$url', '$description', '$date_created', $user_id)";
 
         return $this->db->query($sql);
@@ -65,11 +65,11 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
 
         if($category_id == null)
         {
-            $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id) 
+            $sql = "INSERT INTO bookmarks (title, url, description, date_created, owner_id)
                     VALUES ('$title', '$url', '$description', '$date_created', $user_id";
         } else {
-            $sql = "INSERT INTO 
-                bookmarks (title, url, description, date_created, owner_id, category_id) 
+            $sql = "INSERT INTO
+                bookmarks (title, url, description, date_created, owner_id, category_id)
                 VALUES ('$title', '$url', '$description', '$date_created', $user_id, $category_id)";
         }
 
@@ -119,7 +119,7 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
         if($limit && $offset) {
             $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $offset, $limit";
         } else if($limit){
-            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id LIMIT $limit";
+            $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id /*ORDER BY date_created DESC*/ LIMIT $limit";
         } else {
             $sql = "SELECT * FROM bookmarks WHERE owner_id = $user_id";
         }
@@ -232,6 +232,17 @@ public function createSimpleBookmark($title, $url, $description, $date_created, 
     public function deleteBookmark($id)
     {
         $id = (int)$id;
+
+        $fav = "SELECT bookmark_id FROM favorites WHERE bookmark_id = $id";
+        $result = $this->db->query($fav);
+        $isFavorite = $result->fetch_assoc();
+
+        if($isFavorite)
+        {
+            $sql = "DELETE FROM favorites WHERE bookmark_id = $id";
+            $this->db->query($sql);
+        }
+
         $sql = "DELETE FROM bookmarks WHERE id = $id";
         return $this->db->query($sql);
     }

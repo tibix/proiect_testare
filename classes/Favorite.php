@@ -58,6 +58,8 @@ class Favorite
         $id = (int)$id;
         $limit = (int)$limit ? $limit : null;
 
+        $results = array();
+
         if($limit) {
             $sql = "SELECT favorites.id, favorites.owner_id, favorites.bookmark_id, bookmarks.title, bookmarks.URL, bookmarks.owner_id, bookmarks.description FROM favorites
                     JOIN bookmarks
@@ -72,9 +74,9 @@ class Favorite
                     WHERE favorites.owner_id = $id
                     ORDER BY favorites.bookmark_id";
         }
-        
+
         $row = $this->db->query($sql);
-        
+
         while($result = $row->fetch_assoc()){
             $results[] = $result;
         }

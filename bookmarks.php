@@ -54,7 +54,7 @@ if($category){
 
 ?>
 <div class="d-flex justify-content-center p-3">
-    <a href="new_bookmark.php" class="btn btn-outline-primary mx-4">Add New Bookmark</a>
+    <a href="new_bookmark.php" class="bttn btn_md btn-green-900">Add New Bookmark</a>
 </div>
 
 <?php
@@ -93,16 +93,16 @@ if($count > 1)
                                     <td><?=$bookmark['date_modified'];?></td>
                                     <td><?=$cat->getCategoryNameById($bookmark['category_id']);?></td>
                                     <td>
-                                        <a class="btn btn-outline-primary" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
+                                        <a class="bttn btn_sm btn-green-300" href="edit_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-pen"></i> Edit</a>
                                     </td>
                                     <td>
-                                        <a class="btn btn-outline-secondary" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
+                                        <a class="bttn btn_sm btn_dark" href="delete_bookmark.php?id=<?=$bookmark['id'];?>"><i class="fa fa-solid fa-trash"></i> Delete</a>
                                     </td>
                                     <td>
                                         <?php if($fav->isFavorite($bookmark['id'])) { ?>
-                                            <a class="btn btn-outline-danger" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
+                                            <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=remove"><i class="fa-solid fa-heart"></i></a>
                                         <?php } else { ?>
-                                            <a class="btn btn-outline-secondary" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
+                                            <a class="bttn btn_sm btn_accent" href="favorites.php?id=<?=$bookmark['id']?>&action=add"><i class="fa-regular fa-heart"></i></a>
                                         <?php } ?>
                                     </td>
 
@@ -117,7 +117,8 @@ if($count > 1)
         </div>
     </div>
 </section>
-<nav aria-label="Page navigation example">
+<?php if($count > $limit){ ?>
+<nav aria-label="Page navigation example" id="mtop">
     <ul class="pagination justify-content-center">
         <?php
             if($page == 1){
@@ -137,18 +138,19 @@ if($count > 1)
             for($i=1; $i <= $total_pages; $i++)
             {
                 if($page == $i) {
-                    echo '<li class="page-item active" aria-current="page"><span class="page-link primary" >'. $i .'</span></li>';
+                    echo '<li class="page-item" aria-current="page"><span class="page-link" id="active" >'. $i .'</span></li>';
                 } else {
                     $class = "page-item";
                     $aria = "";
                     echo '<li '.$class . $aria .'><a class="page-link" href="bookmarks.php?page='.$i.'">'. $i .'</a></li>';
                 }
             }
-            echo '<li class="page-item '.$next_disabled.'"><a class="page-link " href="bookmarks.php?page='.($page+1).'">Next</a></li>';
+            echo '<li class="page-item '.$next_disabled.'"><a class="page-link"  href="bookmarks.php?page='.($page+1).'">Next</a></li>';
             echo '<li class="page-item '.$next_disabled.'"><a class="page-link" href="bookmarks.php?page='.$total_pages.'">&raquo;</a></li>';
         ?>
     </ul>
 </nav>
-<?php }
+<?php } }
 include 'templates/footer.php';
 
+>>>>>>> cf24b5a644ba6b56fa56bdda014f5cee21b3e0b2
