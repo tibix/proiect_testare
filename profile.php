@@ -63,10 +63,6 @@ if(isset($_POST['update_profile']))
         $errors[] = "No information was changed!";
     }
 
-//    if(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL))
-//    {
-//        $errors[] = "Email field must contain a valid e-mail!";
-//    }
     if(!$errors)
     {
         $update_user = $user->updateUser($_SESSION['user_id'], $_POST['user_name'], $_POST['first_name'], $_POST['last_name'], $_POST['email'], $_POST['language']);
