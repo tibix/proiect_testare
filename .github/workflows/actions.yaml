@@ -17,7 +17,7 @@ jobs:
         with:
           host: testare.itdev.ro
           username: testare
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/testare/htdocs/testare.itdev.ro
             git pull origin main
