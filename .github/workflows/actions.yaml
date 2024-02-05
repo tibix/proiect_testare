@@ -1,4 +1,4 @@
-name: Deploy on Merge to main
+name: Deploy on Push/Merge to main
 
 on:
   push:
@@ -11,10 +11,10 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
-
-      - name: Deploy to remote server
-        run: |
-          ssh testare@testare.itdev.ro "cd /home/testare/htdocs/testarea.itdev.ro/ && git pull origin main"
-        env: 
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        uses: actions/checkout@v3
+        with:
+          key: ${{ secret.SSH_PRIVATE_KEY }}
+          port: 22
+          script: |
+            cd /home/testare/htdocs/testare.itdev.ro
+            git pull origin main
