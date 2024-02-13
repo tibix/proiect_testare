@@ -152,5 +152,3 @@ if($count > 1)
 </nav>
 <?php } }
 include 'templates/footer.php';
-
->>>>>>> cf24b5a644ba6b56fa56bdda014f5cee21b3e0b2
